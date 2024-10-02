@@ -1,33 +1,47 @@
 {
-  description = "utznix: flake for all things theutz";
+  description = "theutz: a flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    darwin.url = "github:lnl7/nix-darwin";
-    darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-  outputs = inputs@{ nixpkgs, home-manager, darwin, ... }: {
-    darwinConfigurations = {
-      kocaeli = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-          ./configuration.nix
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.michael = import ./home.nix;
-            home-manager.backupFileExtension = "backup";
+    darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-            home-manager.extraSpecialArgs = inputs;
-          }
-        ];
-      };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    snowfall-flake = {
+      url = "github:snowfallorg/flake";
+      inputs.nixpkgs.follows = "unstable";
     };
   };
+
+  outputs = inputs:
+      inputs.snowfall-lib.mkFlake {
+        inherit inputs;
+        src = ./.;
+
+        snowfall = {
+          root = ./nix;
+          namespace = "theutz";
+          meta = {
+            name = "theutz";
+            title = "TheUtz: A Flake";
+          };
+        };
+
+        overlays = with inputs; [
+          snowfall-flake.overlays.default
+        ];
+      };
 }
