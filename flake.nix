@@ -20,9 +20,11 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.michael = import ./home.nix;
+            home-manager.backupFileExtension = "backup";
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
+            home-manager.extraSpecialArgs = inputs;
           }
         ];
       };
