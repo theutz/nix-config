@@ -1,5 +1,5 @@
 {
-  description = "Darwin configuration";
+  description = "utznix: flake for all things theutz";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
