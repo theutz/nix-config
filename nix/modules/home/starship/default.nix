@@ -26,6 +26,9 @@ in {
         sudo = {
           disabled = false;
         };
+        shell = {
+          disabled = false;
+        };
       };
     };
   };

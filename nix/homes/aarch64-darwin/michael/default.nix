@@ -11,10 +11,16 @@ in {
   home.packages = with pkgs; [
     neovide
     unstable.neovim
+    lsix
+    ripgrep
   ];
 
   theutz = {
     atuin.enable = true;
+    bash.enable = true;
+    bat.enable = true;
+    eza.enable = true;
+    fish.enable = true;
     lazygit.enable = true;
     lf.enable = true;
     prezto.autoTmux = true;
