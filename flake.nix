@@ -24,6 +24,11 @@
       url = "github:snowfallorg/flake";
       inputs.nixpkgs.follows = "unstable";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "unstable";
+    };
   };
 
   outputs = inputs:

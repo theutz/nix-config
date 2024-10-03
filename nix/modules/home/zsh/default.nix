@@ -1,82 +1,22 @@
-_: {
-  config = {
-    programs.zsh.enable = true;
+{ config, lib, namespace, ... }: let
+  inherit (lib) mkIf mkEnableOption mkMerge;
 
-    programs.zsh.prezto = {
+  mod = "zsh";
+  cfg = config."${namespace}"."${mod}";
+in {
+  options."${namespace}"."${mod}" = {
+    enable = mkEnableOption "zsh settings";
+  };
+
+  config = mkIf cfg.enable {
+    programs.zsh = {
       enable = true;
 
-      extraFunctions = ["zargs" "zmv"];
-      extraModules = ["attr" "stat"];
-
-      pmodules = [
-        "environment"
-        "terminal"
-        "editor"
-        "history"
-        "directory"
-        "spectrum"
-        "tmux"
-        "homebrew"
-        "archive"
-        "rsync"
-        "command-not-found"
-        "docker"
-        "osx"
-        "git"
-        "utility"
-        "ssh"
-        "completion"
-        "syntax-highlighting"
-        "history-substring-search"
-        "autosuggestions"
+      shellAliases = mkMerge [
+        (mkIf config.programs.lazygit.enable {
+          lg = "lazygit";
+        })
       ];
-
-      autosuggestions = {
-        color = "fg=cyan";
-      };
-
-      editor = {
-        keymap = "vi";
-        dotExpansion = false;
-      };
-
-      gnuUtility.prefix = "g";
-
-      syntaxHighlighting = {
-        highlighters = [
-          "main"
-          "brackets"
-          "pattern"
-          "line"
-          "cursor"
-          "root"
-        ];
-
-        styles = {
-          "builtin"  = "fg=magenta";
-          "command"  = "fg=green";
-          "function" = "bg=blue";
-        };
-
-        pattern = {
-          "rm*-rf*" = "fg=white,bold,bg=red";
-        };
-      };
-
-      terminal = {
-        autoTitle = true;
-        windowTitleFormat = "%n@%m: %s";
-        tabTitleFormat = "%m: %s";
-        multiplexerTitleFormat = "%s";
-      };
-
-      tmux = {
-        autoStartLocal = true;
-        autoStartRemote = true;
-        defaultSessionName = "main";
-      };
-
-      utility.safeOps = true;
     };
   };
 }

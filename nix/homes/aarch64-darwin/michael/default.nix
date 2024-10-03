@@ -12,4 +12,24 @@ in {
     neovide
     unstable.neovim
   ];
+
+  theutz = {
+    atuin.enable = true;
+
+    lazygit.enable = true;
+
+    lf.enable = true;
+
+    prezto = {
+      enable = true;
+      autoTmux = true;
+    };
+
+    starship.enable = true;
+
+    zoxide.enable = true;
+
+    zsh.enable = true;
+  };
+
 }

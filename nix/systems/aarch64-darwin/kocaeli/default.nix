@@ -1,9 +1,9 @@
 { pkgs, ... }: {
   system.stateVersion = 5;
   services.nix-daemon.enable = true;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+  };
 
   environment.systemPackages = with pkgs; [
     tmux
