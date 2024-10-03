@@ -29,10 +29,23 @@
       url = "github:theutz/nixvim";
       inputs.nixpkgs.follows = "unstable";
     };
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+    };
+
+    flake-utils-plus = {
+      url = "github:gytis-ivaskevicius/flake-utils-plus";
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs:
-    inputs.snowfall-lib.mkFlake {
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
       inherit inputs;
       src = ./.;
 
@@ -44,9 +57,19 @@
           title = "TheUtz: A Flake";
         };
       };
-
+    };
+  in
+    lib.mkFlake {
       overlays = with inputs; [
         snowfall-flake.overlays.default
       ];
+
+      homes.modules = with inputs; [
+        nix-index-database.hmModules.nix-index
+      ];
+
+      formatter = inputs.flake-utils-plus.lib.eachDefaultSystem (system: {
+        ${system} = inputs.nixpkgs.legacyPackages.${system}.alejandra;
+      });
     };
 }

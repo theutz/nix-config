@@ -1,4 +1,9 @@
-{ config, lib, namespace, ... }: let
+{
+  config,
+  lib,
+  namespace,
+  ...
+}: let
   inherit (lib) mkIf mkEnableOption;
 
   mod = "lazygit";
@@ -16,7 +21,7 @@ in {
           expandFocusedSidePanel = true;
           showRandomTip = false;
           showCommandLog = true;
-          showBottomLine =  false;
+          showBottomLine = false;
           nerdFontsVersion = "3";
           border = "rounded";
         };
@@ -53,13 +58,13 @@ in {
             subprocess = true;
           }
           {
-            key =  "E";
-            description =  "Add empty commit";
-            context =  "commits";
-            command =  ''
+            key = "E";
+            description = "Add empty commit";
+            context = "commits";
+            command = ''
               'git commit --allow-empty -m "chore: empty commit"'
             '';
-            loadingText =  "Committing empty commit...";
+            loadingText = "Committing empty commit...";
           }
         ];
       };

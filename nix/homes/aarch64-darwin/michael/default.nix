@@ -16,7 +16,11 @@
     inputs.nixvim.packages.${target}.default
     lsix
     ripgrep
+    nix-melt
   ];
+
+  programs.nix-index.enable = true;
+  programs.nix-index-database.comma.enable = true;
 
   theutz = {
     atuin.enable = true;

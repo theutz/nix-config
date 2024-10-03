@@ -1,4 +1,9 @@
-{ config, lib, namespace, ... }: let
+{
+  config,
+  lib,
+  namespace,
+  ...
+}: let
   inherit (lib) mkIf mkEnableOption mkOption types mkMerge;
 
   mod = "prezto";
@@ -76,8 +81,8 @@ in {
         ];
 
         styles = {
-          "builtin"  = "fg=magenta";
-          "command"  = "fg=green";
+          "builtin" = "fg=magenta";
+          "command" = "fg=green";
           "function" = "bg=blue";
         };
 
