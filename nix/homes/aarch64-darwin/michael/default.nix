@@ -5,7 +5,7 @@ in {
   
   home.sessionVariables = {
     EDITOR = "nvim";
-    VISUAL = "neovide";
+    VISUAL = "neovide --no-fork";
   };
 
   home.packages = with pkgs; [
@@ -15,21 +15,13 @@ in {
 
   theutz = {
     atuin.enable = true;
-
     lazygit.enable = true;
-
     lf.enable = true;
-
-    prezto = {
-      enable = true;
-      autoTmux = true;
-    };
-
+    prezto.autoTmux = true;
+    prezto.enable = true;
     starship.enable = true;
-
+    xdg.enable = true;
     zoxide.enable = true;
-
     zsh.enable = true;
   };
-
 }
