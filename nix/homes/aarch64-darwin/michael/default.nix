@@ -1,8 +1,11 @@
-{ pkgs, inputs, target, ... }: let
-  unstable = inputs.unstable.legacyPackages."${target}";
-in {
+{
+  pkgs,
+  inputs,
+  target,
+  ...
+}: {
   home.stateVersion = "24.05";
-  
+
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "neovide --no-fork";
@@ -10,7 +13,7 @@ in {
 
   home.packages = with pkgs; [
     neovide
-    unstable.neovim
+    inputs.nixvim.packages.${target}.default
     lsix
     ripgrep
   ];

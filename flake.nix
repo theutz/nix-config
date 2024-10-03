@@ -26,27 +26,27 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url = "github:theutz/nixvim";
       inputs.nixpkgs.follows = "unstable";
     };
   };
 
   outputs = inputs:
-      inputs.snowfall-lib.mkFlake {
-        inherit inputs;
-        src = ./.;
+    inputs.snowfall-lib.mkFlake {
+      inherit inputs;
+      src = ./.;
 
-        snowfall = {
-          root = ./nix;
-          namespace = "theutz";
-          meta = {
-            name = "theutz";
-            title = "TheUtz: A Flake";
-          };
+      snowfall = {
+        root = ./nix;
+        namespace = "theutz";
+        meta = {
+          name = "theutz";
+          title = "TheUtz: A Flake";
         };
-
-        overlays = with inputs; [
-          snowfall-flake.overlays.default
-        ];
       };
+
+      overlays = with inputs; [
+        snowfall-flake.overlays.default
+      ];
+    };
 }
