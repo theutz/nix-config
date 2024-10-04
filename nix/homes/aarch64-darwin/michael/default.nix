@@ -4,7 +4,9 @@
   target,
   system,
   ...
-}: {
+}: let
+  unstable = inputs.unstable.legacyPackages.${system};
+in {
   home.stateVersion = "24.05";
 
   home.sessionVariables = {
@@ -18,7 +20,7 @@
     ripgrep
     nix-melt
     inputs.Neve.packages.${system}.default
-    devenv
+    unstable.devenv
   ];
 
   programs.nix-index.enable = true;
