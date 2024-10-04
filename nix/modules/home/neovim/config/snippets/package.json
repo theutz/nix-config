@@ -1,0 +1,25 @@
+{
+  "name": "theutz-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "all"
+        ],
+        "path": "./snippets/all.json"
+      },
+      {
+        "language": [
+          "jinja"
+        ],
+        "path": "./snippets/jinja.json"
+      },
+      {
+        "language": [
+          "html"
+        ],
+        "path": "./snippets/html.json"
+      }
+    ]
+  }
+}

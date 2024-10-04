@@ -1,0 +1,10 @@
+{
+  "lspconfig": {
+    "tailwindcss": {
+      "tailwindCSS.includeLanguages": {
+        "antlers": "html",
+        "htmlhugo": "html"
+      }
+    }
+  }
+}
