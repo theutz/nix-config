@@ -68,8 +68,8 @@
         nix-index-database.hmModules.nix-index
       ];
 
-      formatter = inputs.flake-utils-plus.lib.eachDefaultSystem (system: {
-        ${system} = inputs.nixpkgs.legacyPackages.${system}.alejandra;
-      });
+      outputs-builder = channels: {
+        formatter = channels.nixpkgs.alejandra;
+      };
     };
 }
