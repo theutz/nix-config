@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   target,
+  system,
   ...
 }: {
   home.stateVersion = "24.05";
@@ -13,10 +14,11 @@
 
   home.packages = with pkgs; [
     neovide
-    inputs.nixvim.packages.${target}.default
     lsix
     ripgrep
     nix-melt
+    inputs.Neve.packages.${system}.default
+    statix
   ];
 
   programs.nix-index.enable = true;

@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  system,
+  inputs,
+  ...
+}: {
   system.stateVersion = 5;
   services.nix-daemon.enable = true;
   nix.settings = {

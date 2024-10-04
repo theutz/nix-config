@@ -42,6 +42,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    Neve = {
+      url = "github:theutz/Neve";
+    };
   };
 
   outputs = inputs: let
