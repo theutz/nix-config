@@ -67,8 +67,9 @@
       homes.modules = with inputs; [
         nix-index-database.hmModules.nix-index
       ];
-    }
-    // inputs.flake-utils-plus.lib.eachDefaultSystem (system: {
-      formatter = inputs.nixpkgs.legacyPackages.${system}.alejandra;
-    });
+
+      formatter = inputs.flake-utils-plus.lib.eachDefaultSystem (system: {
+        ${system} = inputs.nixpkgs.legacyPackages.${system}.alejandra;
+      });
+    };
 }

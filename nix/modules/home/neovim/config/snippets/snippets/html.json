@@ -1,7 +1,0 @@
-{
-  "START/END": {
-    "prefix": "startend",
-    "body": ["<!-- START ${1:name} -->$0", "<!-- END ${1:name} -->"],
-    "description": "HTML Comments for START and END of the clipboard contents"
-  }
-}

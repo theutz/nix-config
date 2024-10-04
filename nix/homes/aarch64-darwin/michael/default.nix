@@ -3,9 +3,7 @@
   inputs,
   target,
   ...
-}: let
-  unstable = inputs.unstable.legacyPackages."${target}";
-in {
+}: {
   home.stateVersion = "24.05";
 
   home.sessionVariables = {
@@ -15,7 +13,7 @@ in {
 
   home.packages = with pkgs; [
     neovide
-    unstable.neovim
+    inputs.nixvim.packages.${target}.default
     lsix
     ripgrep
     nix-melt
@@ -32,7 +30,6 @@ in {
     fish.enable = true;
     lazygit.enable = true;
     lf.enable = true;
-    neovim.enable = true;
     prezto.autoTmux = true;
     prezto.enable = true;
     starship.enable = true;
