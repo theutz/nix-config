@@ -6,8 +6,10 @@
 }: {
   system.stateVersion = 5;
   services.nix-daemon.enable = true;
+
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
+    trusted-users = ["root" "michael"];
   };
 
   environment.systemPackages = with pkgs; [
