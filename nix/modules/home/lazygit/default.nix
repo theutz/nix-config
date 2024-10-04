@@ -70,7 +70,7 @@ in {
       };
     };
 
-    programs.zsh.shellAliases = {
+    home.shellAliases = {
       lg = "lazygit";
     };
   };
