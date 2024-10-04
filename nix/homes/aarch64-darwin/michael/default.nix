@@ -18,7 +18,7 @@
     ripgrep
     nix-melt
     inputs.Neve.packages.${system}.default
-    statix
+    devenv
   ];
 
   programs.nix-index.enable = true;
