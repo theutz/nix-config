@@ -11,6 +11,7 @@
     experimental-features = ["nix-command" "flakes"];
     trusted-users = ["root" "michael"];
   };
+  nix.nixPath = "nixpkgs=flake:nixpkgs";
 
   environment.systemPackages = with pkgs; [
     tmux

@@ -30,6 +30,7 @@ in {
     atuin.enable = true;
     bash.enable = true;
     bat.enable = true;
+    direnv.enable = true;
     eza.enable = true;
     fish.enable = true;
     lazygit.enable = true;
