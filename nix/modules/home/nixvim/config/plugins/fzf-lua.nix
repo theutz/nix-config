@@ -15,6 +15,7 @@ in {
   keymaps = map (def: act (elemAt def 0) (elemAt def 1) (elemAt def 2)) [
     [" " "git_files" "Find files (current repo)"]
     ["'" "marks" "Marks"]
+    ["," "buffers" "Buffers"]
     ["." "blines" "Grep files (current buffer)"]
     ["/" "live_grep" "Grep files (current repo)"]
     ["sa" "autocmds" "Autocmds"]

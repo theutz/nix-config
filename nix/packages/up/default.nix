@@ -16,8 +16,7 @@ in
     text = ''
       cmd="
         git add -A &&
-        nix fmt &&
-        darwin-rebuild switch --flake .
+          darwin-rebuild switch --flake .
       "
       watchexec -- "bash -c \"$cmd\""
     '';
