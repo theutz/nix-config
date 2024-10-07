@@ -1,5 +1,12 @@
-{ config, lib, namespace, ... }: let
+{
+  config,
+  lib,
+  namespace,
+  ...
+}: let
   inherit (lib) mkIf mkEnableOption;
+  inherit (builtins) map;
+  inherit (lib.filesystem) listFilesRecursive;
 
   mod = "nixvim";
   cfg = config.${namespace}.${mod};
@@ -11,6 +18,7 @@ in {
   config = mkIf cfg.enable {
     programs.nixvim = {
       enable = true;
+      imports = listFilesRecursive ./config;
     };
   };
 }

@@ -1,4 +1,9 @@
-{ config, lib, namespace, ... }: let
+{
+  config,
+  lib,
+  namespace,
+  ...
+}: let
   inherit (lib) mkEnableOption mkIf mkOption types mkMerge;
   mod = "lf";
   cfg = config."${namespace}"."${mod}";
@@ -35,12 +40,12 @@ in {
               lf -remote "send $id cd \"$result\""
             }}
           '';
-          zi = ''
-            ''\${{
-              result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
-              lf -remote "send $id cd \"$result\""
-            }}
-          '';
+          #zi = ''
+          #  ''\${{
+          #    result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+          #    lf -remote "send $id cd \"$result\""
+          #  }}
+          #'';
           on-cd = ''
             zoxide add "$PWD"
           '';
