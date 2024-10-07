@@ -1,0 +1,15 @@
+session_name: impactelectronics-com
+start_directory: $HOME/code/delegator/impactelectronics/
+windows:
+  - focus: true
+    layout: main-vertical
+    options:
+      main-pane-width: "60%"
+    panes:
+      - focus: true
+        shell: nvim
+    window_name: main
+  - layout: even-vertical
+    panes:
+      - just dev
+    window_name: server

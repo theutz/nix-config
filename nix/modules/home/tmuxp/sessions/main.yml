@@ -1,0 +1,8 @@
+session_name: main
+start_directory: $HOME
+windows:
+  - panes:
+      - shell_command: tmux selectp -T main; clear
+        sleep_before: 1
+    window_name: main
+    layout: main-vertical

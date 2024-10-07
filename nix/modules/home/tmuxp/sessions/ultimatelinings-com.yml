@@ -1,0 +1,13 @@
+session_name: ultimatelinings-com
+start_directory: $HOME/code/delegator/ultimatelinings
+windows:
+  - window_name: main
+    focus: true
+    layout: main-vertical
+    options:
+      main-pane-width: 80
+    panes:
+      - nvim
+  - window_name: server
+    panes:
+      - just dev

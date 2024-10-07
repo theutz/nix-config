@@ -1,0 +1,13 @@
+session_name: moxie
+start_directory: $HOME/code/theutz/moxie-collaborative.com/
+windows:
+  - window_name: main
+    layout: main-vertical
+    options:
+      other-pane-width: 80
+      remain-on-exit: true
+    panes:
+      - shell: nvim
+        focus: true
+      - shell: just serve
+      - blank

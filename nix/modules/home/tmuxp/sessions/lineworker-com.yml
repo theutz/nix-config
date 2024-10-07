@@ -1,0 +1,14 @@
+session_name: lineworker-com
+start_directory: $HOME/code/delegator/lineworker
+windows:
+  - focus: true
+    layout: main-vertical
+    panes:
+      - shell_command: nvim
+        focus: true
+    window_name: main
+  - panes:
+      - shell_command: just dev
+        environment:
+          SHELL: "/opt/homebrew/bin/zsh"
+    window_name: servers

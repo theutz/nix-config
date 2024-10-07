@@ -1,0 +1,16 @@
+session_name: funding-playcore-com
+start_directory: $HOME/code/delegator/funding-tool
+windows:
+  - focus: true
+    layout: main-vertical
+    panes:
+      - pane
+    window_name: main
+  - layout: main-vertical
+    panes:
+      - bin/dev
+    window_name: bin/dev
+  - layout: main-vertical
+    panes:
+      - docker compose up
+    window_name: docker

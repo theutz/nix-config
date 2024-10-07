@@ -1,0 +1,12 @@
+session_name: doktorhanim-com
+start_directory: $HOME/code/doktorhanim/doktorhanim.com
+windows:
+  - panes:
+      - shell_command: nvim
+        enter: false
+    window_name: main
+  - panes:
+      - shell_command: just dev
+      - shell_command: lnav storage/logs/*.log
+        focus: true
+    window_name: dev

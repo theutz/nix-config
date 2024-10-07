@@ -1,0 +1,9 @@
+session_name: peskee
+start_directory: $HOME/code/theutz/peskee
+windows:
+  - panes:
+      - shell: nvim
+    window_name: main
+    layout: main-vertical
+    options:
+      remain-on-exit: true

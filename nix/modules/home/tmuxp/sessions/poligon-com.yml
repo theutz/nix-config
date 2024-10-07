@@ -1,0 +1,16 @@
+session_name: poligon-com
+start_directory: $HOME/code/delegator/poligon.com
+windows:
+  - focus: true
+    layout: main-vertical
+    panes:
+      - focus: true
+        shell_command: nvim
+        sleep_before: 1
+        enter: true
+    window_name: main
+  - panes:
+      - shell_command: just dev
+        sleep_before: 1
+        enter: true
+    window_name: devserver

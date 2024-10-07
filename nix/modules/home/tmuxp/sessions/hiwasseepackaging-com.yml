@@ -1,0 +1,12 @@
+session_name: hiwasseepackaging-com
+start_directory: $HOME/code/delegator/hiwasseepackaging.com/
+windows:
+  - focus: true
+    layout: main-vertical
+    panes:
+      - shell_command: nvim
+        focus: true
+    window_name: main
+  - panes:
+      - just dev
+    window_name: servers

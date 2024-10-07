@@ -1,0 +1,12 @@
+session_name: wyd
+start_directory: "~/code/theutz/wyd"
+windows:
+  - panes:
+      - shell: nvim
+        focus: true
+      - shell: process-compose
+    window_name: main
+    layout: main-vertical
+    options:
+      remain-on-exit: true
+      other-pane-width: 80

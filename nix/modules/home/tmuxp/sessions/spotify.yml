@@ -1,0 +1,9 @@
+session_name: spotify
+start_directory: $HOME
+windows:
+  - panes:
+      - shell: spotify_player
+    window_name: main
+    options:
+      remain-on-exit: on
+      status: off

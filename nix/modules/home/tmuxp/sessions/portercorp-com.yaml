@@ -1,0 +1,13 @@
+session_name: portercorp-com
+start_directory: /Users/michael/code/delegator/hubspot-portercorp
+windows:
+  - focus: "true"
+    layout: main-vertical
+    options: {}
+    panes:
+      - blank
+      - focus: "true"
+        shell_command: nvim
+    window_name: main
+  - panes:
+      - sleep 1 && exit

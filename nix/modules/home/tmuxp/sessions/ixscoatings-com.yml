@@ -1,0 +1,10 @@
+session_name: ixscoatings-com
+start_directory: $HOME/code/delegator/ixscoatings.com/
+windows:
+  - focus: true
+    layout: main-horizontal
+    panes:
+      - focus: true
+        shell_command:
+          - pane
+    window_name: main

@@ -1,0 +1,8 @@
+session_name: theutz-family
+start_directory: $HOME/code/theutz/theutz.family
+windows:
+  - panes:
+      - blank
+    window_name: main
+  - panes:
+      - sleep 0.3 && exit

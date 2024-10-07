@@ -1,0 +1,12 @@
+session_name: delegator-com
+start_directory: $HOME/code/delegator/delegator/
+windows:
+  - focus: true
+    layout: main-vertical
+    panes:
+      - nvim
+    window_name: main
+  - layout: main-vertical
+    panes:
+      - bin/dev
+    window_name: bin/dev
