@@ -2,19 +2,17 @@
   keymaps = [
     {
       mode = ["n"];
-      key = "<leader>e";
-      action = "<cmd>Oil<cr>";
-      options = {
-        desc = "Open file explorer";
-      };
-    }
-    {
-      mode = ["n"];
       key = "<C-s>";
       action = "<cmd>w<cr>";
       options = {
         desc = "Save file";
       };
+    }
+    {
+      mode = ["n" "i"];
+      key = "<esc>";
+      action = "<cmd>nohl<cr><esc>";
+      options = {desc = "Clear highlighting";};
     }
     {
       mode = ["n"];

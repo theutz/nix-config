@@ -2,9 +2,11 @@
   config,
   lib,
   namespace,
+  pkgs,
   ...
 }: let
   inherit (lib) mkEnableOption mkIf mkOption types mkMerge;
+
   mod = "lf";
   cfg = config."${namespace}"."${mod}";
 
@@ -32,6 +34,17 @@ in {
   config = mkIf cfg.enable {
     programs.lf = {
       enable = true;
+
+      previewer = {
+        source = pkgs.writeShellScript "pv.sh" ''
+          #!/usr/bin/env sh
+
+          case "$1" in
+            *) bat "$1"
+          esac
+        '';
+      };
+
       commands = mkMerge [
         (mkIf config.programs.zoxide.enable {
           z = ''
