@@ -26,8 +26,8 @@
     };
 
     nixvim = {
-      url = "github:theutz/nixvim";
-      inputs.nixpkgs.follows = "unstable";
+      url = "github:nix-community/nixvim/nixos-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     pre-commit-hooks = {
@@ -41,10 +41,6 @@
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    Neve = {
-      url = "github:theutz/Neve";
     };
   };
 
@@ -70,6 +66,7 @@
 
       homes.modules = with inputs; [
         nix-index-database.hmModules.nix-index
+        nixvim.homeManagerModules.nixvim
       ];
 
       outputs-builder = channels: {

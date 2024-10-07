@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  target,
   system,
   ...
 }: let
@@ -19,7 +18,6 @@ in {
     lsix
     ripgrep
     nix-melt
-    inputs.Neve.packages.${system}.default
     unstable.devenv
   ];
 
@@ -35,6 +33,7 @@ in {
     fish.enable = true;
     lazygit.enable = true;
     lf.enable = true;
+    nixvim.enable = true;
     prezto.autoTmux = true;
     prezto.enable = true;
     starship.enable = true;
