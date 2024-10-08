@@ -7,10 +7,10 @@
   inherit (lib) mkIf mkEnableOption mkMerge;
 
   mod = "zsh";
-  cfg = config."${namespace}"."${mod}";
+  cfg = config.${namespace}.${mod};
 in {
-  options."${namespace}"."${mod}" = {
-    enable = mkEnableOption "zsh settings";
+  options.${namespace}.${mod} = {
+    enable = mkEnableOption "the zshell";
   };
 
   config = mkIf cfg.enable {
@@ -22,6 +22,10 @@ in {
           lg = "lazygit";
         })
       ];
+
+      initExtra = ''
+        setopt NO_EXTENDED_GLOB NO_INTERACTIVE_COMMENTS
+      '';
     };
   };
 }
