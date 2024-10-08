@@ -25,23 +25,16 @@
       inputs.nixpkgs.follows = "unstable";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "unstable";
-    };
-
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
-    };
-
-    flake-utils-plus = {
-      url = "github:gytis-ivaskevicius/flake-utils-plus";
     };
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    utzvim.url = "github:theutz/utzvim";
   };
 
   outputs = inputs: let
@@ -71,7 +64,6 @@
 
       homes.modules = with inputs; [
         nix-index-database.hmModules.nix-index
-        nixvim.homeManagerModules.nixvim
       ];
 
       outputs-builder = channels: {

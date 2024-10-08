@@ -5,6 +5,7 @@
   ...
 }: let
   unstable = inputs.unstable.legacyPackages.${system};
+  utzvim = inputs.utzvim.packages.${system}.default;
 in {
   home.stateVersion = "24.05";
 
@@ -19,6 +20,7 @@ in {
     ripgrep
     nix-melt
     unstable.devenv
+    utzvim
   ];
 
   programs.nix-index.enable = true;
@@ -33,7 +35,6 @@ in {
     fish.enable = true;
     lazygit.enable = true;
     lf.enable = true;
-    nixvim.enable = true;
     prezto.autoTmux = true;
     prezto.enable = true;
     starship.enable = true;
