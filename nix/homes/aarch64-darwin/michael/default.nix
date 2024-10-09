@@ -35,13 +35,12 @@ in {
     eza.enable = true;
     fish.enable = true;
     lazygit.enable = true;
-    lf.enable = false;
+    lf.enable = true;
     prezto.autoTmux = true;
     prezto.enable = true;
     starship.enable = true;
     tmuxp.enable = true;
     xdg.enable = true;
-    yazi.enable = true;
     zoxide.enable = true;
     zsh.enable = true;
   };
