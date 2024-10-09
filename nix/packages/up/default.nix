@@ -3,9 +3,10 @@
   lib,
   ...
 }: let
+  name = lib.theutz.getLastComponent ./.;
 in
   pkgs.writeShellApplication {
-    name = "up";
+    inherit name;
 
     runtimeInputs = with pkgs; [
       git
