@@ -28,6 +28,15 @@ in {
   programs.nix-index-database.comma.enable = true;
   programs.man.enable = true;
 
+  programs.spotify-player = {
+    enable = true;
+    settings = {
+      device = {
+        volume = 85;
+      };
+    };
+  };
+
   theutz = {
     atuin.enable = true;
     bash.enable = true;
