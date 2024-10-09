@@ -21,6 +21,7 @@ in {
     nix-melt
     unstable.devenv
     utzvim
+    theutz.txp
   ];
 
   programs.nix-index.enable = true;
