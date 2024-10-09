@@ -21,7 +21,7 @@ in {
     nix-melt
     unstable.devenv
     utzvim
-    theutz.txp
+    theutz.tmuxp-attach
   ];
 
   programs.nix-index.enable = true;
@@ -44,6 +44,7 @@ in {
     direnv.enable = true;
     eza.enable = true;
     fish.enable = true;
+    fzf.enable = true;
     lazygit.enable = true;
     lf.enable = true;
     prezto.autoTmux = true;
