@@ -33,6 +33,11 @@ in {
       tmuxp.enable = true;
     };
 
+    home.packages = mkIf config.programs.tmux.tmuxp.enable [
+      pkgs.theutz.tmuxp-attach
+      pkgs.theutz.tmuxp-edit
+    ];
+
     xdg.configFile."tmuxp" = {
       enable = true;
       recursive = true;
