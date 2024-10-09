@@ -40,7 +40,7 @@ in {
     prezto.autoTmux = true;
     prezto.enable = true;
     starship.enable = true;
-    tmuxp.enable = true;
+    tmux.enable = true;
     xdg.enable = true;
     zoxide.enable = true;
     zsh.enable = true;

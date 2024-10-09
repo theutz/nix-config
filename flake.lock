@@ -781,11 +781,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1728469035,
-        "narHash": "sha256-wtlOZA4eABpjrqR/A5zvvI1pYBUhLUNt2ghPOxq8+sY=",
+        "lastModified": 1728477923,
+        "narHash": "sha256-bxeKRk0jUgRL5zOY2jB3meX/BsOyvDQeLCRrQInfo/g=",
         "owner": "theutz",
         "repo": "utzvim",
-        "rev": "f7f5bf5d5f921b4056ae5b01eae00331b61baa85",
+        "rev": "0527f7e27261b53241a6a1256c3aca2a2fbdb860",
         "type": "github"
       },
       "original": {
