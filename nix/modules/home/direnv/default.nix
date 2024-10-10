@@ -19,6 +19,12 @@ in {
       enableBashIntegration = true;
       enableZshIntegration = true;
 
+      config = {
+        global = {
+          hide_env_diff = true;
+        };
+      };
+
       nix-direnv.enable = true;
     };
   };

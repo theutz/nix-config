@@ -26,7 +26,6 @@ in {
 
   programs.nix-index.enable = true;
   programs.nix-index-database.comma.enable = true;
-  programs.man.enable = true;
 
   programs.spotify-player = {
     enable = true;
