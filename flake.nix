@@ -58,7 +58,6 @@
     lib.mkFlake {
       alias = {
         shells.default = "develop";
-        packages.default = "up";
       };
 
       overlays = with inputs; [
