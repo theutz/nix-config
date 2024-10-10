@@ -1,0 +1,5 @@
+{
+  plugins.committia = {
+    enable = true;
+  };
+}

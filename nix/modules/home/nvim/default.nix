@@ -2,8 +2,7 @@
   lib,
   config,
   namespace,
-  inputs,
-  system,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf mkEnableOption mkForce mkOption mkMerge;
@@ -20,14 +19,12 @@
       default = true;
     };
   };
-
-  utzvim = inputs.utzvim.packages.${system}.default;
 in {
   inherit options;
 
   config = mkIf cfg.enable {
     home.packages = [
-      utzvim
+      pkgs.theutz.utzvim
     ];
 
     home.sessionVariables = mkMerge [

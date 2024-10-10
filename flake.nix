@@ -34,7 +34,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    utzvim.url = "github:theutz/utzvim";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "unstable";
+    };
   };
 
   outputs = inputs: let

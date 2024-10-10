@@ -1,0 +1,5 @@
+{
+  plugins.helpview = {
+    enable = true;
+  };
+}
