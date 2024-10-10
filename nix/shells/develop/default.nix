@@ -14,15 +14,13 @@ in
     ];
 
     shellHook = ''
-      gum format <<EOF
+      gum format <<'EOF'
       # Welcome to TheUtz's Flake ❄️
 
       ## Commands
 
-      | Command | Description |
-      | --- | --- |
-      | up | start the dev server |
-      | utzvim | edit the neovim configuration on a loop |
+      - `up`: start the dev server
+      - `utzvim`: edit the neovim configuration on a loop
       EOF
     '';
   }

@@ -1,5 +1,5 @@
 {
   plugins.mark-radar = {
-    enable = true;
+    enable = false;
   };
 }
