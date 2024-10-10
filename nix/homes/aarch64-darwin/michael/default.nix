@@ -1,17 +1,18 @@
 {
+  lib,
   pkgs,
   inputs,
   system,
   ...
 }: let
+  inherit (lib) mkDefault;
   unstable = inputs.unstable.legacyPackages.${system};
-  utzvim = inputs.utzvim.packages.${system}.default;
 in {
   home.stateVersion = "24.05";
 
   home.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "neovide --no-fork";
+    EDITOR = mkDefault "nvim";
+    VISUAL = mkDefault "neovide --no-fork";
   };
 
   home.packages = with pkgs; [
@@ -20,7 +21,7 @@ in {
     ripgrep
     nix-melt
     unstable.devenv
-    utzvim
+    less
   ];
 
   programs.nix-index.enable = true;
@@ -45,9 +46,14 @@ in {
     fish.enable = true;
     fzf.enable = true;
     lazygit.enable = true;
+    less.enable = true;
     lf.enable = true;
-    prezto.autoTmux = true;
-    prezto.enable = true;
+    man.enable = true;
+    nvim.enable = true;
+    prezto = {
+      enable = true;
+      autoTmux = true;
+    };
     starship.enable = true;
     tmux.enable = true;
     xdg.enable = true;
