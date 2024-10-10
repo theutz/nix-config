@@ -1,43 +1,10 @@
 {
   mkShell,
   pkgs,
-  lib,
   ...
-}: let
-  utzvim = pkgs.writeShellApplication {
-    name = "utzvim";
-
-    runtimeInputs = [
-      pkgs.gum
-    ];
-
-    text = ''
-      while :; do
-        nix run .#utzvim -- -c 'cd nix/packages/utzvim'
-        if ! gum confirm "Restart?" --timeout=5s; then
-          exit
-        fi
-      done
-    '';
-  };
-
-  up = pkgs.writeShellApplication {
-    name = "up";
-
-    runtimeInputs = with pkgs; [
-      git
-      watchexec
-      noti
-    ];
-
-    text = ''
-      cmd="
-        git add -A &&
-          darwin-rebuild switch --flake .
-      "
-      watchexec -- "bash -c \"$cmd\""
-    '';
-  };
+} @ inputs: let
+  utzvim = import ./utzvim.nix inputs;
+  up = import ./up.nix inputs;
 in
   mkShell {
     packages = with pkgs; [
@@ -48,12 +15,14 @@ in
 
     shellHook = ''
       gum format <<EOF
-      # Welcome to TheUtz's Flake
+      # Welcome to TheUtz's Flake ❄️
 
       ## Commands
 
-      - \`up\`: start the dev server
-      - \`utzvim\`: edit vim config
+      | Command | Description |
+      | --- | --- |
+      | up | start the dev server |
+      | utzvim | edit the neovim configuration on a loop |
       EOF
     '';
   }
