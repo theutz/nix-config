@@ -1,4 +1,8 @@
 {
+  lib,
+  config,
+  ...
+}: {
   plugins.navic = {
     enable = true;
     settings = {
@@ -8,5 +12,5 @@
     };
   };
 
-  plugins.lualine.settings.sections.lualine_c = ["navic"];
+  plugins.lualine.settings.sections.lualine_c = lib.mkIf config.plugins.navic.enable ["navic"];
 }

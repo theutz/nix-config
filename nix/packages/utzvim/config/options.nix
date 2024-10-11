@@ -9,5 +9,8 @@
     shiftwidth = 2;
     expandtab = true;
     smartcase = true;
+    ignorecase = true;
+    smarttab = true;
+    smartindent = true;
   };
 }

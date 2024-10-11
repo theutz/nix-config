@@ -1,5 +1,5 @@
 {
   plugins.wilder = {
-    enable = true;
+    enable = false;
   };
 }
