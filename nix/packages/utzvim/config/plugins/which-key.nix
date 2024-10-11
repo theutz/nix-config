@@ -22,7 +22,14 @@ in {
 
     settings = {
       preset = "modern";
-      spec = groupSpec;
+      spec =
+        groupSpec
+        ++ [
+          {
+            __unkeyed-1 = "gs";
+            group = "surround";
+          }
+        ];
     };
   };
 }

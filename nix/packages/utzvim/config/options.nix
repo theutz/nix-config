@@ -13,4 +13,18 @@
     smarttab = true;
     smartindent = true;
   };
+
+  autoGroups = {
+    resize = {clear = true;};
+  };
+
+  autoCmd = [
+    {
+      command = "wincmd =";
+      event = "VimResized";
+      pattern = ["*"];
+      group = "resize";
+      desc = "Resize windows when vim is resized";
+    }
+  ];
 }
