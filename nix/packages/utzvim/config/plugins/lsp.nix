@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   plugins.lsp = {
     enable = true;
 
@@ -17,16 +17,38 @@
       };
     };
 
-    servers = {
-      nil_ls = {
-        enable = true;
-      };
-      jsonls = {
-        enable = true;
-      };
-      yamlls = {
-        enable = true;
-      };
-    };
+    servers = lib.genAttrs [
+      "ansiblels"
+      "antlersls"
+      "awk_ls"
+      "bashls"
+      "css_variables"
+      "cssls"
+      "diagnosticls"
+      "docker_compose_language_service"
+      "dockerls"
+      "emmet_language_server"
+      "eslint"
+      "golangci_lint_ls"
+      "gopls"
+      "graphql"
+      "html"
+      "intelephense"
+      "jqls"
+      "jsonls"
+      "lua_ls"
+      "marksman"
+      "nginx_language_server"
+      "nil_ls"
+      "nushell"
+      "ruby_lsp"
+      "sqlls"
+      "statix"
+      "stylelint_lsp"
+      "tailwindcss"
+      "taplo"
+      "ts_ls"
+      "yamlls"
+    ] (name: {enable = true;});
   };
 }
