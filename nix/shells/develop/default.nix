@@ -1,17 +1,20 @@
 {
   mkShell,
   pkgs,
+  lib,
   ...
 } @ inputs: let
-  utzvim = import ./utzvim.nix inputs;
-  up = import ./up.nix inputs;
+  inherit (lib) forEach concatStringsSep trace;
+  inherit (lib.filesystem) listFilesRecursive;
+  scripts = forEach (listFilesRecursive ./scripts) (f: import f inputs);
+  descriptions = concatStringsSep "\n" (forEach scripts (s: ''- `${s.name}`: ${s.meta.description}''));
 in
   mkShell {
-    packages = with pkgs; [
-      gum
-      up
-      utzvim
-    ];
+    packages =
+      [
+        pkgs.gum
+      ]
+      ++ scripts;
 
     shellHook = ''
       gum format <<'EOF'
@@ -19,8 +22,7 @@ in
 
       ## Commands
 
-      - `up`: start the dev server
-      - `utzvim`: edit the neovim configuration on a loop
+      ${descriptions}
       EOF
     '';
   }

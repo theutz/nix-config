@@ -7,6 +7,8 @@
     swapfile = false;
     tabstop = 2;
     shiftwidth = 2;
+    foldlevel = 20;
+    foldmethod = "indent";
     expandtab = true;
     smartcase = true;
     ignorecase = true;

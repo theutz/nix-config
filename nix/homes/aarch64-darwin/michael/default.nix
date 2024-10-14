@@ -10,11 +10,6 @@
 in {
   home.stateVersion = "24.05";
 
-  home.sessionVariables = {
-    EDITOR = mkDefault "nvim";
-    VISUAL = mkDefault "neovide --no-fork";
-  };
-
   home.packages = with pkgs; [
     neovide
     lsix

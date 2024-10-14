@@ -2,6 +2,10 @@
 pkgs.writeShellApplication {
   name = "utzvim";
 
+  meta = {
+    description = "Edit my neovim configuration while restarting on quit";
+  };
+
   runtimeInputs = [
     pkgs.gum
   ];

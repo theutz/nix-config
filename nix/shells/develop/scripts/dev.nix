@@ -1,6 +1,10 @@
 {pkgs, ...}:
 pkgs.writeShellApplication {
-  name = "up";
+  name = "dev";
+
+  meta = {
+    description = "attempt to rebuild the system on each change";
+  };
 
   runtimeInputs = with pkgs; [
     git
