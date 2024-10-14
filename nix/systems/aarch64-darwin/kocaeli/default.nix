@@ -37,6 +37,26 @@
         "com.apple.AdLib" = {
           allowApplePersonalizedAdvertising = false;
         };
+
+        "com.apple.HIToolbox" = {
+          AppleCurrentKeyboardLayoutInputSourceID = "com.apple.keylayout.USExtended";
+          AppleEnabledInputSources = [
+            {
+              InputSourceKind = "Keyboard Layout";
+              "KeyboardLayout ID" = "-36";
+              "KeyboardLayout Name" = "Turkish-QWERTY-PC";
+            }
+            {
+              "Bundle ID" = "com.apple.CharacterPaletteIM";
+              InputSourceKind = "Non Keyboard Input Method";
+            }
+            {
+              InputSourceKind = "Keyboard Layout";
+              "KeyboardLayout ID" = "-2";
+              "KeyboardLayout Name" = "US Extended";
+            }
+          ];
+        };
       };
 
       loginwindow = {
