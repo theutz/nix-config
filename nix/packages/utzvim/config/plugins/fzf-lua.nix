@@ -42,6 +42,7 @@ in {
     ["sF" "filetypes" "Filetypes"]
     ["sh" "helptags" "Help"]
     ["sm" "manpages" "Manpages"]
+    ["sk" "keymaps" "keymaps"]
     ["sq" "quickfix" "Quickfix"]
     ["sr" "resume" "Resume last search"]
     ["ss" "search_history" "Search history"]
