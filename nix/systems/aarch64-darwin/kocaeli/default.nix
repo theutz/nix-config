@@ -1,40 +1,96 @@
 {pkgs, ...}: {
-  system.stateVersion = 5;
-  services.nix-daemon.enable = true;
+  system = {
+    stateVersion = 5;
 
-  nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
-    trusted-users = ["root" "michael"];
+    # activationScripts are executed every time you boot the system or run `nixos-rebuild` / `darwin-rebuild`.
+    activationScripts.postUserActivation.text = ''
+      # activateSettings -u will reload the settings from the database and apply them to the current session,
+      # so we do not need to logout and login again to make the changes take effect.
+      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    '';
+    defaults = {
+      dock = {
+        autohide = true;
+        show-recents = false;
+      };
+
+      finder = {
+        _FXShowPosixPathInTitle = true;
+        AppleShowAllExtensions = true;
+        FXEnableExtensionChangeWarning = false;
+        QuitMenuItem = true;
+        ShowPathbar = true;
+        ShowStatusBar = true;
+      };
+
+      trackpad = {
+        Clicking = true;
+        TrackpadRightClick = true;
+      };
+
+      CustomUserPreferences = {
+        "com.apple.screensaver" = {
+          askForPassword = 1;
+          askForPasswordDelay = 0;
+        };
+
+        "com.apple.AdLib" = {
+          allowApplePersonalizedAdvertising = false;
+        };
+      };
+
+      loginwindow = {
+        GuestEnabled = false;
+        SHOWFULLNAME = true;
+      };
+    };
   };
 
-  nix.nixPath = "nixpkgs=flake:nixpkgs";
+  services = {
+    nix-daemon.enable = true;
+  };
 
+  nix = {
+    nixPath = "nixpkgs=flake:nixpkgs";
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
+      trusted-users = ["root" "michael"];
+    };
+  };
+
+  environment.shells = [pkgs.zsh];
   environment.systemPackages = with pkgs; [
     tmux
     pam-reattach
     snowfallorg.flake
   ];
 
-  programs.zsh.enable = true;
-
-  environment.etc."pam.d/sudo_local" = {
-    text = ''
-      auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so
-      auth       sufficient     pam_tid.so
-    '';
+  environment = {
+    etc."pam.d/sudo_local" = {
+      text = ''
+        auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so
+        auth       sufficient     pam_tid.so
+      '';
+    };
   };
 
-  users.users.michael = {
-    name = "michael";
-    createHome = true;
-    description = "Michael Utz";
-    home = "/Users/michael";
+  users.users = {
+    michael = {
+      name = "michael";
+      createHome = true;
+      description = "Michael Utz";
+      home = "/Users/michael";
+    };
+
+    playcore = {
+      name = "playcore";
+      createHome = true;
+      description = "PlayCore";
+      home = "/Users/playcore";
+    };
   };
 
-  users.users.playcore = {
-    name = "playcore";
-    createHome = true;
-    description = "PlayCore";
-    home = "/Users/playcore";
+  programs = {
+    zsh.enable = true;
   };
 }
