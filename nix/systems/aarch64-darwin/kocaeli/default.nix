@@ -1,9 +1,4 @@
-{
-  pkgs,
-  system,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   system.stateVersion = 5;
   services.nix-daemon.enable = true;
 
@@ -11,6 +6,7 @@
     experimental-features = ["nix-command" "flakes"];
     trusted-users = ["root" "michael"];
   };
+
   nix.nixPath = "nixpkgs=flake:nixpkgs";
 
   environment.systemPackages = with pkgs; [
@@ -26,5 +22,19 @@
       auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so
       auth       sufficient     pam_tid.so
     '';
+  };
+
+  users.users.michael = {
+    name = "michael";
+    createHome = true;
+    description = "Michael Utz";
+    home = "/Users/michael";
+  };
+
+  users.users.playcore = {
+    name = "playcore";
+    createHome = true;
+    description = "PlayCore";
+    home = "/Users/playcore";
   };
 }
