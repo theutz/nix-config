@@ -9,6 +9,7 @@
     shiftwidth = 2;
     foldlevel = 20;
     foldmethod = "indent";
+    mouse = "a";
     expandtab = true;
     smartcase = true;
     ignorecase = true;
