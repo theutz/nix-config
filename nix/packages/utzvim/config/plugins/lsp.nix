@@ -13,7 +13,7 @@
         gD = "references";
         gd = "definition";
         gi = "implementation";
-        gt = "type_definition";
+        gy = "type_definition";
       };
     };
 

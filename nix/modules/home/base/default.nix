@@ -27,6 +27,7 @@ in {
       bash.enable = true;
       bat.enable = true;
       comma.enable = true;
+      darwin-defaults.enable = true;
       direnv.enable = true;
       eza.enable = true;
       fish.enable = true;

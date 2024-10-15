@@ -4,7 +4,7 @@
   lib,
   ...
 } @ inputs: let
-  inherit (lib) forEach concatStringsSep trace;
+  inherit (lib) forEach concatStringsSep;
   inherit (lib.filesystem) listFilesRecursive;
   scripts = forEach (listFilesRecursive ./scripts) (f: import f inputs);
   descriptions = concatStringsSep "\n" (forEach scripts (s: ''- `${s.name}`: ${s.meta.description}''));
