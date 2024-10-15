@@ -16,8 +16,7 @@
     };
 
     snowfall-lib = {
-      # url = "github:snowfallorg/lib";
-      url = "github:mtaku3/snowfall-lib/fix/104";
+      url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
