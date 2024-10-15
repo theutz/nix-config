@@ -43,6 +43,7 @@ in {
       };
       starship.enable = true;
       tmux.enable = true;
+      wezterm.enable = true;
       xdg.enable = true;
       zoxide.enable = true;
       zsh.enable = true;
