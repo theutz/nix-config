@@ -43,6 +43,12 @@ in {
           autohide = false;
         };
 
+        "com.apple.finder" = {
+          AppleShowAllFiles = true;
+          ShowPathBar = true;
+          ShowStatusBar = true;
+        };
+
         "com.apple.HIToolbox" = {
           AppleCurrentKeyboardLayoutInputSourceID = "com.apple.keylayout.USExtended";
           AppleEnabledInputSources = inputSources;
@@ -50,6 +56,10 @@ in {
         };
 
         NSGlobalDomain = {
+          ApplePressAndHoldEnabled = false;
+          AppleShowAllExtensions = true;
+          KeyRepeat = 2;
+          InitialKeyRepeat = 12;
           NSAutomaticCapitalizationEnabled = false;
           NSAutomaticDashSubstitutionEnabled = false;
           NSAutomaticInlinePredictionEnabled = false;
@@ -59,7 +69,14 @@ in {
           NSAutomaticWindowAnimationsEnabled = false;
         };
       };
-      currentHostDefaults = {};
+
+      currentHostDefaults = {
+        "com.apple.HIToolbox" = {
+          AppleCurrentKeyboardLayoutInputSourceID = "com.apple.keylayout.USExtended";
+          AppleEnabledInputSources = inputSources;
+          AppleSelectedInputSources = inputSources;
+        };
+      };
     };
   };
 }
