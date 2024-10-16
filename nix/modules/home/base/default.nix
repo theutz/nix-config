@@ -16,10 +16,8 @@ in {
     home.packages = with pkgs; [
       neovide
       lsix
-      ripgrep
       nix-melt
       devenv
-      less
     ];
 
     theutz = {
@@ -41,6 +39,7 @@ in {
         enable = true;
         autoTmux = true;
       };
+      ripgrep.enable = true;
       starship.enable = true;
       tmux.enable = true;
       wezterm.enable = true;
