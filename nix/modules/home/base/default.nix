@@ -18,8 +18,7 @@ in {
       lsix
       nix-melt
       devenv
-      golangci-lint
-      golangci-lint-langserver
+      watchexec
     ];
 
     theutz = {
