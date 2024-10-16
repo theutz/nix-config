@@ -3,6 +3,25 @@
   longDescription = ''
     usage: mkHomeModule [module name]
   '';
+  template = ''
+    {
+      lib,
+      config,
+      namespace,
+      ...
+    }: let
+      mod = lib.theutz.getLastComponent ./.;
+      cfg = config.''${namespace}.''${mod};
+    in {
+      options.''${namespace}.''${mod} = {
+        enable = lib.mkEnableOption "''${mod}";
+      };
+
+      config = lib.mkIf cfg.enable {
+
+      };
+    }
+  '';
 in
   pkgs.writeShellApplication {
     name = "mkHomeModule";
@@ -39,7 +58,8 @@ in
 
       if gum confirm "Create a new file at $full_path?"; then
         mkdir -p "$(dirname "$full_path")"
-        touch "$full_path"
+        # shellcheck disable=2016
+        echo '${template}' > "$full_path"
         gum log -l info "New module at" file "$full_path"
       else
         exit 1

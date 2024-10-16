@@ -25,6 +25,7 @@ in {
       atuin.enable = true;
       bash.enable = true;
       bat.enable = true;
+      broot.enable = true;
       comma.enable = true;
       darwin-defaults.enable = true;
       direnv.enable = true;
