@@ -18,6 +18,8 @@ in {
       lsix
       nix-melt
       devenv
+      golangci-lint
+      golangci-lint-langserver
     ];
 
     theutz = {
@@ -30,6 +32,7 @@ in {
       eza.enable = true;
       fish.enable = true;
       fzf.enable = true;
+      go.enable = true;
       lazygit.enable = true;
       less.enable = true;
       lf.enable = true;
