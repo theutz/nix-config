@@ -12,7 +12,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.fzf =
+    programs.fzf = lib.mkMerge [
       {
         enable = true;
         enableBashIntegration = true;
@@ -33,10 +33,11 @@ in {
 
         tmux.enableShellIntegration = true;
       }
-      // (lib.mkIf config.programs.fd.enable {
+      (lib.mkIf config.programs.fd.enable {
         changeDirWidgetCommand = "fd --type d";
         defaultCommand = "fd --type f";
         fileWidgetCommand = "fd --type f";
-      });
+      })
+    ];
   };
 }

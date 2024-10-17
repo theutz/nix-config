@@ -1,21 +1,18 @@
 {
   pkgs,
   lib,
-  inputs,
-  system,
   ...
 }: let
   name = lib.theutz.getLastComponent ./.;
-  unstable = inputs.unstable.legacyPackages.${system};
 in
   pkgs.writeShellApplication {
     inherit name;
 
     runtimeInputs = [
-      unstable.fzf
       pkgs.tmuxp
       pkgs.yq
       pkgs.tmux
+      pkgs.fzf
     ];
 
     text = ''
