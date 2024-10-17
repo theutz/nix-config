@@ -22,7 +22,7 @@ in {
     ];
 
     theutz = {
-      atuin.enable = true;
+      atuin.enable = false;
       bash.enable = true;
       bat.enable = true;
       broot.enable = true;
@@ -30,6 +30,7 @@ in {
       darwin-defaults.enable = true;
       direnv.enable = true;
       eza.enable = true;
+      fd.enable = true;
       fish.enable = true;
       fzf.enable = true;
       go.enable = true;

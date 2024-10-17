@@ -17,6 +17,6 @@ pkgs.writeShellApplication {
       git add -A &&
         darwin-rebuild switch --flake .
     "
-    watchexec -- "bash -c \"$cmd\""
+    watchexec --restart --clear -- "bash -c \"$cmd\""
   '';
 }
