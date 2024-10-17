@@ -113,12 +113,6 @@ let
   bufferKeys = [
     {
       mode = ["n"];
-      key = "<leader>bd";
-      action = "<cmd>bd<cr>";
-      options.desc = "Delete buffer";
-    }
-    {
-      mode = ["n"];
       key = "<leader>bD";
       action = "<cmd>bd!<cr>";
       options.desc = "Delete buffer (force)";
@@ -133,7 +127,7 @@ let
       mode = ["n"];
       key = "<leader>bp";
       action = "<cmd>bp<cr>";
-      options.desc = "Previous buffer";
+      options.desc = "Prev buffer";
     }
     {
       mode = ["n"];
@@ -146,7 +140,7 @@ let
       key = "[b";
       action = "<cmd>bp<cr>";
       options = {
-        desc = "Previous buffer";
+        desc = "Prev buffer";
       };
     }
     {
