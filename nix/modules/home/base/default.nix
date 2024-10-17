@@ -19,6 +19,7 @@ in {
       nix-melt
       devenv
       watchexec
+      age
     ];
 
     theutz = {
@@ -26,6 +27,7 @@ in {
       bash.enable = true;
       bat.enable = true;
       broot.enable = true;
+      btop.enable = true;
       comma.enable = true;
       darwin-defaults.enable = true;
       direnv.enable = true;
