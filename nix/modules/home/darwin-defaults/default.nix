@@ -30,6 +30,10 @@ in {
   config = lib.mkIf cfg.enable {
     targets.darwin = {
       defaults = {
+        ".GlobalPreferences" = {
+          "com.apple.mouse.scaling" = 1.0;
+        };
+
         "com.apple.controlcenter" = {
           BatteryShowPercentage = false;
         };
@@ -58,8 +62,9 @@ in {
         NSGlobalDomain = {
           ApplePressAndHoldEnabled = false;
           AppleShowAllExtensions = true;
-          KeyRepeat = 2;
+          KeyRepeat = 3;
           InitialKeyRepeat = 12;
+          "com.apple.trackpad.scaling" = 1;
           NSAutomaticCapitalizationEnabled = false;
           NSAutomaticDashSubstitutionEnabled = false;
           NSAutomaticInlinePredictionEnabled = false;
