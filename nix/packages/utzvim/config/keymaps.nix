@@ -190,6 +190,12 @@ let
       action = "<cmd>wincmd T<cr>";
       options.desc = "Open in new tab";
     }
+    {
+      mode = "n";
+      key = "<leader><tab>q";
+      action = "<cmd>tabclose<cr>";
+      options.desc = "Close tab";
+    }
   ];
 in {
   keymaps =
