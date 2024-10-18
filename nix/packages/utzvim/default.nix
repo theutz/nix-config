@@ -1,8 +1,8 @@
 {
   inputs,
   system,
+  pkgs,
 }: let
-  pkgs = inputs.unstable.legacyPackages.${system};
   nixvim = inputs.nixvim.legacyPackages.${system};
   nixvimModule = {
     inherit pkgs;
