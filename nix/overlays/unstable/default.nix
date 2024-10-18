@@ -8,5 +8,7 @@
     stylelint-lsp
     diagnostic-languageserver
     bash-language-server
+    neovim
+    neovide
     ;
 }
