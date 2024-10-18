@@ -57,7 +57,6 @@ in {
       xdg-ninja
       yq
       yj
-      sketchybar
     ];
 
     theutz = {
@@ -86,6 +85,7 @@ in {
         autoTmux = true;
       };
       ripgrep.enable = true;
+      sketchybar.enable = true;
       starship.enable = true;
       tmux.enable = true;
       wezterm.enable = true;

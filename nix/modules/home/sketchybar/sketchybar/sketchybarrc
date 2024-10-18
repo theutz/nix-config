@@ -1,0 +1,261 @@
+# vim: ft=sh
+# This is a demo config to showcase some of the most important commands.
+# It is meant to be changed and configured, as it is intentionally kept sparse.
+# For a (much) more advanced configuration example see my dotfiles:
+# https://github.com/FelixKratz/dotfiles
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+##### Bar Appearance #####
+# Configuring the general appearance of the bar.
+# These are only some of the options available. For all options see:
+# https://felixkratz.github.io/SketchyBar/config/bar
+# If you are looking for other colors, see the color picker:
+# https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
+
+sketchybar --bar position=top \
+                 height=40 \
+                 blur_radius=10 \
+                 color=0x8015161e \
+                 display=all \
+                 shadow=off
+
+##### Changing Defaults #####
+# We now change some default values, which are applied to all further items.
+# For a full list of all available item properties see:
+# https://felixkratz.github.io/SketchyBar/config/items
+
+sketchybar --default background.height=24 \
+                     background.padding_left=5 \
+                     background.padding_right=5 \
+                     icon.color=0xffe0af68 \
+                     icon.font.family="IosevkaTerm Nerd Font Propo" \
+                     icon.font.size=18 \
+                     icon.padding_left=4 \
+                     icon.padding_right=4 \
+                     label.color=0xffa9b1d6 \
+                     label.font.family="IosevkaTerm Nerd Font Propo" \
+                     label.font.size=16 \
+                     label.padding_left=0 \
+                     label.padding_right=8
+
+##### Adding AeroSpace Space Indicators #####
+
+sketchybar --add event aerospace_workspace_change \
+           --add event aerospace_mode_change
+
+
+sketchybar --add item space.home left \
+           --set space.home \
+                 padding_left=0 \
+                 padding_right=12 \
+                 label="home" \
+                 label.font.size=14 \
+                 label.padding_left=8 \
+                 label.padding_right=8 \
+                 icon=" h" \
+                 icon.padding_left=8 \
+                 icon.padding_right=0 \
+                 icon.font.size="16" \
+                 background.color=0x33ffffff \
+                 background.corner_radius=5 \
+                 script="$PLUGIN_DIR/aerospace.sh" \
+                 click_script="$PLUGIN_DIR/aerospace-switch.sh" \
+           --subscribe space.home aerospace_workspace_change
+sketchybar --add item space.alt left \
+           --set space.alt \
+                 padding_left=0 \
+                 padding_right=12 \
+                 label="alt" \
+                 label.font.size=14 \
+                 label.padding_left=8 \
+                 label.padding_right=8 \
+                 icon="󰻺 o" \
+                 icon.padding_left=8 \
+                 icon.padding_right=0 \
+                 icon.font.size="16" \
+                 background.color=0x33ffffff \
+                 background.corner_radius=5 \
+                 script="$PLUGIN_DIR/aerospace.sh" \
+                 click_script="$PLUGIN_DIR/aerospace-switch.sh" \
+           --subscribe space.alt aerospace_workspace_change
+sketchybar --add item space.design left \
+           --set space.design \
+                 padding_left=0 \
+                 padding_right=12 \
+                 label="design" \
+                 label.font.size=14 \
+                 label.padding_left=8 \
+                 label.padding_right=8 \
+                 icon=" d" \
+                 icon.padding_left=8 \
+                 icon.padding_right=0 \
+                 icon.font.size="16" \
+                 background.color=0x33ffffff \
+                 background.corner_radius=5 \
+                 script="$PLUGIN_DIR/aerospace.sh" \
+                 click_script="$PLUGIN_DIR/aerospace-switch.sh" \
+           --subscribe space.design aerospace_workspace_change
+sketchybar --add item space.slack left \
+           --set space.slack \
+                 padding_left=0 \
+                 padding_right=12 \
+                 label="slack" \
+                 label.font.size=14 \
+                 label.padding_left=8 \
+                 label.padding_right=8 \
+                 icon=" s" \
+                 icon.padding_left=8 \
+                 icon.padding_right=0 \
+                 icon.font.size="16" \
+                 background.color=0x33ffffff \
+                 background.corner_radius=5 \
+                 script="$PLUGIN_DIR/aerospace.sh" \
+                 click_script="$PLUGIN_DIR/aerospace-switch.sh" \
+           --subscribe space.slack aerospace_workspace_change
+sketchybar --add item space.chat left \
+           --set space.chat \
+                 padding_left=0 \
+                 padding_right=12 \
+                 label="chat" \
+                 label.font.size=14 \
+                 label.padding_left=8 \
+                 label.padding_right=8 \
+                 icon="󰭹 c" \
+                 icon.padding_left=8 \
+                 icon.padding_right=0 \
+                 icon.font.size="16" \
+                 background.color=0x33ffffff \
+                 background.corner_radius=5 \
+                 script="$PLUGIN_DIR/aerospace.sh" \
+                 click_script="$PLUGIN_DIR/aerospace-switch.sh" \
+           --subscribe space.chat aerospace_workspace_change
+sketchybar --add item space.ref left \
+           --set space.ref \
+                 padding_left=0 \
+                 padding_right=12 \
+                 label="ref" \
+                 label.font.size=14 \
+                 label.padding_left=8 \
+                 label.padding_right=8 \
+                 icon=" r" \
+                 icon.padding_left=8 \
+                 icon.padding_right=0 \
+                 icon.font.size="16" \
+                 background.color=0x33ffffff \
+                 background.corner_radius=5 \
+                 script="$PLUGIN_DIR/aerospace.sh" \
+                 click_script="$PLUGIN_DIR/aerospace-switch.sh" \
+           --subscribe space.ref aerospace_workspace_change
+sketchybar --add item space.zoom left \
+           --set space.zoom \
+                 padding_left=0 \
+                 padding_right=12 \
+                 label="zoom" \
+                 label.font.size=14 \
+                 label.padding_left=8 \
+                 label.padding_right=8 \
+                 icon="󰖠 z" \
+                 icon.padding_left=8 \
+                 icon.padding_right=0 \
+                 icon.font.size="16" \
+                 background.color=0x33ffffff \
+                 background.corner_radius=5 \
+                 script="$PLUGIN_DIR/aerospace.sh" \
+                 click_script="$PLUGIN_DIR/aerospace-switch.sh" \
+           --subscribe space.zoom aerospace_workspace_change
+sketchybar --add item space.spotify left \
+           --set space.spotify \
+                 padding_left=0 \
+                 padding_right=12 \
+                 label="spotify" \
+                 label.font.size=14 \
+                 label.padding_left=8 \
+                 label.padding_right=8 \
+                 icon=" p" \
+                 icon.padding_left=8 \
+                 icon.padding_right=0 \
+                 icon.font.size="16" \
+                 background.color=0x33ffffff \
+                 background.corner_radius=5 \
+                 script="$PLUGIN_DIR/aerospace.sh" \
+                 click_script="$PLUGIN_DIR/aerospace-switch.sh" \
+           --subscribe space.spotify aerospace_workspace_change
+sketchybar --add item space.utils left \
+           --set space.utils \
+                 padding_left=0 \
+                 padding_right=12 \
+                 label="utils" \
+                 label.font.size=14 \
+                 label.padding_left=8 \
+                 label.padding_right=8 \
+                 icon=" u" \
+                 icon.padding_left=8 \
+                 icon.padding_right=0 \
+                 icon.font.size="16" \
+                 background.color=0x33ffffff \
+                 background.corner_radius=5 \
+                 script="$PLUGIN_DIR/aerospace.sh" \
+                 click_script="$PLUGIN_DIR/aerospace-switch.sh" \
+           --subscribe space.utils aerospace_workspace_change
+
+##### Adding Left Items #####
+# We add some regular items to the left side of the bar, where
+# only the properties deviating from the current defaults need to be set
+
+sketchybar --add item chevron left \
+           --set chevron icon= label.drawing=off \
+           --add item front_app left \
+           --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
+           --subscribe front_app front_app_switched
+
+##### Adding Right Items #####
+# In the same way as the left items we can add items to the right side.
+# Additional position (e.g. center) are available, see:
+# https://felixkratz.github.io/SketchyBar/config/items#adding-items-to-sketchybar
+
+# Some items refresh on a fixed cycle, e.g. the clock runs its script once
+# every 10s. Other items respond to events they subscribe to, e.g. the
+# volume.sh script is only executed once an actual change in system audio
+# volume is registered. More info about the event system can be found here:
+# https://felixkratz.github.io/SketchyBar/config/events
+
+sketchybar --add item clock right \
+           --set clock update_freq=10 icon=  script="$PLUGIN_DIR/clock.sh" \
+           --add item volume right \
+           --set volume script="$PLUGIN_DIR/volume.sh" \
+           --subscribe volume volume_change \
+           --add item battery right \
+           --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+           --subscribe battery system_woke power_source_change \
+           --add alias "Mullvad VPN" right \
+           --set "Mullvad VPN" \
+                 alias.color=0xff7aa2f7 \
+                 icon.padding_left=0 \
+                 icon.padding_right=0 \
+                 label.padding_left=0 \
+                 label.padding_right=0 \
+                 background.padding_left=0 \
+                 background.padding_right=0 \
+           --add alias "TextInputMenuAgent" right \
+           --set "TextInputMenuAgent" \
+                 alias.color=0xff7aa2f7 \
+                 icon.padding_left=0 \
+                 icon.padding_right=0 \
+                 label.padding_left=0 \
+                 label.padding_right=0 \
+                 background.padding_left=0 \
+                 background.padding_right=0 \
+           --add alias "AeroSpace" right \
+           --set "AeroSpace" \
+                 alias.color=0xff7aa2f7 \
+                 icon.padding_left=0 \
+                 icon.padding_right=0 \
+                 label.padding_left=0 \
+                 label.padding_right=0 \
+                 background.padding_left=0 \
+                 background.padding_right=0
+           
+
+##### Force all scripts to run the first time (never do this in a script) #####
+sketchybar --update
