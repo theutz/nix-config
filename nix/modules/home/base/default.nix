@@ -20,6 +20,26 @@ in {
       devenv
       watchexec
       age
+      doggo
+      caddy
+      curlie
+      duckdb
+      gh
+      delta
+      glow
+      gnused
+      gping
+      hugo
+      jq
+      hurl
+      httpie
+      ijq
+      imagemagick
+      just
+      lazydocker
+      lnav
+      mods
+      mosh
     ];
 
     theutz = {
@@ -36,10 +56,12 @@ in {
       fish.enable = true;
       fzf.enable = true;
       go.enable = true;
+      htop.enable = true;
       lazygit.enable = true;
       less.enable = true;
       lf.enable = true;
       man.enable = true;
+      nushell.enable = true;
       nvim.enable = true;
       prezto = {
         enable = true;
