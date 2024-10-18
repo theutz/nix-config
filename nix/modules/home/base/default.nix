@@ -40,6 +40,24 @@ in {
       lnav
       mods
       mosh
+      mycli
+      overmind
+      onefetch
+      noti
+      sd
+      sad
+      rsync
+      speedtest-rs
+      ssh-copy-id
+      tldr
+      tz
+      tree
+      wget
+      wrk
+      xdg-ninja
+      yq
+      yj
+      sketchybar
     ];
 
     theutz = {
