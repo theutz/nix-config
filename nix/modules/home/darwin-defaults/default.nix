@@ -41,6 +41,7 @@ in {
         "com.apple.screensaver" = {
           askForPassword = 1;
           askForPasswordDelay = 0;
+          idleTime = 60 * 5;
         };
 
         "com.apple.dock" = {
