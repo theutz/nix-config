@@ -10,5 +10,8 @@
     bash-language-server
     neovim
     neovide
+    hugo
+    just
+    yazi
     ;
 }

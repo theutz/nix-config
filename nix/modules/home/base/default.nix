@@ -90,6 +90,7 @@ in {
       tmux.enable = true;
       wezterm.enable = true;
       xdg.enable = true;
+      yazi.enable = true;
       zoxide.enable = true;
       zsh.enable = true;
     };
