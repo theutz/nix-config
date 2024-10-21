@@ -6,7 +6,7 @@
   ...
 }: let
   inherit (lib) mkIf mkEnableOption;
-  inherit (lib.theutz) getLastComponent;
+  inherit (lib.theutz.modules) getLastComponent;
 
   mod = getLastComponent ./.;
   cfg = config.${namespace}.${mod};

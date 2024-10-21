@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  name = lib.theutz.getLastComponent ./.;
+  name = lib.theutz.modules.getLastComponent ./.;
 in
   pkgs.writeShellApplication {
     inherit name;

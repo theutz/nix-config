@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (lib) mkIf mkEnableOption;
-  inherit (lib.theutz) getLastComponent;
+  inherit (lib.theutz.modules) getLastComponent;
   inherit (lib.attrsets) getAttrFromPath setAttrByPath;
 
   mod = getLastComponent ./.;

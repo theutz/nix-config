@@ -5,7 +5,7 @@
   namespace,
   ...
 }: let
-  mod = lib.theutz.getLastComponent ./.;
+  mod = lib.theutz.modules.getLastComponent ./.;
   cfg = config.${namespace}.${mod};
 in {
   options.${namespace}.${mod} = {

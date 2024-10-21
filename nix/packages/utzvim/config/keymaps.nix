@@ -116,8 +116,7 @@
     }
   ];
 
-  pairs =
-    lib.forEach [
+  pairs = lib.flatten (lib.forEach [
       {
         name = "buffer";
         key = "b";
@@ -148,7 +147,7 @@
         action = next;
         options.desc = "Next ${name}";
       }
-    ]);
+    ]));
 
   bufferKeys =
     [

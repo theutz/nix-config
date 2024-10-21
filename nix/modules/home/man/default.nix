@@ -4,7 +4,7 @@
   namespace,
   ...
 }: let
-  mod = lib.theutz.getModName ./.;
+  mod = lib.theutz.modules.getModName ./.;
   options = lib.setAttrByPath [namespace mod] {
     enable = lib.mkEnableOption "man";
   };
