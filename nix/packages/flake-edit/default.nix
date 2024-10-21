@@ -63,9 +63,12 @@ pkgs.writeShellApplication rec {
       cd "$(print-path-to-flake)"
       printf "opening nvim with paths: %s" "''${paths[@]}"
       nix run .#utzvim -- "''${paths[@]}"
-      nvimExitCode="$?"
-      if ! gum confirm "Restart?" --timeout=5s; then
-        exit "$nvimExitCode"
+      if ! gum confirm "Do you want to restart the editor?" --timeout=5s; then
+        if gum confirm "Do you want to rebuild your system?" --timeout=5s; then
+          flake-build
+        fi
+
+        exit
       fi
     done
   '';
