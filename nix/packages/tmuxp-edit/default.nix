@@ -1,30 +1,25 @@
 {
   pkgs,
   lib,
-  inputs,
-  system,
   ...
-}: let
+}:
+pkgs.writeShellApplication {
   name = lib.theutz.getLastComponent ./.;
-  unstable = inputs.unstable.legacyPackages.${system};
-in
-  pkgs.writeShellApplication {
-    inherit name;
 
-    runtimeInputs = [
-      unstable.fzf
-      pkgs.tmux
-      pkgs.tmux
-    ];
+  runtimeInputs = with pkgs; [
+    fzf
+    tmux
+    tmuxp
+  ];
 
-    text = ''
-      filename=$(tmuxp ls | fzf --tmux=left,30)
-      file="''${XDG_CONFIG_HOME:-$HOME/.config}"/tmuxp/"$filename".yml
+  text = ''
+    filename=$(tmuxp ls | fzf --tmux=left,30)
+    file="$HOME/${lib.theutz.vars.paths.tmuxp}/$filename.yml"
 
-      if [[ -n "$TMUX" ]]; then
-      	tmux popup -x 120 -y 90% -EE "$EDITOR $file"
-      else
-      	$EDITOR "$file"
-      fi
-    '';
-  }
+    if [[ -n "$TMUX" ]]; then
+    	tmux popup -x 120 -y 90% -EE "$EDITOR $file"
+    else
+    	$EDITOR "$file"
+    fi
+  '';
+}
