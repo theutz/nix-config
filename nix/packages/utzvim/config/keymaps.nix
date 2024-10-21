@@ -116,48 +116,67 @@
     }
   ];
 
-  bufferKeys = [
-    {
+  pairs =
+    lib.forEach [
+      {
+        name = "buffer";
+        key = "b";
+        prev = "<cmd>bprev<cr>";
+        next = "<cmd>bnext<cr>";
+      }
+      {
+        name = "tab";
+        key = "<tab>";
+        prev = "<cmd>tabnext<cr>";
+        next = "<cmd>tabprev<cr>";
+      }
+    ] ({
+      name,
+      key,
+      prev,
+      next,
+    }: [
+      {
+        mode = "n";
+        key = "[${key}";
+        action = prev;
+        options.desc = "Prev ${name}";
+      }
+      {
+        mode = "n";
+        key = "]${key}";
+        action = next;
+        options.desc = "Next ${name}";
+      }
+    ]);
+
+  bufferKeys =
+    [
+      {
+        mode = "n";
+        key = "<leader>bD";
+        action = "<cmd>bd!<cr>";
+        options.desc = "Delete buffer (force)";
+      }
+      {
+        mode = "n";
+        key = "<leader>bb";
+        action = "<cmd>e #<cr>";
+        options.desc = "Most recent buffer";
+      }
+    ]
+    ++ (lib.forEach ["n" "]"] (k: {
       mode = "n";
-      key = "<leader>bD";
-      action = "<cmd>bd!<cr>";
-      options.desc = "Delete buffer (force)";
-    }
-    {
-      mode = "n";
-      key = "<leader>bb";
-      action = "<cmd>e #<cr>";
-      options.desc = "Most recent buffer";
-    }
-    {
-      mode = "n";
-      key = "<leader>bp";
-      action = "<cmd>bp<cr>";
-      options.desc = "Prev buffer";
-    }
-    {
-      mode = "n";
-      key = "<leader>bn";
-      action = "<cmd>bn<cr>";
+      key = "<leader>b${k}";
+      action = "<cmd>bnext<cr>";
       options.desc = "Next buffer";
-    }
-    {
+    }))
+    ++ (lib.forEach ["p" "["] (k: {
       mode = "n";
-      key = "[b";
-      action = "<cmd>bp<cr>";
-      options = {
-        desc = "Prev buffer";
-      };
-    }
-    {
-      mode = "n";
-      key = "]b";
-      action = "<cmd>bn<cr>";
-      options = {
-        desc = "Next buffer";
-      };
-    }
-  ];
+      key = "<leader>b${k}";
+      action = "<cmd>bprev<cr>";
+      options.desc = "Prev buffer";
+    }));
 
   tabKeys =
     [
@@ -188,7 +207,8 @@
     }));
 in {
   keymaps =
-    winKeys
+    pairs
+    ++ winKeys
     ++ bufferKeys
     ++ tabKeys
     ++ [
