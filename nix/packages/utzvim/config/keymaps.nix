@@ -1,4 +1,4 @@
-let
+{lib, ...}: let
   winKeys = [
     {
       mode = "n";
@@ -159,50 +159,33 @@ let
     }
   ];
 
-  tabKeys = [
-    {
+  tabKeys =
+    [
+      {
+        mode = "n";
+        key = "<leader><tab><space>";
+        action = "<cmd>wincmd T<cr>";
+        options.desc = "Open in new tab";
+      }
+    ]
+    ++ (lib.forEach ["n" "]" "<tab>"] (k: {
       mode = "n";
-      key = "<leader><tab>n";
+      key = "<leader><tab>${k}";
       action = "<cmd>tabnext<cr>";
       options.desc = "Next tab";
-    }
-    {
+    }))
+    ++ (lib.forEach ["p" "["] (k: {
       mode = "n";
-      key = "<leader><tab><tab>";
-      action = "<cmd>tabnext<cr>";
-      options.desc = "Next tab";
-    }
-    {
-      mode = "n";
-      key = "<leader><tab>]";
-      action = "<cmd>tabnext<cr>";
-      options.desc = "Next tab";
-    }
-    {
-      mode = "n";
-      key = "<leader><tab>p";
+      key = "<leader><tab>${k}";
       action = "<cmd>tabprev<cr>";
       options.desc = "Prev tab";
-    }
-    {
+    }))
+    ++ (lib.forEach ["q" "d"] (k: {
       mode = "n";
-      key = "<leader><tab>[";
-      action = "<cmd>tabprev<cr>";
-      options.desc = "Prev tab";
-    }
-    {
-      mode = "n";
-      key = "<leader><tab><space>";
-      action = "<cmd>wincmd T<cr>";
-      options.desc = "Open in new tab";
-    }
-    {
-      mode = "n";
-      key = "<leader><tab>q";
+      key = "<leader><tab>${k}";
       action = "<cmd>tabclose<cr>";
       options.desc = "Close tab";
-    }
-  ];
+    }));
 in {
   keymaps =
     winKeys
