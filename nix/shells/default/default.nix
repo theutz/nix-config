@@ -8,6 +8,7 @@
     lib.forEach
     (lib.filesystem.listFilesRecursive ./scripts)
     (f: import f inputs);
+
   commands =
     scripts
     ++ (with pkgs.theutz; [

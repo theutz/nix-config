@@ -29,9 +29,10 @@ in
       inherit longDescription description;
     };
 
-    runtimeInputs = [
-      pkgs.gum
-      pkgs.theutz.find-root
+    runtimeInputs = with pkgs; [
+      gum
+      theutz.find-root
+      theutz.print-path-to-home-modules
     ];
 
     text = ''
@@ -47,16 +48,13 @@ in
         esac
       done
 
-      project_root="$(find-root flake.lock)";
-      path_to_home_modules="nix/modules/home";
-
       if [[ -z "$module_name" ]]; then
         module_name="$(gum input --header="New module name")"
       fi
 
-      full_path="$project_root/$path_to_home_modules/$module_name/default.nix"
+      full_path="$(print-path-to-home-module)/$module_name/default.nix"
 
-      if gum confirm "Create a new file at $full_path?"; then
+      if gum confirm "Create file at $full_path?"; then
         mkdir -p "$(dirname "$full_path")"
         # shellcheck disable=2016
         echo '${template}' > "$full_path"
@@ -65,7 +63,7 @@ in
         exit 1
       fi
 
-      if gum confirm "Open in editor?"; then
+      if gum confirm "Open in $EDITOR?"; then
         "$EDITOR" "$full_path"
       fi
     '';

@@ -56,5 +56,19 @@ in {
       '';
       options.desc = "Toggle Flash Search";
     }
+    {
+      mode = ["n" "o" "x"];
+      key = "gl";
+      action.__raw = ''
+        function ()
+          require("flash").jump({
+            search = { mode = "search", max_length = 0 },
+            label = { after = { 0, 0 } },
+            pattern = "^"
+          })
+        end
+      '';
+      options.desc = "Jump to line";
+    }
   ];
 }

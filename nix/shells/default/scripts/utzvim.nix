@@ -6,8 +6,8 @@ pkgs.writeShellApplication {
     description = "Edit my neovim configuration while restarting on quit";
   };
 
-  runtimeInputs = [
-    pkgs.gum
+  runtimeInputs = with pkgs; [
+    gum
   ];
 
   text = ''

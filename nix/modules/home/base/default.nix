@@ -13,51 +13,57 @@ in {
   config = {
     home.stateVersion = "24.05";
 
-    home.packages = with pkgs; [
-      neovide
-      lsix
-      nix-melt
-      devenv
-      watchexec
-      age
-      doggo
-      caddy
-      curlie
-      duckdb
-      gh
-      delta
-      glow
-      gnused
-      gping
-      hugo
-      jq
-      hurl
-      httpie
-      ijq
-      imagemagick
-      just
-      lazydocker
-      lnav
-      mods
-      mosh
-      mycli
-      overmind
-      onefetch
-      noti
-      sd
-      sad
-      rsync
-      speedtest-rs
-      ssh-copy-id
-      tldr
-      tz
-      tree
-      wget
-      wrk
-      xdg-ninja
-      yq
-      yj
-    ];
+    home.packages =
+      (with pkgs; [
+        neovide
+        lsix
+        nix-melt
+        devenv
+        watchexec
+        age
+        doggo
+        caddy
+        curlie
+        duckdb
+        gh
+        delta
+        glow
+        gnused
+        gping
+        hugo
+        jq
+        hurl
+        httpie
+        ijq
+        imagemagick
+        just
+        lazydocker
+        lnav
+        mods
+        mosh
+        mycli
+        overmind
+        onefetch
+        noti
+        sd
+        sad
+        rsync
+        speedtest-rs
+        ssh-copy-id
+        tldr
+        tz
+        tree
+        wget
+        wrk
+        xdg-ninja
+        yq
+        yj
+      ])
+      ++ (with pkgs.theutz; [
+        flake-edit
+        print-path-to-flake
+        print-path-to-home-modules
+      ]);
 
     theutz = {
       atuin.enable = false;
