@@ -13,6 +13,7 @@
     scripts
     ++ (with pkgs.theutz; [
       print-path-to-flake
+      mkHomeModule
     ]);
 in
   mkShell {

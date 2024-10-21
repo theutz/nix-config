@@ -63,6 +63,7 @@ in {
         flake-edit
         print-path-to-flake
         print-path-to-home-modules
+        mkHomeModule
       ]);
 
     theutz = {
