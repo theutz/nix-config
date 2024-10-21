@@ -61,6 +61,7 @@ in {
       ])
       ++ (with pkgs.theutz; [
         flake-edit
+        flake-build
         print-path-to-flake
         print-path-to-home-modules
         mkHomeModule
@@ -85,6 +86,7 @@ in {
       less.enable = true;
       lf.enable = true;
       man.enable = true;
+      noti.enable = true;
       nushell.enable = true;
       nvim.enable = true;
       prezto = {

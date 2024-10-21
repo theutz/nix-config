@@ -6,17 +6,19 @@ pkgs.writeShellApplication {
     description = "attempt to rebuild the system on each change";
   };
 
-  runtimeInputs = with pkgs; [
-    git
-    watchexec
-    noti
-  ];
+  runtimeInputs =
+    (
+      with pkgs; [
+        watchexec
+        noti
+        bash
+      ]
+    )
+    ++ (with pkgs.theutz; [
+      flake-build
+    ]);
 
   text = ''
-    cmd="
-      git add -A &&
-        darwin-rebuild switch --flake .
-    "
-    watchexec --restart --clear -- "bash -c \"$cmd\""
+    watchexec --restart --clear -- "bash -c 'noti flake-build'"
   '';
 }

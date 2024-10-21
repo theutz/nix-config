@@ -16,7 +16,7 @@
       mkHomeModule
     ]);
 in
-  mkShell {
+  mkShell rec {
     packages =
       (with pkgs; [
         gum
@@ -29,7 +29,7 @@ in
 
       ## Commands
 
-      ${lib.theutz.package.listToMarkdown commands}
+      ${lib.theutz.package.listToMarkdown packages}
       EOF
     '';
   }

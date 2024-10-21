@@ -1,9 +1,8 @@
 {lib, ...}: rec {
-  toMarkdown = pkg @ {
-    name,
-    meta,
-    ...
-  }: ''- `${name}`: ${pkg.meta.description}'';
+  toMarkdown = pkg: let
+    name = lib.strings.getName pkg;
+    description = pkg.meta.description;
+  in ''- `${name}`: ${description}'';
 
   listToMarkdown = pkgs:
     lib.strings.concatStringsSep
