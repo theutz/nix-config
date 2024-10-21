@@ -4,20 +4,22 @@
   lib,
   ...
 } @ inputs: let
-  inherit (lib) forEach concatStringsSep;
-  inherit (lib.filesystem) listFilesRecursive;
-  scripts = forEach (listFilesRecursive ./scripts) (f: import f inputs);
-  descriptions = concatStringsSep "\n" (forEach scripts (s: ''- `${s.name}`: ${s.meta.description}''));
+  scripts =
+    lib.forEach
+    (lib.filesystem.listFilesRecursive ./scripts)
+    (f: import f inputs);
+  commands =
+    scripts
+    ++ (with pkgs.theutz; [
+      print-path-to-flake
+    ]);
 in
   mkShell {
     packages =
       (with pkgs; [
         gum
       ])
-      ++ (with pkgs.theutz; [
-        path-to-flake
-      ])
-      ++ scripts;
+      ++ commands;
 
     shellHook = ''
       gum format <<'EOF'
@@ -25,7 +27,7 @@ in
 
       ## Commands
 
-      ${descriptions}
+      ${lib.theutz.package.listToMarkdown commands}
       EOF
     '';
   }
