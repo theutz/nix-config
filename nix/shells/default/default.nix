@@ -11,9 +11,12 @@
 in
   mkShell {
     packages =
-      [
-        pkgs.gum
-      ]
+      (with pkgs; [
+        gum
+      ])
+      ++ (with pkgs.theutz; [
+        path-to-flake
+      ])
       ++ scripts;
 
     shellHook = ''
