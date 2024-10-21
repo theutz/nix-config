@@ -3,31 +3,32 @@
   pkgs,
   lib,
   ...
-} @ inputs: let
-  scripts =
-    lib.forEach
-    (lib.filesystem.listFilesRecursive ./scripts)
-    (f: import f inputs);
-
-  commands =
-    scripts
-    ++ (with pkgs.theutz; [
-      print-path-to-flake
-      mkHomeModule
-    ]);
+}: let
+  packages = with pkgs; [
+    gum
+  ];
+  commands = with pkgs.theutz; [
+    print-path-to-flake
+    print-path-to-home-modules
+    mkHomeModule
+    mkPackage
+    flake-build
+    flake-dev
+    flake-edit
+  ];
 in
-  mkShell rec {
-    packages =
-      (with pkgs; [
-        gum
-      ])
-      ++ commands;
+  mkShell {
+    packages = packages ++ commands;
 
     shellHook = ''
       gum format <<'EOF'
       # Welcome to TheUtz's Flake ❄️
 
       ## Commands
+
+      ${lib.theutz.package.listToMarkdown commands}
+
+      ## Packages
 
       ${lib.theutz.package.listToMarkdown packages}
       EOF
