@@ -56,10 +56,6 @@
     };
   in
     lib.mkFlake {
-      alias = {
-        shells.default = "develop";
-      };
-
       overlays = with inputs; [
         snowfall-flake.overlays.default
       ];
