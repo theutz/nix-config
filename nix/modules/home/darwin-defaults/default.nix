@@ -41,7 +41,7 @@ in {
         "com.apple.screensaver" = {
           askForPassword = 1;
           askForPasswordDelay = 0;
-          idleTime = 60 * 5;
+          idleTime = 60 * 5; # FIXME: doesn't work
         };
 
         "com.apple.dock" = {
