@@ -24,8 +24,6 @@ pkgs.writeShellApplication rec {
   ];
 
   text = ''
-    paths=()
-
     help () {
       cat <<-EOF
     ${meta.longDescription}
@@ -40,36 +38,25 @@ pkgs.writeShellApplication rec {
           help
           exit 0
           ;;
-        --*|-*)
+        *)
           help
           exit 1
           ;;
-        *)
-          paths+=("$(print-path-to-flake)/$1")
       esac
     done
 
-    if [[ "''${#paths[@]}" == 0 ]]; then
-      paths=("$(print-path-to-flake)")
-    fi
-
-    function cleanup () {
-      cd -
-    }
-
-    trap cleanup EXIT
-
     while :; do
-      cd "$(print-path-to-flake)"
-      printf "opening nvim with paths: %s" "''${paths[@]}"
-      nix run .#utzvim -- "''${paths[@]}"
-      if ! gum confirm "Do you want to restart the editor?" --timeout=5s; then
-        if gum confirm "Do you want to rebuild your system?" --timeout=5s; then
-          flake-build
-        fi
+      (
+        cd "$(print-path-to-flake)"
+        nix run .#utzvim
+        if ! gum confirm "Do you want to restart the editor?" --timeout=5s; then
+          if gum confirm "Do you want to rebuild your system?" --timeout=5s; then
+            flake-build
+          fi
 
-        exit
-      fi
+          exit
+        fi
+      )
     done
   '';
 }

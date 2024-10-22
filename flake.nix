@@ -56,6 +56,10 @@
     };
   in
     lib.mkFlake {
+      channels-config = {
+        allowUnfree = true;
+      };
+
       overlays = with inputs; [
         snowfall-flake.overlays.default
       ];
