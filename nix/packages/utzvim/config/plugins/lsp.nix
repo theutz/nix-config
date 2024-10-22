@@ -1,24 +1,166 @@
 {
   lib,
   pkgs,
-  channels,
   ...
 }: {
+  plugins.none-ls = {
+    enable = true;
+    sources = {
+      code_actions = {
+        statix = {
+          enable = true;
+        };
+      };
+      diagnostics = {
+        statix = {
+          enable = true;
+        };
+      };
+    };
+  };
+
   plugins.lsp = {
     enable = true;
 
     keymaps = {
-      diagnostic = {
-        "]e" = "goto_next";
-        "[e" = "goto_prev";
-      };
+      extra = [
+        {
+          mode = "n";
+          action = "<cmd>LspStop<cr>";
+          key = "<leader>cX";
+          options.desc = "Stop LSP Servers";
+        }
+        {
+          mode = "n";
+          action = "<cmd>LspStart<cr>";
+          key = "<leader>cs";
+          options.desc = "Start LSP Servers";
+        }
+        {
+          mode = "n";
+          action = "<cmd>LspRestart<cr>";
+          key = "<leader>cx";
+          options.desc = "Restart LSP Servers";
+        }
+        {
+          mode = "n";
+          action = "<cmd>LspInfo<cr>";
+          key = "<leader>ci";
+          options.desc = "Lsp Info";
+        }
+        {
+          key = "]e";
+          action.__raw =
+            /*
+            lua
+            */
+            ''
+              function ()
+                vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+              end
+            '';
+          options.desc = "Next error";
+        }
+        {
+          key = "[e";
+          action.__raw =
+            /*
+            lua
+            */
+            ''
+              function ()
+                vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+              end
+            '';
+          options.desc = "Prev error";
+        }
+
+        {
+          key = "]w";
+          action.__raw =
+            /*
+            lua
+            */
+            ''
+              function ()
+                vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
+              end
+            '';
+          options.desc = "Next warning";
+        }
+
+        {
+          key = "[w";
+          action.__raw =
+            /*
+            lua
+            */
+            ''
+              function ()
+                vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
+              end
+            '';
+          options.desc = "Prev warning";
+        }
+
+        {
+          key = "]d";
+          action.__raw =
+            /*
+            lua
+            */
+            ''
+              function ()
+                vim.diagnostic.goto_next({ severity = {vim.diagnostic.severity.INFO, vim.diagnostic.severity.HINT} })
+              end
+            '';
+          options.desc = "Next diagnostic";
+        }
+
+        {
+          key = "[d";
+          action.__raw =
+            /*
+            lua
+            */
+            ''
+              function ()
+                vim.diagnostic.goto_prev({ severity = {vim.diagnostic.severity.INFO, vim.diagnostic.severity.HINT} })
+              end
+            '';
+          options.desc = "Prev diagnostic";
+        }
+      ];
 
       lspBuf = {
-        K = "hover";
-        gD = "references";
-        gd = "definition";
-        gi = "implementation";
-        gy = "type_definition";
+        K = {
+          action = "hover";
+          desc = "Show Documentation";
+        };
+        gD = {
+          action = "references";
+          desc = "Goto References";
+        };
+        gd = {
+          action = "definition";
+          desc = "Goto Definition";
+        };
+        gi = {
+          action = "implementation";
+          desc = "Goto Implementation";
+        };
+        gy = {
+          action = "type_definition";
+          desc = "Goto Type Definition";
+        };
+        "<leader>ca" = {
+          action = "code_action";
+          desc = "Code action";
+        };
+        "<leader>cr" = {
+          action = "rename";
+          desc = "Rename";
+        };
       };
     };
 
@@ -49,7 +191,6 @@
         "nushell"
         "ruby_lsp"
         "sqlls"
-        "statix"
         "stylelint_lsp"
         "tailwindcss"
         "taplo"
@@ -57,9 +198,9 @@
         "yamlls"
       ] (name: {enable = true;}))
       // {
+        css_variables.package = pkgs.vscode-langservers-extracted;
         intelephense.package = pkgs.intelephense;
         sqlls.package = pkgs.sqls;
-        css_variables.package = pkgs.vscode-langservers-extracted;
       };
   };
 }

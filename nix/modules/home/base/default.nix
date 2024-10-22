@@ -47,6 +47,7 @@ in {
         noti
         sd
         sad
+        statix
         rsync
         speedtest-rs
         ssh-copy-id
