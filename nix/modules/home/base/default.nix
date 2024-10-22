@@ -23,6 +23,7 @@ in {
         age
         doggo
         caddy
+        coreutils
         curlie
         duckdb
         gh
