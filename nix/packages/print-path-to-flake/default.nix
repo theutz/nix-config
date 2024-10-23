@@ -9,8 +9,6 @@ pkgs.writeShellApplication rec {
   meta = {
     description = "get the path to my local flake / nix setup";
     longDescription = ''
-      ${meta.description}
-
       usage: ${name}
 
       flags:
@@ -21,6 +19,8 @@ pkgs.writeShellApplication rec {
   text = ''
     help () {
       cat <<'EOF'
+    ${meta.description}
+
     ${meta.longDescription}
     EOF
     }

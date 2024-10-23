@@ -6,12 +6,10 @@
 pkgs.writeShellApplication rec {
   name = lib.last (lib.path.subpath.components (lib.path.splitRoot ./.).subpath);
 
-  meta = rec {
-    description = "print the path to the home modules directory in my local flake";
+  meta = {
+    description = "print path to home modules in my nix config";
     longDescription = ''
-      ${description}
-
-      usage: print-path-to-home-modules
+      usage: ${name}
 
       flags:
           --help, -h        show this help
@@ -25,6 +23,8 @@ pkgs.writeShellApplication rec {
   text = ''
     help () {
       cat <<'EOF'
+    ${meta.description}
+
     ${meta.longDescription}
     EOF
     }
