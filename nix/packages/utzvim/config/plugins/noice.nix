@@ -5,6 +5,12 @@
 }: {
   plugins.noice = {
     enable = true;
+    routes = [
+      {
+        view = "notify";
+        filter = {event = "msg_showmode";};
+      }
+    ];
   };
 
   keymaps = lib.mkMerge [
