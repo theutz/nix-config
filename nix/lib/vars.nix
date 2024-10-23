@@ -8,6 +8,6 @@ in {
     flakeRoot = mk [flake "nix"];
     homeModules = mk [flakeRoot "modules" "home"];
     tmux = mk [homeModules "tmux"];
-    tmuxp = mk [tmux "sessions"];
+    tmuxp = mk [tmux "tmuxp" "sessions"];
   };
 }

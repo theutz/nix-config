@@ -41,7 +41,7 @@ in {
     xdg.configFile."tmuxp" = {
       enable = true;
       recursive = true;
-      source = ./sessions;
+      source = ./tmuxp/sessions;
     };
   };
 }
