@@ -1,0 +1,7 @@
+---
+session_name: nix
+start_directory: "$HOME/nix-config"
+windows:
+  - panes:
+      - nvim
+      - flake-dev

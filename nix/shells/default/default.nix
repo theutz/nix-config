@@ -7,14 +7,16 @@
   packages = with pkgs; [
     gum
   ];
+
   commands = with pkgs.theutz; [
-    print-path-to-flake
-    print-path-to-home-modules
-    mkHomeModule
-    mkPackage
     flake-build
     flake-dev
     flake-edit
+    mkHomeModule
+    mkPackage
+    mkTmuxpSession
+    print-path-to-flake
+    print-path-to-home-modules
   ];
 in
   mkShell {

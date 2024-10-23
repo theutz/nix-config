@@ -17,9 +17,9 @@ pkgs.writeShellApplication {
     file="$HOME/${lib.theutz.vars.paths.tmuxp}/$filename.yml"
 
     if [[ -n "$TMUX" ]]; then
-    	tmux popup -x 120 -y 90% -EE "$EDITOR $file"
+      tmux popup -x 120 -y 90% -EE "$EDITOR $file"
     else
-    	$EDITOR "$file"
+      $EDITOR "$file"
     fi
   '';
 }
