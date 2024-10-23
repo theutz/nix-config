@@ -24,6 +24,7 @@ in {
         doggo
         caddy
         coreutils
+        curl
         curlie
         duckdb
         gh
