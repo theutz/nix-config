@@ -1,5 +1,5 @@
 {
   plugins.lsp-lines = {
-    enable = true;
+    enable = false;
   };
 }

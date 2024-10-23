@@ -1,7 +1,26 @@
-{pkgs, ...}: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.plugins.spectre;
+  inherit (lib) mkIf mkMerge;
+in {
   plugins.spectre = {
-    enable = true;
-    # findPackage = pkgs.rg;
-    # replacePackage = pkgs.gnused;
+    enable = false;
+    findPackage = pkgs.ripgrep;
+    replacePackage = pkgs.gnused;
   };
+
+  keymaps = mkMerge [
+    (mkIf cfg.enable [
+      {
+        mode = "n";
+        key = "<leader>sR";
+        action = "<cmd>Spectre<cr>";
+        options.desc = "Search & Replace";
+      }
+    ])
+  ];
 }
