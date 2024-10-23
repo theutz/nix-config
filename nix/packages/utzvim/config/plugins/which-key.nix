@@ -1,10 +1,12 @@
 {lib, ...}: let
-  inherit (lib) map elemAt mapAttrsToList;
+  inherit (lib) mapAttrsToList;
 
   groups = {
     "<tab>" = "Tabs";
     "b" = "Buffers";
+    "c" = "Code";
     "g" = "Git";
+    "l" = "Lists";
     "q" = "Quit/session";
     "s" = "Search";
     "w" = "Window";
