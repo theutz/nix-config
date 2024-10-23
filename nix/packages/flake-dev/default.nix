@@ -17,7 +17,6 @@ pkgs.writeShellApplication rec {
     (
       with pkgs; [
         watchexec
-        noti
         bash
       ]
     )
@@ -28,7 +27,6 @@ pkgs.writeShellApplication rec {
   text = ''
     function help() {
       cat <<-'EOF'
-
     ${meta.description}
 
     ${meta.longDescription}
@@ -47,6 +45,6 @@ pkgs.writeShellApplication rec {
       esac
     done
 
-    watchexec --restart --clear -- "bash -c 'noti flake-build'"
+    watchexec --restart --clear --notify -- flake-build
   '';
 }
