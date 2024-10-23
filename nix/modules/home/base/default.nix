@@ -63,11 +63,14 @@ in {
         yj
       ])
       ++ (with pkgs.theutz; [
-        flake-edit
+        flake-dev
         flake-build
+        flake-edit
+        mkHomeModule
+        mkPackage
+        mkTmuxpSession
         print-path-to-flake
         print-path-to-home-modules
-        mkHomeModule
       ]);
 
     theutz = {
