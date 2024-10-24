@@ -5,43 +5,54 @@
   namespace,
   ...
 }: let
-  inherit (lib) mkIf mkEnableOption;
-  inherit (lib.theutz.modules) getLastComponent;
-
-  mod = getLastComponent ./.;
+  mod = lib.pipe ./. [
+    lib.path.splitRoot
+    (lib.getAttr "subpath")
+    lib.path.subpath.components
+    lib.last
+  ];
   cfg = config.${namespace}.${mod};
 in {
   options.${namespace}.${mod} = {
-    enable = mkEnableOption mod;
+    enable = lib.mkEnableOption mod;
   };
 
-  config = mkIf cfg.enable {
-    programs.tmux = {
-      enable = true;
-      extraConfig = builtins.readFile ./tmux.conf;
-      plugins = with pkgs; [
-        tmuxPlugins.sessionist
-        tmuxPlugins.pain-control
-        tmuxPlugins.yank
+  config = lib.mkIf cfg.enable (lib.mkMerge [
+    {
+      programs.tmux = {
+        enable = true;
+        plugins = with pkgs.tmuxPlugins; [
+          sessionist
+          pain-control
+          yank
+        ];
+        escapeTime = 0;
+        mouse = true;
+        keyMode = "vi";
+        prefix = "C-b";
+        resizeAmount = 5;
+
+        tmuxp.enable = true;
+
+        extraConfig = lib.concatStringsSep "\n" [
+          (builtins.readFile ./tmux.conf)
+          ''
+            set -gu default-command
+          ''
+        ];
+      };
+    }
+    (lib.mkIf config.programs.tmux.tmuxp.enable {
+      home.packages = with pkgs.theutz; [
+        tmuxp-attach
+        tmuxp-edit
       ];
-      escapeTime = 0;
-      mouse = true;
-      keyMode = "vi";
-      prefix = "C-b";
-      resizeAmount = 5;
 
-      tmuxp.enable = true;
-    };
-
-    home.packages = mkIf config.programs.tmux.tmuxp.enable [
-      pkgs.theutz.tmuxp-attach
-      pkgs.theutz.tmuxp-edit
-    ];
-
-    xdg.configFile."tmuxp" = {
-      enable = true;
-      recursive = true;
-      source = ./tmuxp/sessions;
-    };
-  };
+      xdg.configFile."tmuxp" = {
+        enable = true;
+        recursive = true;
+        source = ./tmuxp/sessions;
+      };
+    })
+  ]);
 }

@@ -73,6 +73,7 @@ in {
           NSAutomaticQuoteSubstitutionEnabled = false;
           NSAutomaticSpellingCorrectionEnabled = false;
           NSAutomaticWindowAnimationsEnabled = false;
+          _HIHideMenuBar = true;
         };
       };
 

@@ -2,15 +2,17 @@
   pkgs,
   lib,
   namespace,
+  config,
   ...
 }: let
-  mod = "base";
+  mod = lib.pipe ./. [lib.path.splitRoot (lib.getAttr "subpath") lib.path.subpath.components lib.last];
+  cfg = config.${namespace}.${mod};
 in {
   options.${namespace}.${mod} = {
     enable = lib.mkEnableOption "base settings for home manager";
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     home.stateVersion = "24.05";
 
     home.packages =
@@ -62,16 +64,7 @@ in {
         yq
         yj
       ])
-      ++ (with pkgs.theutz; [
-        flake-dev
-        flake-build
-        flake-edit
-        mkHomeModule
-        mkPackage
-        mkTmuxpSession
-        print-path-to-flake
-        print-path-to-home-modules
-      ]);
+      ++ (lib.attrValues pkgs.theutz);
 
     theutz = {
       atuin.enable = false;
@@ -95,10 +88,8 @@ in {
       noti.enable = true;
       nushell.enable = true;
       nvim.enable = true;
-      prezto = {
-        enable = true;
-        autoTmux = true;
-      };
+      prezto.enable = true;
+      prezto.autoTmux = true;
       ripgrep.enable = true;
       sketchybar.enable = true;
       starship.enable = true;

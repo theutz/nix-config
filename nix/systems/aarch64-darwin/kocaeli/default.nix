@@ -8,7 +8,8 @@
       create = true;
       home = {
         enable = true;
-        config = {};
+        config = {
+        };
       };
     };
 
@@ -16,12 +17,27 @@
       create = true;
       home = {
         enable = true;
-        config = {};
+        config = {
+        };
       };
     };
   };
 
+  theutz = {
+    home-manager.enable = true;
+    homebrew.enable = true;
+  };
+
   users.knownUsers = ["oyuncu"];
+
+  users.users.michael = {
+    isHidden = false;
+    createHome = true;
+    description = "Michael Utz";
+    shell = pkgs.zsh;
+    uid = 501;
+    home = "/Users/michael";
+  };
 
   users.users.oyuncu = {
     isHidden = false;
@@ -55,7 +71,10 @@
     };
   };
 
-  environment.shells = [pkgs.zsh];
+  environment.shells = [
+    pkgs.bashInteractive
+    pkgs.zsh
+  ];
 
   environment.systemPackages = with pkgs; [
     tmux
