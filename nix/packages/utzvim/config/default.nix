@@ -1,10 +1,21 @@
 {lib, ...}: let
-  inherit (lib.filesystem) listFilesRecursive;
-  inherit (builtins) filter;
+  filesIn = dir:
+    assert (lib.isPath dir);
+      lib.pipe dir [
+        builtins.readDir
+        (lib.filterAttrs
+          (k: v:
+            v == "regular" && k != "default.nix"))
+        lib.attrNames
+        (lib.map
+          (f: lib.path.append dir f))
+      ];
+  importDirs = [./. ./modules ./plugins];
 in {
-  imports = let
-    files = listFilesRecursive ./.;
-    notDefaultFrom = f: f != ./default.nix;
-  in
-    filter notDefaultFrom files;
+  imports =
+    lib.pipe importDirs
+    [
+      (lib.map filesIn)
+      lib.flatten
+    ];
 }

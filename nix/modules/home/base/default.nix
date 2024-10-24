@@ -5,7 +5,12 @@
   config,
   ...
 }: let
-  mod = lib.pipe ./. [lib.path.splitRoot (lib.getAttr "subpath") lib.path.subpath.components lib.last];
+  mod = lib.pipe ./. [
+    lib.path.splitRoot
+    (lib.getAttr "subpath")
+    lib.path.subpath.components
+    lib.last
+  ];
   cfg = config.${namespace}.${mod};
 in {
   options.${namespace}.${mod} = {
@@ -97,6 +102,7 @@ in {
       tmux.enable = true;
       wezterm.enable = true;
       xdg.enable = true;
+      xplr.enable = true;
       yazi.enable = true;
       zoxide.enable = true;
       zsh.enable = true;

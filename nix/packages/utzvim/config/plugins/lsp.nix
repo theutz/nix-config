@@ -4,7 +4,7 @@
   ...
 }: {
   plugins.none-ls = {
-    enable = true;
+    enable = false;
     sources = {
       code_actions = {
         gitrebase.enable = true;
