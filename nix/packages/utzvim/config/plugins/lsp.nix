@@ -211,7 +211,7 @@
         "lua_ls"
         "marksman"
         "nginx_language_server"
-        "nil_ls"
+        "nixd"
         "nushell"
         "ruby_lsp"
         "sqlls"

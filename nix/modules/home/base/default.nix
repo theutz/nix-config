@@ -17,52 +17,53 @@ in {
 
     home.packages =
       (with pkgs; [
-        neovide
-        lsix
-        nix-melt
-        devenv
-        watchexec
         age
-        doggo
         caddy
         coreutils
         curl
         curlie
+        delta
+        devenv
+        doggo
         duckdb
         gh
-        delta
         glow
         gnused
         gping
-        hugo
-        jq
-        hurl
         httpie
+        hugo
+        hurl
         ijq
         imagemagick
+        jq
         just
         lazydocker
         lnav
+        lsix
         mods
         mosh
         mycli
-        overmind
-        onefetch
+        neovide
+        nixd
+        nix-melt
         noti
-        sd
-        sad
-        statix
+        onefetch
+        overmind
         rsync
+        sad
+        sd
         speedtest-rs
         ssh-copy-id
+        statix
         tldr
-        tz
         tree
+        tz
+        watchexec
         wget
         wrk
         xdg-ninja
-        yq
         yj
+        yq
       ])
       ++ (lib.attrValues pkgs.theutz);
 
