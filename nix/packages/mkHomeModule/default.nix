@@ -25,41 +25,43 @@
         };
       }
     '';
+
+  description = "Create a blank home manager module";
+  name = with lib;
+    pipe ./. [
+      path.splitRoot
+      (getAttr "subpath")
+      path.subpath.components
+      last
+    ];
+
+  usage = ''
+    ${description}
+
+    usage:
+        ${name} <module name>
+
+    flags:
+        --help, -h        show this help
+  '';
 in
-  pkgs.writeShellApplication rec {
-    name = lib.last (lib.path.subpath.components (lib.path.splitRoot ./.).subpath);
+  pkgs.writeShellApplication {
+    inherit name;
 
-    meta = {
-      description = "Create a blank home manager module";
-      longDescription = ''
-        usage: ${name} <module name>
+    meta = {inherit description;};
 
-        flags:
-            --help, -h        show this help
-      '';
-    };
-
-    runtimeInputs =
-      (with pkgs; [
-        gum
-      ])
-      ++ (with pkgs.theutz; [
-        find-root
-        print-path-to-home-modules
-      ]);
+    runtimeInputs = with pkgs; [
+      gum
+      theutz.find-root
+      theutz.print-path-to-home-modules
+    ];
 
     text = ''
       function help() {
-        cat <<-'EOF'
-
-      ${meta.description}
-
-      ${meta.longDescription}
-      EOF
+        echo '${usage}'
       }
 
-      module_name=""
-
+      args=()
       while [[ $# -gt 0 ]]; do
         case "$1" in
           --help|-h)
@@ -71,16 +73,20 @@ in
             exit 1
             ;;
           *)
-            module_name="$1"
-            break
+            args+=("$1")
+            shift
+            ;;
         esac
       done
+      set -- "''${args[@]}"
 
-      if [[ -z "$module_name" ]]; then
+      if [[ -n "$1" ]]; then
+        module_name="$1"
+      else
         module_name="$(gum input --header="New module name")"
       fi
 
-      full_path="$(print-path-to-home-modules)/$module_name/default.nix"
+      full_path="$(print-path-to-flake)/${lib.theutz.vars.paths.homeModules}/$module_name/default.nix"
 
       if gum confirm "Create file at $full_path?"; then
         mkdir -p "$(dirname "$full_path")"

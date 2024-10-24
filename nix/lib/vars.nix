@@ -1,13 +1,17 @@
 {lib, ...}: let
-  inherit (lib.path.subpath) join normalise;
-  inherit (lib.strings) removePrefix;
-  mk = paths: removePrefix "./" (normalise (join paths));
+  mkPath = with lib;
+    (flip pipe) [
+      path.subpath.join
+      (removePrefix "./")
+    ];
 in {
   paths = rec {
     flake = "nix-config";
-    flakeRoot = mk [flake "nix"];
-    homeModules = mk [flakeRoot "modules" "home"];
-    tmux = mk [homeModules "tmux"];
-    tmuxp = mk [tmux "tmuxp" "sessions"];
+    flakeRoot = mkPath [flake "nix"];
+    modules = mkPath [flakeRoot "modules"];
+    homeModules = mkPath [modules "home"];
+    darwinModules = mkPath [modules "darwin"];
+    tmux = mkPath [homeModules "tmux"];
+    tmuxp = mkPath [tmux "tmuxp" "sessions"];
   };
 }
