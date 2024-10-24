@@ -33,6 +33,7 @@ in {
           };
         "<localleader>p" = "actions.preview";
         "<localleader>c" = "actions.close";
+        "<localleader>q" = "actions.close";
         "<localleader>r" = "actions.refresh";
         "<cr>" = "actions.select";
         "-" = "actions.parent";
