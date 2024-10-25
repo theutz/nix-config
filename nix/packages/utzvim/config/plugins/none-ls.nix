@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   plugins.none-ls = {
-    enable = true;
+    enable = false;
     sources = {
       code_actions = {
         gitrebase.enable = true;
@@ -11,6 +11,7 @@
         textlint.enable = true;
         textlint.package = pkgs.textlint;
       };
+
       diagnostics = {
         codespell.enable = true;
         commitlint.enable = true;
@@ -33,6 +34,7 @@
         yamllint.enable = true;
         zsh.enable = true;
       };
+
       hover = {
         dictionary.enable = true;
       };
