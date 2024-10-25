@@ -33,8 +33,8 @@ in {
           -- c.default_prog = { "zsh", "-c", "/opt/homebrew/bin/nu" }
           c.macos_window_background_blur = 50
           c.window_background_opacity = 1.0
-          c.font = wezterm.font("IosevkaTerm Nerd Font Propo", { weight = 400 })
-          c.font_size = 16
+          c.font = wezterm.font("0xProto Nerd Font Propo", { weight = 400 })
+          c.font_size = 14
           c.line_height = 1.2
           c.bold_brightens_ansi_colors = "BrightAndBold"
           c.window_close_confirmation = "NeverPrompt"

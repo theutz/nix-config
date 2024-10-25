@@ -20,8 +20,24 @@ in {
     homebrew = {
       enable = true;
 
+      brews = [
+        "aicommits"
+        "dark-mode"
+        "dnsmasq"
+        "duti"
+        "lorem"
+        "skm"
+      ];
+
       casks = [
         "aerospace"
+        "firefox"
+        "google-chrome"
+        "messenger"
+        "microsoft-edge"
+        "mullvadvpn"
+        "vivid"
+        "whatsapp"
       ];
     };
   };
