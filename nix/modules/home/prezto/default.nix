@@ -2,12 +2,32 @@
   config,
   lib,
   namespace,
+  pkgs,
   ...
-}: let
-  inherit (lib) mkIf mkEnableOption mkOption types mkMerge;
-
-  mod = "prezto";
+}:
+with lib; let
+  mod = pipe ./. [
+    path.splitRoot
+    (getAttr "subpath")
+    path.subpath.components
+    last
+  ];
   cfg = config."${namespace}"."${mod}";
+
+  relToDotDir = file:
+    (optionalString (config.programs.zsh.dotDir != null)
+      (config.programs.zsh.dotDir + "/"))
+    + file;
+
+  login = pipe "${pkgs.zsh-prezto}/share/zsh-prezto/runcoms/zlogin" [
+    readFile
+    (
+      text:
+        if (elem pkgs.fortune-kind config.home.packages)
+        then (strings.replaceStrings ["fortune -s"] ["fortune"] text)
+        else text
+    )
+  ];
 in {
   options."${namespace}"."${mod}" = {
     enable = mkEnableOption "prezto zsh framework";
@@ -25,6 +45,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.file."${relToDotDir ".zlogin"}".text = mkForce login;
+
     programs.zsh.prezto = {
       enable = true;
 
