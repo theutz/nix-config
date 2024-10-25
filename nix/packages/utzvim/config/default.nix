@@ -1,21 +1,52 @@
 {lib, ...}: let
-  filesIn = dir:
-    assert (lib.isPath dir);
-      lib.pipe dir [
-        builtins.readDir
-        (lib.filterAttrs
-          (k: v:
-            v == "regular" && k != "default.nix"))
-        lib.attrNames
-        (lib.map
-          (f: lib.path.append dir f))
-      ];
-  importDirs = [./. ./modules ./plugins];
+  inherit (builtins) readDir;
+  inherit (lib) pipe filterAttrs attrNames map path elem mapAttrsToList concatLists;
+
+  mainFiles = pipe ./. [
+    readDir
+
+    (filterAttrs
+      (name: type:
+        type == "regular" && name != "default.nix"))
+
+    attrNames
+
+    (map
+      (path.append ./.))
+  ];
+
+  modules = pipe ./modules [
+    builtins.readDir
+
+    (filterAttrs
+      (_: type:
+        type == "regular"))
+
+    attrNames
+
+    (map
+      (path.append ./modules))
+  ];
+
+  plugins = pipe ./plugins [
+    readDir
+
+    (filterAttrs
+      (_: type: (elem type ["regular" "directory"])))
+
+    (mapAttrsToList
+      (name: type: (
+        if type == "directory"
+        then (path.subpath.join [name "default.nix"])
+        else name
+      )))
+
+    (map (path.append ./plugins))
+  ];
 in {
-  imports =
-    lib.pipe importDirs
-    [
-      (lib.map filesIn)
-      lib.flatten
-    ];
+  imports = concatLists [
+    mainFiles
+    modules
+    plugins
+  ];
 }

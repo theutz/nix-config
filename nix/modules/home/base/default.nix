@@ -84,7 +84,6 @@ in {
         sd
         speedtest-rs
         ssh-copy-id
-        starship
         statix
         tldr
         tree

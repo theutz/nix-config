@@ -148,43 +148,133 @@
       };
     };
 
-    servers =
-      (lib.genAttrs [
-        "ansiblels"
-        # "antlersls"
-        # "awk_ls"
-        "bashls"
-        "css_variables"
-        "cssls"
-        "diagnosticls"
-        "docker_compose_language_service"
-        "dockerls"
-        "emmet_language_server"
-        "eslint"
-        "golangci_lint_ls"
-        "gopls"
-        "graphql"
-        "html"
-        "intelephense"
-        "jqls"
-        "jsonls"
-        "lua_ls"
-        "marksman"
-        "nginx_language_server"
-        "nixd"
-        "nushell"
-        "ruby_lsp"
-        "sqlls"
-        "stylelint_lsp"
-        "tailwindcss"
-        "taplo"
-        "ts_ls"
-        "yamlls"
-      ] (name: {enable = true;}))
-      // {
-        css_variables.package = pkgs.vscode-langservers-extracted;
-        intelephense.package = pkgs.intelephense;
-        sqlls.package = pkgs.sqls;
+    servers = {
+      antlersls = {
+        enable = false;
       };
+
+      awk_ls = {
+        enable = false;
+      };
+
+      nixd = {
+        enable = false;
+      };
+
+      ansiblels = {
+        enable = true;
+      };
+
+      bashls = {
+        enable = true;
+      };
+
+      css_variables = {
+        enable = true;
+        package = pkgs.vscode-langservers-extracted;
+      };
+
+      cssls = {
+        enable = true;
+      };
+
+      diagnosticls = {
+        enable = true;
+      };
+
+      docker_compose_language_service = {
+        enable = true;
+      };
+
+      dockerls = {
+        enable = true;
+      };
+
+      emmet_language_server = {
+        enable = true;
+      };
+
+      eslint = {
+        enable = true;
+      };
+
+      golangci_lint_ls = {
+        enable = true;
+      };
+
+      gopls = {
+        enable = true;
+      };
+
+      graphql = {
+        enable = true;
+      };
+
+      html = {
+        enable = true;
+      };
+
+      intelephense = {
+        enable = true;
+        package = pkgs.intelephense;
+      };
+
+      jqls = {
+        enable = true;
+      };
+
+      jsonls = {
+        enable = true;
+      };
+
+      lua_ls = {
+        enable = true;
+      };
+
+      marksman = {
+        enable = true;
+      };
+
+      nginx_language_server = {
+        enable = true;
+      };
+
+      nil_ls = {
+        enable = true;
+      };
+
+      nushell = {
+        enable = true;
+      };
+
+      ruby_lsp = {
+        enable = true;
+      };
+
+      sqlls = {
+        enable = true;
+        package = pkgs.sqls;
+      };
+
+      stylelint_lsp = {
+        enable = true;
+      };
+
+      tailwindcss = {
+        enable = true;
+      };
+
+      taplo = {
+        enable = true;
+      };
+
+      ts_ls = {
+        enable = true;
+      };
+
+      yamlls = {
+        enable = true;
+      };
+    };
   };
 }
