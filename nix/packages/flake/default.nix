@@ -1,0 +1,100 @@
+{
+  pkgs,
+  lib,
+  inputs,
+  namespace,
+  system,
+  ...
+}:
+with lib; let
+  inherit (inputs.darwin.packages.${system}) darwin-rebuild;
+
+  name = pipe ./. [path.splitRoot (getAttr "subpath") path.subpath.components last];
+
+  description = "Commands for working with my nix-config";
+
+  args = {
+    inherit pkgs lib darwin-rebuild loggers;
+    main = name;
+  };
+
+  build = import ./build.nix args;
+  commands = {
+    inherit build;
+    switch = import ./switch.nix (args // {inherit build;});
+  };
+
+  usage = ''
+    # ${name}
+
+    ${description}
+  '';
+
+  loggers =
+    /*
+    bash
+    */
+    ''
+      function fatal () {
+        gum log -l fatal -s "$@"
+      }
+
+      function error () {
+        gum log -l error -s "$@"
+      }
+
+      function warn () {
+        gum log -l warn -s "$@"
+      }
+
+      function info () {
+        gum log -l info -s "$@"
+      }
+
+      function debug () {
+        gum log -l debug -s "$@"
+      }
+    '';
+in
+  pkgs.writeShellApplication {
+    inherit name;
+
+    meta = {
+      inherit description;
+    };
+
+    runtimeInputs = with pkgs; [
+      gum
+    ];
+
+    text = ''
+      MY_FLAKE_DIR="$HOME/${lib.${namespace}.vars.paths.flake}"
+      export MY_FLAKE_DIR
+
+      function help () {
+        gum format <<-'EOF'
+        ${usage}
+      EOF
+      }
+
+      ${loggers}
+
+      case "$1" in
+        --help|-h)
+          help
+          exit 0
+          ;;
+        build)
+          shift 1
+          ${lib.getExe commands.build} "$@"
+          ;;
+        switch)
+          shift 1
+          ${lib.getExe commands.switch} "$@"
+          ;;
+        *)
+          fatal "$1: command not found"
+          ;;
+      esac
+    '';
+  }
