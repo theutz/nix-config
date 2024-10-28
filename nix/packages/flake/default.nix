@@ -72,9 +72,11 @@ in
       inherit description;
     };
 
-    runtimeInputs = with pkgs; [
-      gum
-    ];
+    runtimeInputs =
+      (with pkgs; [
+        gum
+      ])
+      ++ (lib.attrValues commands);
 
     text = ''
       MY_FLAKE_DIR="$HOME/${lib.${namespace}.vars.paths.flake}"
