@@ -6,7 +6,7 @@
   cfg = config.plugins.easy-align;
 in {
   plugins.easy-align = {
-    enable = true;
+    enable = false;
   };
 
   keymaps = lib.mkIf cfg.enable [
