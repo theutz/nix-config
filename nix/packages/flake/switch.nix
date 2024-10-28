@@ -79,34 +79,34 @@ in
 
       (
         cd "$MY_FLAKE_DIR"
+
+        info "Building flake..."
+        if flake build; then
+          info "Flake built"
+        else
+          fatal "Flake could not be built"
+        fi
+
+        info "Activating flake..."
+        if darwin-rebuild activate --flake .; then
+          info "Flake activated"
+        else
+          fatal "Flake could not be activated"
+        fi
+
+        info "Committing changes..."
+        if git commit -m "$(darwin-rebuild --list-generations | awk '/\(current\)/ {print $1}')"; then
+          info "Changes committed"
+        else
+          fatal "Changes could not be committed"
+        fi
+
+        info "Pushing changes"
+        if git pull --rebase && git push; then
+          info "Changes pushed"
+        else
+          fatal "Changes could not be pushed"
+        fi
       )
-
-      info "Building flake..."
-      if flake build; then
-        info "Flake built"
-      else
-        fatal "Flake could not be built"
-      fi
-
-      info "Activating flake..."
-      if darwin-rebuild activate --flake .; then
-        info "Flake activated"
-      else
-        fatal "Flake could not be activated"
-      fi
-
-      info "Committing changes..."
-      if git commit -m "$(darwin-rebuild --list-generations | awk '/\(current\)/ {print $1}')"; then
-        info "Changes committed"
-      else
-        fatal "Changes could not be committed"
-      fi
-
-      info "Pushing changes"
-      if git pull --rebase && git push; then
-        info "Changes pushed"
-      else
-        fatal "Changes could not be pushed"
-      fi
     '';
   }
