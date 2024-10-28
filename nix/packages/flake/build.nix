@@ -77,12 +77,16 @@ in
       done
       set -- "''${args[@]}"
 
-      (
-        cd "$MY_FLAKE_DIR"
-        if "$add_git_files"; then
-          git add -A
-        fi
-        darwin-rebuild build --flake .
-      )
+      function cleanup () {
+        cd -
+      }
+
+      trap cleanup EXIT
+
+      cd "$MY_FLAKE_DIR"
+      if "$add_git_files"; then
+        git add -A
+      fi
+      darwin-rebuild build --flake .
     '';
   }
