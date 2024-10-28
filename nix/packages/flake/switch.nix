@@ -77,40 +77,41 @@ in
       done
       set -- "''${args[@]}"
 
-      (
-        info "cd to $MY_FLAKE_DIR"
-        cd "$MY_FLAKE_DIR"
+      function cleanup () {
+        cd -
+      }
 
-        info "Building flake..."
-        if flake build; then
-          info "Flake built"
-        else
-          fatal "Flake could not be built"
-        fi
+      trap cleanup EXIT
 
-        info "cd to $MY_FLAKE_DIR"
-        cd "$MY_FLAKE_DIR"
+      info "Building flake..."
+      if flake build; then
+        info "Flake built"
+      else
+        fatal "Flake could not be built"
+      fi
 
-        info "Activating flake..."
-        if darwin-rebuild activate --flake .; then
-          info "Flake activated"
-        else
-          fatal "Flake could not be activated"
-        fi
+      info "cd to $MY_FLAKE_DIR"
+      cd "$MY_FLAKE_DIR"
 
-        info "Committing changes..."
-        if git commit -m "Generation $(darwin-rebuild --list-generations | awk '/\(current\)/ {print $1}')"; then
-          info "Changes committed"
-        else
-          fatal "Changes could not be committed"
-        fi
+      info "Activating flake..."
+      if darwin-rebuild activate --flake .; then
+        info "Flake activated"
+      else
+        fatal "Flake could not be activated"
+      fi
 
-        info "Pushing changes"
-        if git pull --rebase && git push; then
-          info "Changes pushed"
-        else
-          fatal "Changes could not be pushed"
-        fi
-      )
+      info "Committing changes..."
+      if git commit -m "Generation $(darwin-rebuild --list-generations | awk '/\(current\)/ {print $1}')"; then
+        info "Changes committed"
+      else
+        fatal "Changes could not be committed"
+      fi
+
+      info "Pushing changes"
+      if git pull --rebase && git push; then
+        info "Changes pushed"
+      else
+        fatal "Changes could not be pushed"
+      fi
     '';
   }
