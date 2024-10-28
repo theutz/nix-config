@@ -20,11 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    snowfall-flake = {
-      url = "github:snowfallorg/flake";
-      inputs.nixpkgs.follows = "unstable";
-    };
-
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
     };
@@ -61,7 +56,6 @@
       };
 
       overlays = with inputs; [
-        snowfall-flake.overlays.default
       ];
 
       homes.modules = with inputs; [
