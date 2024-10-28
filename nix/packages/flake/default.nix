@@ -95,14 +95,10 @@ in
           help
           exit 0
           ;;
-        ${lib.concatLines
-        (lib.mapAttrsToList
-          (_: cmd: ''
-            ${lib.getName cmd})
-            shift 1
-            ${lib.getExe cmd} "$@"
-            ;;'')
-          commands)}
+        build|switch|goto)
+          shift 1
+          "$1" "$@";
+          ;;
         *)
           fatal "$1: command not found"
           ;;
