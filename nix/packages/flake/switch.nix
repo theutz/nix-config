@@ -87,6 +87,8 @@ in
           fatal "Flake could not be built"
         fi
 
+        cd "$MY_FLAKE_DIR"
+
         info "Activating flake..."
         if darwin-rebuild activate --flake .; then
           info "Flake activated"
@@ -95,7 +97,7 @@ in
         fi
 
         info "Committing changes..."
-        if git commit -m "$(darwin-rebuild --list-generations | awk '/\(current\)/ {print $1}')"; then
+        if git commit -m "Generation $(darwin-rebuild --list-generations | awk '/\(current\)/ {print $1}')"; then
           info "Changes committed"
         else
           fatal "Changes could not be committed"
