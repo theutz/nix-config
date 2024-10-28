@@ -22,6 +22,7 @@ with lib; let
   commands = {
     inherit build;
     switch = import ./switch.nix (args // {inherit build;});
+    goto = import ./goto.nix args;
   };
 
   usage = ''
@@ -92,14 +93,14 @@ in
           help
           exit 0
           ;;
-        build)
-          shift 1
-          ${lib.getExe commands.build} "$@"
-          ;;
-        switch)
-          shift 1
-          ${lib.getExe commands.switch} "$@"
-          ;;
+        ${lib.concatLines
+        (lib.mapAttrsToList
+          (_: cmd: ''
+            ${lib.getName cmd})
+            shift 1
+            ${lib.getExe cmd} "$@"
+            ;;'')
+          commands)}
         *)
           fatal "$1: command not found"
           ;;
