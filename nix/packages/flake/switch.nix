@@ -78,6 +78,7 @@ in
       set -- "''${args[@]}"
 
       (
+        info "cd to $MY_FLAKE_DIR"
         cd "$MY_FLAKE_DIR"
 
         info "Building flake..."
@@ -87,6 +88,7 @@ in
           fatal "Flake could not be built"
         fi
 
+        info "cd to $MY_FLAKE_DIR"
         cd "$MY_FLAKE_DIR"
 
         info "Activating flake..."
