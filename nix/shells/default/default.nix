@@ -8,16 +8,7 @@
     gum
   ];
 
-  commands = with pkgs.theutz; [
-    flake-build
-    flake-dev
-    flake-edit
-    mkHomeModule
-    mkPackage
-    mkTmuxpSession
-    print-path-to-flake
-    print-path-to-home-modules
-  ];
+  commands = lib.attrValues pkgs.theutz;
 in
   mkShell {
     packages = packages ++ commands;
