@@ -7,7 +7,7 @@
   build,
 }: let
   name = "switch";
-  description = "Build the current flake, switch, and commit";
+  description = "Build, activate, commit, and push";
   usage =
     /*
     markdown

@@ -28,6 +28,14 @@ with lib; let
     # ${name}
 
     ${description}
+
+    ## Commands
+
+    | Name | Description |
+    | :--- | :---        |
+    ${lib.concatLines (lib.mapAttrsToList (_: cmd: ''
+      | ${lib.getName cmd} | ${cmd.meta.description or ""} |'')
+    commands)}
   '';
 
   loggers =

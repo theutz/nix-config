@@ -7,7 +7,7 @@
 }:
 with lib; let
   name = "build";
-  description = "Build the current flake";
+  description = "Build the current flake in `./result`";
   usage =
     /*
     markdown
@@ -33,6 +33,10 @@ with lib; let
 in
   pkgs.writeShellApplication {
     inherit name;
+
+    meta = {
+      inherit description;
+    };
 
     runtimeInputs = with pkgs; [
       gum
