@@ -90,11 +90,10 @@ in
         fatal "Flake could not be built"
       fi
 
-      info "cd to $MY_FLAKE_DIR"
       cd "$MY_FLAKE_DIR"
 
       info "Activating flake..."
-      if darwin-rebuild activate --flake .; then
+      if darwin-rebuild switch --flake .; then
         info "Flake activated"
       else
         fatal "Flake could not be activated"
