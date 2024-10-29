@@ -90,18 +90,23 @@ in
 
       ${loggers}
 
+      action=""
       case "$1" in
         --help|-h)
           help
           exit 0
           ;;
         build|switch|goto)
+          action="$1"
           shift 1
-          "$1" "$@";
           ;;
         *)
           fatal "$1: command not found"
           ;;
       esac
+
+      if [[ -n "$action" ]]; then
+        "$action" "$@"
+      fi
     '';
   }

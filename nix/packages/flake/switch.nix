@@ -84,7 +84,7 @@ in
       trap cleanup EXIT
 
       info "Building flake..."
-      if flake build; then
+      if build; then
         info "Flake built"
       else
         fatal "Flake could not be built"
