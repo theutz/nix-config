@@ -79,6 +79,10 @@ in
 
       function cleanup () {
         cd -
+
+        if [[ -d "$MY_FLAKE_DIR/result" ]]; then
+          rm -rf "$MY_FLAKE_DIR/result"
+        fi
       }
 
       trap cleanup EXIT
