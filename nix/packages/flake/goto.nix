@@ -14,6 +14,8 @@
     ''
       # ${main} ${name}
 
+      ${description}.
+
       ## Usage
 
       ```bash
