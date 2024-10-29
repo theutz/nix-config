@@ -100,8 +100,10 @@ in
         fatal "Flake could not be activated"
       fi
 
-      info "Committing changes..."
-      if git commit -m "Generation $(darwin-rebuild --list-generations | awk '/\(current\)/ {print $1}')"; then
+      current_generation="$(darwin-rebuild --list-generations | awk '/\(current\)/ {print $1}')"
+
+      info "Committing changes for generation $current_generation..."
+      if git commit -m "Generation $current_generation"; then
         info "Changes committed"
       else
         fatal "Changes could not be committed"

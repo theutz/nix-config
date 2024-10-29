@@ -106,6 +106,8 @@ in
       esac
 
       if [[ -n "$action" ]]; then
+         # shellcheck disable=1090
+        # source "$(which "$action")" "$@"
         "$action" "$@"
       fi
     '';

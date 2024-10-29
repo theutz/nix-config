@@ -71,5 +71,6 @@ in
 
       info "Changing directory to $MY_FLAKE_DIR"
       cd "$MY_FLAKE_DIR"
+      "$SHELL"
     '';
   }
