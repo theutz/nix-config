@@ -101,7 +101,7 @@ in
 
       current_generation="$(darwin-rebuild --list-generations | awk '/\(current\)/ {print $1}')"
 
-      info "Committing changes for generation $current_generation..."
+      info "Committing changes..."
       if git commit -m "Generation $current_generation"; then
         info "Changes committed"
       else
