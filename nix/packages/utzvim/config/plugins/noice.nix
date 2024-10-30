@@ -52,7 +52,7 @@ in {
         options.desc = "Notifications";
       }
     ])
-    (lib.optionals (cfg.enable && config.plugins.fzf-lua.enable) [
+    (lib.optionals (lib.and cfg.enable config.plugins.fzf-lua.enable) [
       {
         mode = "n";
         key = "<leader>sn";
