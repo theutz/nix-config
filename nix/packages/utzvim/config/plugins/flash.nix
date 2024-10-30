@@ -11,7 +11,7 @@ in {
       multi_window = true;
       forward = true;
       wrap = true;
-      modes.search.enabled = true;
+      # modes.search.enabled = true;
     };
   };
 
