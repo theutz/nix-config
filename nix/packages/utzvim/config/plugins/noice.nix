@@ -6,10 +6,10 @@
   plugins.noice = {
     enable = true;
     routes = [
-      {
-        view = "notify";
-        filter = {event = "msg_showmode";};
-      }
+      # {
+      #   view = "notify";
+      #   filter = {event = "msg_showmode";};
+      # }
     ];
   };
 
