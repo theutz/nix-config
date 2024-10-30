@@ -1,10 +1,8 @@
 {
   pkgs,
-  lib,
   main,
   loggers,
-  darwin-rebuild,
-  build,
+  ...
 }: let
   name = "switch";
   description = "Build, activate, commit, and push";
@@ -49,18 +47,6 @@ in
       }
 
       ${loggers}
-
-      if [[ ! -v MY_FLAKE_DIR || -z "$MY_FLAKE_DIR" ]]; then
-        fatal "MY_FLAKE_DIR not set"
-      fi
-
-      if [[ ! -d "$MY_FLAKE_DIR" ]]; then
-        fatal "$MY_FLAKE_DIR is not a directory"
-      fi
-
-      if [[ ! -f "$MY_FLAKE_DIR/flake.lock" ]]; then
-        fatal "$MY_FLAKE_DIR has not flake"
-      fi
 
       args=()
       while [[ $# -gt 0 ]]; do
