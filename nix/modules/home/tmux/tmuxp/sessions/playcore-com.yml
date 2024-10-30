@@ -4,6 +4,7 @@ windows:
   - panes:
       - focus: true
         shell: nvim
+      - shell: dev
     window_name: main
     layout: main-vertical
     options:

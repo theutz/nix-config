@@ -185,6 +185,12 @@
         action = "<cmd>wincmd T<cr>";
         options.desc = "Open in new tab";
       }
+      {
+        mode = "n";
+        key = "<leader><tab>e";
+        action = "<cmd>tabe<cr>";
+        options.desc = "Open a new blank tab";
+      }
     ]
     ++ (lib.forEach ["n" "]" "<tab>"] (k: {
       mode = "n";
