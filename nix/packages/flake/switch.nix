@@ -39,7 +39,6 @@ in
 
     runtimeInputs = with pkgs; [
       gum
-      build
     ];
 
     text = ''
@@ -87,14 +86,14 @@ in
 
       trap cleanup EXIT
 
-      info "Building flake..."
-      if build; then
-        info "Flake built"
-      else
-        fatal "Flake could not be built"
-      fi
-
       cd "$MY_FLAKE_DIR"
+
+      git status --short
+      if gum confirm "Add all files?"; then
+        git add -A
+      else
+        fatal "Operation cancelled."
+      fi
 
       info "Activating flake..."
       if darwin-rebuild switch --flake .; then
