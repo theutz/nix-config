@@ -16,19 +16,28 @@ in {
         "<localleader>v" =
           helpers.listToUnkeyedAttrs ["actions.select"]
           // {
-            opts = {vertical = true;};
+            opts = {
+              vertical = true;
+              close = true;
+            };
             desc = "Open entry in a vertical split";
           };
         "<localleader>s" =
           helpers.listToUnkeyedAttrs ["actions.select"]
           // {
-            opts = {horizontal = true;};
+            opts = {
+              horizontal = true;
+              close = true;
+            };
             desc = "Open entry in a horizontal split";
           };
         "<localleader>t" =
           helpers.listToUnkeyedAttrs ["actions.select"]
           // {
-            opts = {tab = true;};
+            opts = {
+              tab = true;
+              close = true;
+            };
             desc = "Open entry in a new tab";
           };
         "<localleader>p" = "actions.preview";
