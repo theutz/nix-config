@@ -79,8 +79,14 @@ in
       function cleanup () {
         cd -
 
-        if [[ -d "$MY_FLAKE_DIR/result" ]]; then
+        if [[ -d "$MY_FLAKE_DIR/result" ]]
+        then
           rm -rf "$MY_FLAKE_DIR/result"
+        fi
+
+        if [[ "$(git log -1 --pretty=%B)" == "WIP" ]]
+        then
+          git reset HEAD~
         fi
       }
 
@@ -96,29 +102,32 @@ in
       git status
       if gum confirm "Add all files?"
       then
-        git add -A
+        git add -A &&
+          git commit -m "WIP"
       else
         fatal "Operation cancelled."
       fi
 
-      info "Activating flake..."
+      info "Switching to new generation..."
       if darwin-rebuild switch --flake .; then
-        info "Flake activated"
+        info "Profile switched"
       else
-        fatal "Flake could not be activated"
+        fatal "Failure while changing profile"
       fi
 
       current_generation="$(darwin-rebuild --list-generations | awk '/\(current\)/ {print $1}')"
 
       info "Committing changes..."
-      if git commit -m "Generation $current_generation"; then
+      if git commit --amend --message "Generation $current_generation"
+      then
         info "Changes committed"
       else
         fatal "Changes could not be committed"
       fi
 
       info "Pushing changes"
-      if git pull --rebase && git push; then
+      if git pull --rebase && git push
+      then
         info "Changes pushed"
       else
         fatal "Changes could not be pushed"
