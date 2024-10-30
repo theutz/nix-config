@@ -5,11 +5,14 @@
 }: {
   plugins.noice = {
     enable = true;
+    cmdline = {
+      view = "cmdline";
+    };
     routes = [
-      # {
-      #   view = "notify";
-      #   filter = {event = "msg_showmode";};
-      # }
+      {
+        view = "notify";
+        filter = {event = "msg_showmode";};
+      }
     ];
   };
 
