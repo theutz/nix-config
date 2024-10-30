@@ -206,7 +206,7 @@
       {
         mode = "n";
         key = "<leader><tab>r";
-        action = "<cmd>BufferLineTabRename ";
+        action = ":BufferLineTabRename ";
         options.desc = "Rename tab";
       }
     ]

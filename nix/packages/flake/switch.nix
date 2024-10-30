@@ -94,12 +94,11 @@ in
 
       cd "$MY_FLAKE_DIR"
 
-      if [[ -z "$(git status --short)" ]]; then
+      if [[ -z "$(git -c color.status=always status --short | tee /dev/tty)" ]]; then
         warn "No changes detected. Exiting..."
         exit 0
       fi
 
-      git status
       if gum confirm "Add all files?"
       then
         git add -A &&

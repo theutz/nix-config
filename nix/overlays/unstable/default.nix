@@ -5,6 +5,7 @@
     devenv
     diagnostic-languageserver
     fzf
+    mods
     hugo
     just
     neovide
