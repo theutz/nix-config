@@ -234,32 +234,34 @@
       action = "<cmd>tabclose<cr>";
       options.desc = "Close tab";
     }));
+
+  other = [
+    {
+      mode = ["n" "i"];
+      key = "<C-s>";
+      action = "<cmd>w<cr>";
+      options = {
+        desc = "Save file";
+      };
+    }
+    {
+      mode = ["n" "i"];
+      key = "<esc>";
+      action = "<cmd>nohl<cr><esc>";
+      options.desc = "Clear highlighting";
+    }
+    {
+      mode = "n";
+      key = "<leader>qq";
+      action = "<cmd>xa<cr>";
+      options.desc = "Write all and quit";
+    }
+  ];
 in {
   keymaps =
     pairs
     ++ winKeys
     ++ bufferKeys
     ++ tabKeys
-    ++ [
-      {
-        mode = ["n" "i"];
-        key = "<C-s>";
-        action = "<cmd>w<cr>";
-        options = {
-          desc = "Save file";
-        };
-      }
-      {
-        mode = ["n" "i"];
-        key = "<esc>";
-        action = "<cmd>nohl<cr><esc>";
-        options.desc = "Clear highlighting";
-      }
-      {
-        mode = "n";
-        key = "<leader>qq";
-        action = "<cmd>xa<cr>";
-        options.desc = "Write all and quit";
-      }
-    ];
+    ++ other;
 }
