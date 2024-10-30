@@ -5,7 +5,7 @@
     foldmethod = "indent";
     ignorecase = true;
     list = true;
-    listchars = ''eol:⏎,tab:⇥­,space:·,trail:◌,extends:…,precedes:…'';
+    listchars = ''eol:↩,tab:↦,space:·,trail:·,extends:…,precedes:…'';
     mouse = "a";
     number = true;
     relativenumber = true;
