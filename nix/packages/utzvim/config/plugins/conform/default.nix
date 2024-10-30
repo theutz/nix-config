@@ -2,25 +2,26 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  shellFormatters =
+    lib.genAttrs
+    ["bash" "sh" "zsh"]
+    (lang: ["shellcheck" "shellharden" "shfmt"]);
+in {
   plugins.conform-nvim = {
     enable = true;
     settings = {
-      formatters_by_ft = {
-        bash = [
-          "shellcheck"
-          "shellharden"
-          "shfmt"
-        ];
+      formatters_by_ft =
+        shellFormatters
+        // {
+          nix = [
+            "alejandra"
+          ];
 
-        nix = [
-          "alejandra"
-        ];
-
-        yaml = [
-          "prettier"
-        ];
-      };
+          yaml = [
+            "prettier"
+          ];
+        };
 
       format_on_save = {
         lsp_fallback = true;
