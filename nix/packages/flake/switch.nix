@@ -63,15 +63,15 @@ in
       set -- "''${args[@]}"
 
       function cleanup () {
-        cd -
-
         if [[ -d "$MY_FLAKE_DIR/result" ]]
         then
+          info "cleaning up old builds..."
           rm -rf "$MY_FLAKE_DIR/result"
         fi
 
         if [[ "$(git log -1 --pretty=%B)" == "WIP" ]]
         then
+          info "uncommitting WIP changes..."
           git reset HEAD~
         fi
       }
@@ -81,41 +81,37 @@ in
       cd "$MY_FLAKE_DIR"
 
       if [[ -z "$(git -c color.status=always status --short | tee /dev/tty)" ]]; then
-        warn "No changes detected. Exiting..."
+        warn "no changes detected. Exiting..."
         exit 0
       fi
 
-      if gum confirm "Add all files?"
-      then
-        git add -A &&
-          git commit -m "WIP"
-      else
-        fatal "Operation cancelled."
-      fi
+      info "creating WIP commit..."
+      git add -A &&
+        git commit -m "WIP"
 
-      info "Switching to new generation..."
+      info "switching to new generation..."
       if darwin-rebuild switch --flake .; then
-        info "Profile switched"
+        info "profile switched"
       else
-        fatal "Failure while changing profile"
+        fatal "failure while changing profile"
       fi
 
       current_generation="$(darwin-rebuild --list-generations | awk '/\(current\)/ {print $1}')"
 
-      info "Committing changes..."
+      info "committing changes..."
       if git commit --amend --message "Generation $current_generation"
       then
-        info "Changes committed"
+        info "changes committed"
       else
-        fatal "Changes could not be committed"
+        fatal "changes could not be committed"
       fi
 
-      info "Pushing changes"
+      info "pushing changes"
       if git pull --rebase && git push
       then
-        info "Changes pushed"
+        info "changes pushed"
       else
-        fatal "Changes could not be pushed"
+        fatal "changes could not be pushed"
       fi
     '';
   }
