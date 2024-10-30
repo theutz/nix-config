@@ -126,8 +126,8 @@
       {
         name = "tab";
         key = "<tab>";
-        prev = "<cmd>tabnext<cr>";
-        next = "<cmd>tabprev<cr>";
+        prev = "<cmd>tabprev<cr>";
+        next = "<cmd>tabnext<cr>";
       }
     ] ({
       name,
