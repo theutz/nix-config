@@ -187,9 +187,27 @@
       }
       {
         mode = "n";
-        key = "<leader><tab>e";
+        key = "<leader><tab>o";
         action = "<cmd>tabe<cr>";
         options.desc = "Open a new blank tab";
+      }
+      {
+        mode = "n";
+        key = "<leader><tab>s";
+        action = "<cmd>tabfirst<cr>";
+        options.desc = "Open first tab";
+      }
+      {
+        mode = "n";
+        key = "<leader><tab>e";
+        action = "<cmd>tablast<cr>";
+        options.desc = "Open last tab";
+      }
+      {
+        mode = "n";
+        key = "<leader><tab>r";
+        action = "<cmd>BufferLineTabRename ";
+        options.desc = "Rename tab";
       }
     ]
     ++ (lib.forEach ["n" "]" "<tab>"] (k: {
