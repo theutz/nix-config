@@ -88,8 +88,14 @@ in
 
       cd "$MY_FLAKE_DIR"
 
-      git status --short
-      if gum confirm "Add all files?"; then
+      if [[ -z "$(git status --short)" ]]; then
+        warn "No changes detected. Exiting..."
+        exit 0
+      fi
+
+      git status
+      if gum confirm "Add all files?"
+      then
         git add -A
       else
         fatal "Operation cancelled."
