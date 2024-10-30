@@ -1,20 +1,22 @@
 {...}: {
   opts = {
-    number = true;
-    relativenumber = true;
-    splitright = true;
-    splitbelow = true;
-    swapfile = false;
-    tabstop = 2;
-    shiftwidth = 2;
+    expandtab = true;
     foldlevel = 20;
     foldmethod = "indent";
-    mouse = "a";
-    expandtab = true;
-    smartcase = true;
     ignorecase = true;
-    smarttab = true;
+    list = true;
+    listchars = ''eol:⏎,tab:⇥,space:·,trail:◌,extends:…,precedes:…'';
+    mouse = "a";
+    number = true;
+    relativenumber = true;
+    shiftwidth = 2;
+    smartcase = true;
     smartindent = true;
+    smarttab = true;
+    splitbelow = true;
+    splitright = true;
+    swapfile = false;
+    tabstop = 2;
   };
 
   autoGroups = {
