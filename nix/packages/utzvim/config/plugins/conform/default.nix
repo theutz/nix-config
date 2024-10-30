@@ -6,7 +6,7 @@
   shellFormatters =
     lib.genAttrs
     ["bash" "sh" "zsh"]
-    (lang: ["shellcheck" "shellharden" "shfmt"]);
+    (_: ["shellcheck" "shellharden" "shfmt"]);
 in {
   plugins.conform-nvim = {
     enable = true;
