@@ -209,8 +209,14 @@
         action = ":BufferLineTabRename ";
         options.desc = "Rename tab";
       }
+      {
+        mode = "n";
+        key = "<leader><tab><tab>";
+        action = "<cmd>wincmd g<tab><cr>";
+        options.desc = "Most recent tab";
+      }
     ]
-    ++ (lib.forEach ["n" "]" "<tab>"] (k: {
+    ++ (lib.forEach ["n" "]"] (k: {
       mode = "n";
       key = "<leader><tab>${k}";
       action = "<cmd>tabnext<cr>";
