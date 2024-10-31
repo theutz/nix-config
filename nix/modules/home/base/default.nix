@@ -3,6 +3,7 @@
   lib,
   namespace,
   config,
+  osConfig,
   ...
 }: let
   mod = lib.pipe ./. [
@@ -23,6 +24,10 @@ in {
     home.packages =
       (import ./packages.nix {inherit pkgs;})
       ++ (lib.attrValues pkgs.theutz);
+
+    home.sessionPath = [
+      "${osConfig.homebrew.brewPrefix}"
+    ];
 
     theutz = {
       atuin.enable = false;
