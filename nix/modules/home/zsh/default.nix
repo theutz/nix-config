@@ -23,9 +23,20 @@ in {
         })
       ];
 
-      initExtra = ''
-        setopt NO_EXTENDED_GLOB NO_INTERACTIVE_COMMENTS
-      '';
+      initExtra =
+        /*
+        bash
+        */
+        ''
+          setopt NO_EXTENDED_GLOB NO_INTERACTIVE_COMMENTS
+
+          export PATH="$(
+            echo $PATH |
+              tr ':' '\n' |
+              grep -v "/opt/homebrew/" |
+              paste -sd ':'
+          )"
+        '';
     };
   };
 }
