@@ -14,6 +14,10 @@
             '';
           }
         ];
+        lualine_y = [
+          "filename"
+          "progress"
+        ];
       };
     };
   };
