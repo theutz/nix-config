@@ -23,13 +23,12 @@ in {
       source = ./aerospace.toml;
     };
 
-    home.activation.reload-aerospace =
-      hm.dag.entryAfter ["writeBoundary"]
+    home.activation.reloadAerospace =
+      hm.dag.entryAfter ["writeBoundary" "setupLaunchAgents"]
       /*
       bash
       */
       ''
-        echo "Reloading aerospace..."
         if run ${osConfig.homebrew.brewPrefix}/${mod} reload-config; then
           echo "Aerospace reloaded."
         else

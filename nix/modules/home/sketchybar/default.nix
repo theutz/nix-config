@@ -53,12 +53,11 @@ in {
     };
 
     home.activation.reloadSketchybar =
-      hm.dag.entryAfter ["writeBoundary" "setupLaunchAgents" "reload-aerospace"]
+      hm.dag.entryAfter ["writeBoundary" "setupLaunchAgents" "reloadAerospace"]
       /*
       bash
       */
       ''
-        echo "Reloading sketchybar"
         if run ${pkgs.sketchybar}/bin/${mod} --reload; then
           echo "Sketchybar reloaded."
         else
