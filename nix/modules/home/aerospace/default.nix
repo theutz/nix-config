@@ -18,5 +18,11 @@ in {
     xdg.configFile."aerospace/aerospace.toml" = {
       source = ./aerospace.toml;
     };
+
+    home.activation = {
+      reload-aerospace = lib.hm.dag.entryAfter ["writeBoundary"] ''
+        run aerospace reload-config
+      '';
+    };
   };
 }
