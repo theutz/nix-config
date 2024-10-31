@@ -53,16 +53,16 @@ in {
     };
 
     home.activation.reload-sketchybar =
-      hm.dag.entryAfter ["writeBoundary"]
+      hm.dag.entryAfter ["writeBoundary" "reload-aerospace"]
       /*
       bash
       */
       ''
         verboseEcho "Reloading sketchybar"
         if run ${pkgs.sketchybar}/bin/${mod} --reload; then
-        verboseEcho "Sketchybar reloaded."
+          verboseEcho "Sketchybar reloaded."
         else
-        verboseEcho "Could not reload sketchybar."
+          verboseEcho "Could not reload sketchybar."
         fi
       '';
   };

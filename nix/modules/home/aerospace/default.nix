@@ -24,11 +24,11 @@ in {
     };
 
     home.activation.reload-aerospace = hm.dag.entryAfter ["writeBoundary"] ''
-      echo "Reloading aerospace..."
-      if run ${osConfig.homebrew.brewPrefix}/${mod} reload-config; then
-        echo "Aerospace reloaded."
+      verboseEcho "Reloading aerospace..."
+      if run --quiet ${osConfig.homebrew.brewPrefix}/${mod} reload-config; then
+        verboseEcho "Aerospace reloaded."
       else
-        echo "Unable to reload"
+        verboseEcho "Unable to reload"
       fi
     '';
   };
