@@ -25,7 +25,7 @@ in {
 
     home.activation.reload-aerospace = hm.dag.entryAfter ["writeBoundary"] ''
       verboseEcho "Reloading aerospace..."
-      if run --quiet ${osConfig.homebrew.brewPrefix}/${mod} reload-config; then
+      if run --silent ${osConfig.homebrew.brewPrefix}/${mod} reload-config; then
         verboseEcho "Aerospace reloaded."
       else
         verboseEcho "Unable to reload"
