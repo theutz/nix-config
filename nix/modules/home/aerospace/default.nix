@@ -23,13 +23,18 @@ in {
       source = ./aerospace.toml;
     };
 
-    home.activation.reload-aerospace = hm.dag.entryAfter ["writeBoundary"] ''
-      verboseEcho "Reloading aerospace..."
-      if run --silence ${osConfig.homebrew.brewPrefix}/${mod} reload-config; then
-        verboseEcho "Aerospace reloaded."
-      else
-        verboseEcho "Unable to reload"
-      fi
-    '';
+    home.activation.reload-aerospace =
+      hm.dag.entryAfter ["writeBoundary"]
+      /*
+      bash
+      */
+      ''
+        echo "Reloading aerospace..."
+        if run ${osConfig.homebrew.brewPrefix}/${mod} reload-config; then
+          echo "Aerospace reloaded."
+        else
+          echo "Unable to reload aerospace."
+        fi
+      '';
   };
 }

@@ -58,11 +58,11 @@ in {
       bash
       */
       ''
-        verboseEcho "Reloading sketchybar"
+        echo "Reloading sketchybar"
         if run ${pkgs.sketchybar}/bin/${mod} --reload; then
-          verboseEcho "Sketchybar reloaded."
+          echo "Sketchybar reloaded."
         else
-          verboseEcho "Could not reload sketchybar."
+          echo "Could not reload sketchybar."
         fi
       '';
   };
