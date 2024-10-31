@@ -15,7 +15,7 @@ in {
   };
 
   config = lib.mkIf (cfg.enable && lib.elem "aerospace" casks) {
-    xdg.configFile."aerospace.toml" = {
+    xdg.configFile."aerospace/aerospace.toml" = {
       source = ./aerospace.toml;
     };
   };
