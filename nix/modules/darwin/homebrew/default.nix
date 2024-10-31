@@ -4,12 +4,7 @@
   namespace,
   ...
 }: let
-  mod = lib.pipe ./. [
-    lib.path.splitRoot
-    (lib.getAttr "subpath")
-    lib.path.subpath.components
-    lib.last
-  ];
+  mod = lib.${namespace}.path.getLastComponent ./.;
   cfg = config.${namespace}.${mod};
 in {
   options.${namespace}.${mod} = {
