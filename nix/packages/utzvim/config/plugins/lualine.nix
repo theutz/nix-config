@@ -3,6 +3,9 @@
     enable = true;
     settings = {
       sections = {
+        lualine_b = [
+          "filename"
+        ];
         lualine_x = [
           {
             __raw = ''
@@ -15,8 +18,10 @@
           }
         ];
         lualine_y = [
-          "filename"
-          "progress"
+          "diff"
+        ];
+        lualine_z = [
+          "branch"
         ];
       };
     };
