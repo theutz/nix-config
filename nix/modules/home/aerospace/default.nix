@@ -6,7 +6,7 @@
   osConfig,
   ...
 }: let
-  casks = osConfig.homebrew.casks;
+  casks = lib.traceVal osConfig.homebrew.casks;
   mod = lib.${namespace}.path.getLastComponent ./.;
   cfg = config.${namespace}.${mod};
 in {
