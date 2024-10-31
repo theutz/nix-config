@@ -30,12 +30,26 @@ in {
         ''
           setopt NO_EXTENDED_GLOB NO_INTERACTIVE_COMMENTS
 
-          export PATH="$(
-            echo $PATH |
+          PATH="$(
+            echo "$PATH" |
               tr ':' '\n' |
               grep -v "/opt/homebrew/" |
               paste -sd ':'
           )"
+
+          PATH="$(
+            echo "$PATH" |
+              awk -v RS=: -v ORS=: '{
+                if ($0 == "/usr/bin") {
+                  print "/opt/homebrew/bin" ":" "/opt/homebrew/sbin/" ":" $0
+                } else {
+                  print $0
+                }
+              }' |
+              sed 's/:$//'
+          )"
+
+          export PATH
         '';
     };
   };
