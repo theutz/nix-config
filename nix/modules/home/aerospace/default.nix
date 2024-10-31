@@ -6,22 +6,30 @@
   osConfig,
   ...
 }: let
-  casks = lib.traceVal (lib.forEach osConfig.homebrew.casks (lib.attrNames));
+  inherit (lib.home-manager) hm;
+
   mod = lib.${namespace}.path.getLastComponent ./.;
   cfg = config.${namespace}.${mod};
+
+  casks = lib.forEach osConfig.homebrew.casks (lib.getAttr "name");
+  isInstalled = lib.elem mod casks;
 in {
   options.${namespace}.${mod} = {
-    enable = lib.mkEnableOption "aerospace";
+    enable = lib.mkEnableOption "tiling window manager for darwin";
   };
 
-  config = lib.mkIf (cfg.enable && lib.elem "aerospace" casks) {
+  config = lib.mkIf (cfg.enable && isInstalled) {
     xdg.configFile."aerospace/aerospace.toml" = {
       source = ./aerospace.toml;
     };
 
-    home.activation.reload-aerospace = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    home.activation.reload-aerospace = hm.dag.entryAfter ["writeBoundary"] ''
       echo "Reloading aerospace..."
-      run ${osConfig.homebrew.brewPrefix}/aerospace reload-config
+      if run ${osConfig.homebrew.brewPrefix}/${mod} reload-config; then
+        echo "Aerospace reloaded."
+      else
+        echo "Unable to reload"
+      fi
     '';
   };
 }
