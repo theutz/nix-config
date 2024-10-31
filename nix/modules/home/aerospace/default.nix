@@ -21,7 +21,8 @@ in {
 
     home.activation = {
       reload-aerospace = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        run aerospace reload-config
+        echo "Reloading aerospace..."
+        run /opt/homebrew/bin/aerospace reload-config
       '';
     };
   };
