@@ -9,4 +9,5 @@
   "mullvadvpn"
   "vivid"
   "whatsapp"
+  "herd"
 ]
