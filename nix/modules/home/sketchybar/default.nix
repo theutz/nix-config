@@ -52,8 +52,8 @@ in {
       };
     };
 
-    home.activation.reload-sketchybar =
-      hm.dag.entryAfter ["writeBoundary" "reload-aerospace"]
+    home.activation.reloadSketchybar =
+      hm.dag.entryAfter ["writeBoundary" "setupLaunchAgents" "reload-aerospace"]
       /*
       bash
       */
