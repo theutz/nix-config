@@ -41,7 +41,7 @@ in {
             echo "$PATH" |
               awk -v RS=: -v ORS=: '{
                 if ($0 == "/usr/bin") {
-                  print "/opt/homebrew/bin" ":" "/opt/homebrew/sbin/" ":" $0
+                  print "/opt/homebrew/bin:/opt/homebrew/sbin:" $0
                 } else {
                   print $0
                 }
