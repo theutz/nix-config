@@ -5,11 +5,13 @@
     devenv
     diagnostic-languageserver
     fzf
-    mods
     hugo
     just
+    mods
     neovide
     neovim
+    php83Packages
+    pnpm
     stylelint-lsp
     tmux
     tmuxp
