@@ -57,6 +57,7 @@ with pkgs; [
   onefetch
   overmind
   php83Packages.composer
+  pnpm
   procs
   rsync
   sad

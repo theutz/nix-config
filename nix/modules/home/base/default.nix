@@ -25,7 +25,6 @@ in {
       ++ (lib.attrValues pkgs.theutz);
 
     theutz = {
-      aerospace.enable = true;
       atuin.enable = false;
       bash.enable = true;
       bat.enable = true;
@@ -50,7 +49,6 @@ in {
       prezto.enable = true;
       prezto.autoTmux = true;
       ripgrep.enable = true;
-      sketchybar.enable = true;
       starship.enable = true;
       tmux.enable = true;
       wezterm.enable = true;
