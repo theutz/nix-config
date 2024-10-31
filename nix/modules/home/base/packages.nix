@@ -45,6 +45,7 @@ with pkgs; [
   lsix
   maple-mono-NF
   mods
+  moreutils
   mosh
   mycli
   neovide
