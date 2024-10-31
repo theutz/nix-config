@@ -19,11 +19,9 @@ in {
       source = ./aerospace.toml;
     };
 
-    home.activation = {
-      reload-aerospace = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        echo "Reloading aerospace..."
-        run /opt/homebrew/bin/aerospace reload-config
-      '';
-    };
+    home.activation.reload-aerospace = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      echo "Reloading aerospace..."
+      run ${osConfig.homebrew.brewPrefix}/aerospace reload-config
+    '';
   };
 }
