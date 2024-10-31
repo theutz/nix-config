@@ -36,9 +36,7 @@ with pkgs; [
   jq
   just
   lazydocker
-  lazygit
   lazysql
-  less
   lesspipe
   litecli
   lnav
@@ -56,6 +54,7 @@ with pkgs; [
   noti
   onefetch
   overmind
+  php83
   php83Packages.composer
   pnpm
   procs
