@@ -4,20 +4,16 @@
   namespace,
   ...
 }: let
-  inherit (lib) mkIf mkEnableOption;
-  inherit (lib.theutz.modules) getLastComponent;
-  inherit (lib.attrsets) getAttrFromPath setAttrByPath;
+  mod = lib.theutz.path.getLastComponent ./.;
+  cfg = lib.getAttrFromPath [namespace mod] config;
 
-  mod = getLastComponent ./.;
-  cfg = getAttrFromPath [namespace mod] config;
-
-  options = setAttrByPath [namespace mod] {
-    enable = mkEnableOption "less";
+  options = lib.setAttrByPath [namespace mod] {
+    enable = lib.mkEnableOption "less";
   };
 in {
   inherit options;
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.less = {
       enable = true;
     };

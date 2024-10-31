@@ -25,6 +25,7 @@ in {
       ++ (lib.attrValues pkgs.theutz);
 
     theutz = {
+      aerospace.enable = true;
       atuin.enable = false;
       bash.enable = true;
       bat.enable = true;

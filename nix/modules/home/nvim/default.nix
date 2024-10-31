@@ -5,16 +5,12 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf mkEnableOption mkForce mkOption mkMerge;
-  inherit (lib.theutz.modules) getLastComponent;
-  inherit (lib.attrsets) getAttrFromPath setAttrByPath;
+  mod = lib.theutz.path.getLastComponent ./.;
+  cfg = lib.getAttrFromPath [namespace mod] config;
 
-  mod = getLastComponent ./.;
-  cfg = getAttrFromPath [namespace mod] config;
-
-  options = setAttrByPath [namespace mod] {
-    enable = mkEnableOption "neovim";
-    enableManIntegration = mkOption {
+  options = lib.setAttrByPath [namespace mod] {
+    enable = lib.mkEnableOption "neovim";
+    enableManIntegration = lib.mkOption {
       description = "use neovim as man pager";
       default = true;
     };
@@ -22,19 +18,19 @@
 in {
   inherit options;
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.theutz.utzvim
     ];
 
-    home.sessionVariables = mkMerge [
+    home.sessionVariables = lib.mkMerge [
       {
-        EDITOR = mkForce "nvim";
-        VISUAL = mkForce "nvim";
+        EDITOR = lib.mkForce "nvim";
+        VISUAL = lib.mkForce "nvim";
       }
-      (mkIf cfg.enableManIntegration {
-        MANPAGER = mkForce "nvim -c +Man!";
-        MANWIDTH = mkForce "999";
+      (lib.mkIf cfg.enableManIntegration {
+        MANPAGER = lib.mkForce "nvim -c +Man!";
+        MANWIDTH = lib.mkForce "999";
       })
     ];
   };

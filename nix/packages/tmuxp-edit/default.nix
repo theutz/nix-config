@@ -4,7 +4,7 @@
   ...
 }:
 pkgs.writeShellApplication {
-  name = lib.theutz.modules.getLastComponent ./.;
+  name = lib.theutz.path.getLastComponent ./.;
 
   runtimeInputs = with pkgs; [
     fzf

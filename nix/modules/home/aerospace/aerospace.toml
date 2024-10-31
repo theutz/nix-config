@@ -1,0 +1,327 @@
+# vim: fdm=marker fdl=0 fmr=\ »»»,\ ««« cms=\ #\ %s
+start-at-login                                                  = true
+after-startup-command                                           = [
+  'exec-and-forget borders active_color=0xff7dcfff inactive_color=0x88a9b1d6 blur_radius=12 width=8.0 hidpi=true style=round',
+  'exec-and-forget sketchybar --reload'
+]
+exec-on-workspace-change = [
+  '/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+enable-normalization-flatten-containers                         = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+accordion-padding                                               = 32
+default-root-container-layout                                   = 'tiles'
+default-root-container-orientation                              = 'auto'
+key-mapping.preset                                              = 'qwerty'
+
+[gaps]
+
+inner.horizontal = 16
+inner.vertical   = 16
+outer.left       = 16
+outer.bottom     = 16
+outer.top        = [{ monitor."SAMSUNG" = 56 }, 16]
+outer.right      = 16
+
+[exec]
+
+inherit-env-vars = true
+
+[exec.env-vars]
+
+PATH   = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
+EDITOR = 'neovide --fork'
+VISUAL = 'neovide --fork'
+
+[workspace-to-monitor-force-assignment]
+
+1-home = "main"
+2-alt = "main"
+3-design = "main"
+4-slack = "main"
+5-chat = "main"
+6-ref = "secondary"
+7-zoom = "secondary"
+8-spotify = "secondary"
+9-utils = "secondary"
+
+# Callbacks
+# run `aerospace list-apps` to see all current app ids
+
+[[on-window-detected]]
+if.app-id = "net.mullvad.vpn"
+run       = ['layout floating', 'move-node-to-workspace 9-utils']
+
+[[on-window-detected]]
+if.app-id = "com.macpaw.CleanMyMac-setapp"
+run       = ['layout floating', 'move-node-to-workspace 9-utils']
+
+[[on-window-detected]]
+if.app-id = "org.hammerspoon.Hammerspoon"
+run       = ['layout floating', 'move-node-to-workspace 9-utils']
+
+[[on-window-detected]]
+if.app-id = "com.fivegencare.com.motorola.nursery"
+run       = ['layout floating', 'move-node-to-workspace 9-utils']
+
+[[on-window-detected]]
+if.app-id = "com.xiaomi.mihome"
+run       = ['layout floating', 'move-node-to-workspace 9-utils']
+
+[[on-window-detected]]
+if.app-id = 'com.kapeli.dashdoc'
+run       = 'move-node-to-workspace 6-ref'
+
+[[on-window-detected]]
+if.app-id = "ru.keepcoder.Telegram"
+run       = 'move-node-to-workspace 5-chat'
+
+[[on-window-detected]]
+if.app-id = "net.whatsapp.WhatsApp"
+run       = 'move-node-to-workspace 5-chat'
+
+[[on-window-detected]]
+if.app-id = "com.apple.MobileSMS"
+run       = 'move-node-to-workspace 5-chat'
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run       = 'move-node-to-workspace 8-spotify'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run       = 'move-node-to-workspace 4-slack'
+
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run       = 'move-node-to-workspace 7-zoom'
+
+# Keybinding Reference
+# All possible keys:
+# - Letters.        a, b, c, ..., z
+# - Numbers.        0, 1, 2, ..., 9
+# - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
+# - F-keys.         f1, f2, ..., f20
+# - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon, backtick,
+#                   leftSquareBracket, rightSquareBracket, space, enter, esc, backspace, tab
+# - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
+#                   keypadMinus, keypadMultiply, keypadPlus
+# - Arrows.         left, down, up, right
+
+# All possible modifiers: cmd, alt, ctrl, shift
+
+# 'main' binding mode declaration
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# 'main' binding mode must be always presented
+
+[mode.main.binding]
+
+f13 = [
+  'mode normal',
+  'exec-and-forget borders active_color=0xaaf7768e inactive_color=0xaabb9af7 blur_radius=16 width=16.0 hidpi=true style=square',
+  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=normal'
+]
+
+[mode.edit.binding]
+
+esc = [
+  'trigger-binding --mode main f13',
+  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=default'
+]
+a = ['exec-and-forget $VISUAL ~/.config/aerospace/aerospace.toml', 'trigger-binding --mode normal esc']
+c = ['exec-and-forget $VISUAL ~/.config',                          'trigger-binding --mode normal esc']
+t = ['exec-and-forget $VISUAL ~/.config/tmux/tmux.conf',           'trigger-binding --mode normal esc']
+w = ['exec-and-forget $VISUAL ~/.config/wezterm/wezterm.lua',      'trigger-binding --mode normal esc']
+v = ['exec-and-forget $VISUAL ~/.config/nvim',                     'trigger-binding --mode normal esc']
+z = ['exec-and-forget $VISUAL ~/.zshrc ~/.zprofile',               'trigger-binding --mode normal esc']
+
+[mode.normal.binding]
+
+e = [
+  'mode edit',
+  'exec-and-forget borders active_color=0xffa9b1d6 inactive_color=0xffc1caf5 width=8.0 hidpi=true style=square',
+  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=edit'
+]
+f = "layout floating tiling"
+h = 'focus left'
+i = 'layout accordion tiles'
+j = 'focus down'
+k = 'focus up'
+l = 'focus right'
+o = 'layout horizontal vertical'
+r = [
+  'exec-and-forget sketchybar --reload',
+  'exec-and-forget borders active_color=0xff7dcfff inactive_color=0x88a9b1d6 blur_radius=12 width=8.0 hidpi=true style=round',
+  'mode main',
+  'reload-config',
+  'exec-and-forget noti -t aerospace -m "Config reloaded!"',
+]
+w = [
+  'mode workspace',
+  'exec-and-forget borders active_color=0xffe0af68 inactive_color=0xff9ece6a width=8.0 hidpi=true style=square',
+  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=workspace'
+]
+x         = 'close --quit-if-last-window'
+backslash = 'balance-sizes'
+enter     = 'fullscreen'
+equal     = 'resize smart +50'
+esc       = [
+  'mode main',
+  'exec-and-forget borders active_color=0xff7dcfff inactive_color=0x88a9b1d6 blur_radius=12 width=8.0 hidpi=true style=round',
+  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main'
+]
+leftSquareBracket   = 'workspace --wrap-around prev'
+minus               = 'resize smart -50'
+rightSquareBracket  = 'workspace --wrap-around next'
+semicolon           = 'focus-monitor --wrap-around next'
+
+alt-h                  = 'join-with left'
+alt-j                  = 'join-with down'
+alt-k                  = 'join-with up'
+alt-l                  = 'join-with right'
+alt-semicolon          = 'move-node-to-monitor --wrap-around next'
+alt-leftSquareBracket  = 'move-node-to-workspace --wrap-around prev'
+alt-rightSquareBracket = 'move-node-to-workspace --wrap-around next'
+
+shift-h = 'move left'
+shift-j = 'move down'
+shift-k = 'move up'
+shift-l = 'move right'
+shift-semicolon          = [ 'trigger-binding --mode normal alt-semicolon',          'focus-monitor --wrap-around next' ]
+shift-leftSquareBracket  = [ 'trigger-binding --mode normal alt-leftSquareBracket',  'workspace --wrap-around prev' ]
+shift-rightSquareBracket = [ 'trigger-binding --mode normal alt-rightSquareBracket', 'workspace --wrap-around next' ]
+
+[mode.workspace.binding]
+
+esc       = [
+  'mode normal',
+  'exec-and-forget borders active_color=0xaaf7768e inactive_color=0xaabb9af7 blur_radius=16 width=16.0 hidpi=true style=square',
+  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=normal'
+]
+
+h = [
+  'workspace 1-home',
+  'trigger-binding --mode workspace esc'
+]
+alt-h = [
+  'move-node-to-workspace 1-home',
+  'trigger-binding --mode workspace esc'
+]
+shift-h = [
+  'move-node-to-workspace 1-home',
+  'trigger-binding --mode workspace h',
+  'trigger-binding --mode workspace esc'
+]
+
+o = [
+  'workspace 2-alt',
+  'trigger-binding --mode workspace esc'
+]
+alt-o = [
+  'move-node-to-workspace 2-alt',
+  'trigger-binding --mode workspace esc'
+]
+shift-o = [
+  'move-node-to-workspace 2-alt',
+  'trigger-binding --mode workspace o',
+  'trigger-binding --mode workspace esc'
+]
+
+d = [
+  'workspace 3-design',
+  'trigger-binding --mode workspace esc'
+]
+alt-d = [
+  'move-node-to-workspace 3-design',
+  'trigger-binding --mode workspace esc'
+]
+shift-d = [
+  'move-node-to-workspace 3-design',
+  'trigger-binding --mode workspace d',
+  'trigger-binding --mode workspace esc'
+]
+
+s = [
+  'workspace 4-slack',
+  'trigger-binding --mode workspace esc'
+]
+alt-s = [
+  'move-node-to-workspace 4-slack',
+  'trigger-binding --mode workspace esc'
+]
+shift-s = [
+  'move-node-to-workspace 4-slack',
+  'trigger-binding --mode workspace s',
+  'trigger-binding --mode workspace esc'
+]
+
+c = [
+  'workspace 5-chat',
+  'trigger-binding --mode workspace esc'
+]
+alt-c = [
+  'move-node-to-workspace 5-chat',
+  'trigger-binding --mode workspace esc'
+]
+shift-c = [
+  'move-node-to-workspace 5-chat',
+  'trigger-binding --mode workspace c',
+  'trigger-binding --mode workspace esc'
+]
+
+r = [
+  'workspace 6-ref',
+  'trigger-binding --mode workspace esc'
+]
+alt-r = [
+  'move-node-to-workspace 6-ref',
+  'trigger-binding --mode workspace esc'
+]
+shift-r = [
+  'move-node-to-workspace 6-ref',
+  'trigger-binding --mode workspace r',
+  'trigger-binding --mode workspace esc'
+]
+
+z = [
+  'workspace 7-zoom',
+  'trigger-binding --mode workspace esc'
+]
+alt-z = [
+  'move-node-to-workspace 7-zoom',
+  'trigger-binding --mode workspace esc'
+]
+shift-z = [
+  'move-node-to-workspace 7-zoom',
+  'trigger-binding --mode workspace z',
+  'trigger-binding --mode workspace esc'
+]
+
+p = [
+  'workspace 8-spotify',
+  'trigger-binding --mode workspace esc'
+]
+alt-p = [
+  'move-node-to-workspace 8-spotify',
+  'trigger-binding --mode workspace esc'
+]
+shift-p = [
+  'move-node-to-workspace 8-spotify',
+  'trigger-binding --mode workspace p',
+  'trigger-binding --mode workspace esc'
+]
+
+u = [
+  'workspace 9-utils',
+  'trigger-binding --mode workspace esc'
+]
+alt-u = [
+  'move-node-to-workspace 9-utils',
+  'trigger-binding --mode workspace esc'
+]
+shift-u = [
+  'move-node-to-workspace 9-utils',
+  'trigger-binding --mode workspace u',
+  'trigger-binding --mode workspace esc'
+]
+
