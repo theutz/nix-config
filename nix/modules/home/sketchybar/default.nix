@@ -6,6 +6,8 @@
   osConfig,
   ...
 }: let
+  inherit (lib.home-manager) hm;
+
   mod = lib.theutz.path.getLastComponent ./.;
   cfg = config.${namespace}.${mod};
 in {
@@ -49,5 +51,19 @@ in {
         StandardErrorPath = "${config.xdg.dataHome}/sketchybar/sketchybar.err.log";
       };
     };
+
+    home.activation.reload-sketchybar =
+      hm.dag.entryAfter ["writeBoundary"]
+      /*
+      bash
+      */
+      ''
+        verboseEcho "Reloading sketchybar"
+        if run ${pkgs.sketchybar}/bin/${mod} --reload; then
+        verboseEcho "Sketchybar reloaded."
+        else
+        verboseEcho "Could not reload sketchybar."
+        fi
+      '';
   };
 }
