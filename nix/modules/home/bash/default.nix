@@ -6,10 +6,10 @@
 }: let
   inherit (lib) mkIf mkEnableOption;
 
-  mod = "bash";
-  cfg = config."${namespace}"."${mod}";
+  mod = lib.${namespace}.path.getLastComponent ./.;
+  cfg = config.${namespace}.${mod};
 in {
-  options."${namespace}"."${mod}" = {
+  options.${namespace}.${mod} = {
     enable = mkEnableOption "bash shell config";
   };
 
