@@ -29,9 +29,10 @@ in {
       "${osConfig.homebrew.brewPrefix}"
     ];
 
-    # home.sessionVariables = {
-    #   OPENAI_KEY = "$(op --account theutz.1password.com item get --fields credential)"
-    # };
+    home.sessionVariables = rec {
+      OPENAI_KEY = "$(op --account theutz.1password.com item get --fields credential)";
+      OPENAI_API_KEY = OPENAI_KEY;
+    };
 
     theutz = {
       atuin.enable = false;
