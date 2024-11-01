@@ -50,6 +50,11 @@ in {
           )"
 
           export PATH
+
+          if [[ ! -v OPENAI_KEY ]]; then
+            OPENAI_KEY="$(op read --account theutz.1password.com "op://Private/OpenAI API Key/api key")"
+            OPENAI_API_KEY=OPENAI_KEY
+          fi
         '';
     };
   };
