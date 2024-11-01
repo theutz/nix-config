@@ -59,6 +59,7 @@ with pkgs; [
   php83Packages.composer
   pnpm
   procs
+  redis
   rsync
   sad
   sd
