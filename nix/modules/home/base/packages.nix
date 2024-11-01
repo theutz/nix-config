@@ -67,7 +67,7 @@ in
     onefetch
     overmind
     php
-    php83Packages.composer
+    php.packages.composer
     pnpm
     procs
     redis
