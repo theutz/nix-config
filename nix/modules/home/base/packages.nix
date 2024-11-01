@@ -1,4 +1,14 @@
-{pkgs}: let
+{pkgs, ...}: let
+  php = pkgs.php83.buildEnv {
+    extensions = {
+      enabled,
+      all,
+    }:
+      enabled
+      ++ (with all; [
+        redis
+      ]);
+  };
 in
   with pkgs; [
     _1password
@@ -56,7 +66,7 @@ in
     openai
     onefetch
     overmind
-    php83
+    php
     php83Packages.composer
     pnpm
     procs
