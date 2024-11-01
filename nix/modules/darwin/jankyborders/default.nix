@@ -21,7 +21,7 @@ in {
       # background_color = "";
       blur_radius = 2.0;
       style = "round";
-      width = 5.0;
+      width = 8.0;
       blacklist = [];
     };
   };
