@@ -52,6 +52,7 @@ with pkgs; [
   nix-melt
   nodejs
   noti
+  openai
   onefetch
   overmind
   php83
