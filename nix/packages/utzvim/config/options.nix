@@ -1,5 +1,6 @@
 {...}: {
   opts = {
+    clipboard = "unnamedplus";
     expandtab = true;
     foldlevel = 20;
     foldmethod = "indent";
