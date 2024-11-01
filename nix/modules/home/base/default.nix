@@ -30,7 +30,7 @@ in {
     ];
 
     home.sessionVariables = rec {
-      OPENAI_KEY = "$(op --account theutz.1password.com item get --fields credential)";
+      OPENAI_KEY = ''$(op read --account theutz.1password.com "op://Private/OpenAI API Key/api key")'';
       OPENAI_API_KEY = OPENAI_KEY;
     };
 
