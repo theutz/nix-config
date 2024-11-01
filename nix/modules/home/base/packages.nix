@@ -43,7 +43,6 @@ in
     ijq
     imagemagick
     inkscape
-    jankyborders
     jq
     just
     lazydocker

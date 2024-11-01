@@ -11,6 +11,7 @@
   theutz = {
     home-manager.enable = true;
     homebrew.enable = true;
+    jankyborders.enable = true;
   };
 
   programs = {
