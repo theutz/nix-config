@@ -9,7 +9,7 @@
 with lib; let
   inherit (inputs.darwin.packages.${system}) darwin-rebuild;
 
-  name = pipe ./. [path.splitRoot (getAttr "subpath") path.subpath.components last];
+  name = lib.${namespace}.path.getLastComponent ./.;
 
   description = "Commands for working with my nix-config";
 
@@ -19,9 +19,27 @@ with lib; let
   };
 
   build = import ./build.nix args;
+  switch = import ./switch.nix (args // {inherit build;});
+
+  watch = pkgs.writeShellApplication {
+    name = "watch";
+
+    meta.description = "Watch for changes and reload.";
+
+    runtimeInputs =
+      [switch]
+      ++ (with pkgs; [
+        watchexec
+      ]);
+
+    text = ''
+      cd "$MY_FLAKE_DIR"
+      watchexec --clear --restart --notify -- switch
+    '';
+  };
+
   commands = {
-    inherit build;
-    switch = import ./switch.nix (args // {inherit build;});
+    inherit build watch switch;
     goto = import ./goto.nix args;
   };
 
@@ -96,7 +114,7 @@ in
           help
           exit 0
           ;;
-        build|switch|goto)
+        build|switch|goto|watch)
           action="$1"
           shift 1
           ;;
