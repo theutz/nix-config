@@ -29,11 +29,6 @@ in {
       "${osConfig.homebrew.brewPrefix}"
     ];
 
-    home.sessionVariables = rec {
-      OPENAI_KEY = ''$(op read --account theutz.1password.com "op://Private/OpenAI API Key/api key")'';
-      OPENAI_API_KEY = OPENAI_KEY;
-    };
-
     theutz = {
       atuin.enable = false;
       bash.enable = true;
