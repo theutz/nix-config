@@ -3,5 +3,10 @@ session_name: nix
 start_directory: "$HOME/nix-config"
 windows:
   - panes:
-      - nvim
-      - flake-dev
+      - shell: nvim
+      - shell: flake watch
+    options:
+      other-pane-width: 80
+      remain-on-exit: true
+    layout: main-vertical
+
