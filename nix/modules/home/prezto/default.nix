@@ -18,16 +18,6 @@
       (config.programs.zsh.dotDir + "/"))
     + file;
 
-  # zlogin = lib.pipe "${pkgs.zsh-prezto}/share/zsh-prezto/runcoms/zlogin" [
-  #   lib.readFile
-  #   (
-  #     text:
-  #       if (lib.elem pkgs.fortune-kind config.home.packages)
-  #       then (lib.strings.replaceStrings ["fortune -s"] ["fortune"] text)
-  #       else text
-  #   )
-  # ];
-
   zlogin = lib.pipe "${pkgs.zsh-prezto}/share/zsh-prezto/runcoms/zlogin" [
     lib.readFile
     (lib.strings.replaceStrings ["fortune -s"] ["onefetch"])
