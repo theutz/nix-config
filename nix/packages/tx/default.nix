@@ -13,6 +13,10 @@
     attach = import ./attach.nix args;
   };
 
+  runtimeEnv = {
+    TMUXP_CONFIG_DIR = "$HOME/${lib.${namespace}.vars.paths.tmuxp}";
+  };
+
   help =
     /*
     markdown
@@ -53,6 +57,8 @@ in
       inherit description;
     };
 
+    inherit runtimeEnv;
+
     runtimeInputs =
       (with pkgs; [
         bashInteractive
@@ -62,12 +68,9 @@ in
       ])
       ++ (lib.attrValues cmds);
 
-    text = ''
-      TMUX_CONFIG_DIR="$HOME/${lib.${namespace}.vars.paths.tmux}"
-      export TMUX_CONFIG_DIR
+    excludeShellChecks = ["2016"];
 
-      TMUXP_CONFIG_DIR="$HOME/${lib.${namespace}.vars.paths.tmuxp}"
-      export TMUXP_CONFIG_DIR
+    text = ''
 
       function help () {
         gum format --type=markdown <<-'EOF'

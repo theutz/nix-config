@@ -1,20 +1,20 @@
 function help() {
 	gum format <<-'markdown'
-		# @root@ @name@
+		# @cmd@
 
 		@description@.
 
 		## Usage
 
 		```bash
-		@root@ @name@ [FLAGS]
+		@cmd@ [FLAGS]
 		```
 
 		### Flags
 
 		| Long   | Short | Description    |
 		| ---    | ---   | ---            |
-		| --help | -h    | show this help |
+		@flags@
 	markdown
 	echo
 }
