@@ -14,41 +14,12 @@
   };
 
   runtimeEnv = {
-    TMUXP_CONFIG_DIR = "$HOME/${lib.${namespace}.vars.paths.tmuxp}";
+    TMUXP_CONFIG_DIR = "${lib.${namespace}.vars.paths.tmuxp}";
   };
 
-  help =
-    /*
-    markdown
-    */
-    ''
-      # ${name}
-
-      ${description}.
-
-      ## Usage
-
-      ```
-      ${name} [SUBCOMMAND] [FLAGS]
-      ```
-
-      ### Flags
-
-      | Long   | Short | Description    |
-      | :---   | :---  | :---           |
-      | --help | -h    | show this help |
-
-      ### Subcommands
-
-      ${lib.pipe cmds [
-        lib.attrValues
-        (lib.map (cmd: ''
-          - **${lib.getName cmd}**
-            - ${cmd.meta.description}
-        ''))
-        lib.concatLines
-      ]}
-    '';
+  flags = [
+    "help, h, show this help"
+  ];
 in
   pkgs.writeShellApplication {
     inherit name;
@@ -68,56 +39,20 @@ in
       ])
       ++ (lib.attrValues cmds);
 
-    excludeShellChecks = ["2016"];
+    text = builtins.readFile (pkgs.replaceVars ./default.sh {
+      inherit name description;
 
-    text = ''
+      actions = lib.pipe cmds [
+        lib.attrValues
+        (lib.map lib.getName)
+        (lib.concatStringsSep " | ")
+      ];
 
-      function help () {
-        gum format --type=markdown <<-'EOF'
-      ${help}
-      EOF
-      echo
-      }
+      help-actions = lib.pipe cmds [
+        lib.attrValues
+        (lib.${namespace}.package.listToMarkdown)
+      ];
 
-      args=()
-      while [[ $# -gt 0 ]]; do
-        case "$1" in
-          --help | -h)
-            show_help=true
-            shift 1
-            ;;
-          ${lib.concatStringsSep " | " (lib.forEach (lib.attrValues cmds) lib.getName)})
-            action="$1"
-            shift 1
-            ;;
-          --* | -*)
-            gum log -l error "$1: flag not recognized"
-            gum log -l fatal "exiting"
-
-            ;;
-          *)
-            args+=("$1")
-            shift 1
-            ;;
-        esac
-      done
-
-      if [[ ! -v action && ! -v show_help ]]; then
-        gum log -l error "no arguments provided"
-        gum log -l fatal "exiting"
-      fi
-
-      if [[ ! -v action && -v show_help ]]; then
-        help
-        exit 0
-      fi
-
-      if [[ -v action && -v show_help ]]; then
-        args+=("--help")
-      fi
-
-      set -- "''${args[@]}"
-
-      "$action" "$@"
-    '';
+      help-flags = lib.${namespace}.package.flags.toMarkdown flags;
+    });
   }

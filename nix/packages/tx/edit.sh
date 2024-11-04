@@ -12,9 +12,7 @@ function help() {
 
 		### Flags
 
-		| Long   | Short | Description    |
-		| :---   | :---  | :---           |
-		@flags@
+		@help-flags@
 	markdown
 	echo
 }

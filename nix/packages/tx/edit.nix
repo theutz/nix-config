@@ -8,11 +8,7 @@
   name = "edit";
   description = "Edit the tmuxp session file";
   flags = [
-    {
-      long = "help";
-      short = "h";
-      desc = "show this help";
-    }
+    "help, h, show this help"
   ];
 in
   pkgs.writeShellApplication {
@@ -34,12 +30,6 @@ in
         description
         ;
 
-      flags = lib.forEach flags ({
-        long,
-        short,
-        desc,
-      }: ''
-        | --${long} | -${short} | ${desc} |
-      '');
+      help-flags = lib.${namespace}.package.flags.toMarkdown flags;
     });
   }
