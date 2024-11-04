@@ -9,9 +9,12 @@
     lib.path.splitRoot
     (lib.getAttr "subpath")
     lib.path.subpath.components
-    lib.last
+    lib.lists.last
   ];
+
   cfg = config.${namespace}.${mod};
+
+  inherit (lib.home-manager) hm;
 in {
   options.${namespace}.${mod} = {
     enable = lib.mkEnableOption mod;
@@ -19,6 +22,27 @@ in {
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
+      home.activation.reloadTmux =
+        hm.dag.entryAfter ["writeBoundary"]
+        /*
+        bash
+        */
+        ''
+          tmux="${lib.getExe pkgs.tmux}"
+          conf_file="${lib.concatStringsSep "/" [
+            config.xdg.configHome
+            "tmux"
+            "tmux.conf"
+          ]}"
+          echo "Reloading tmux config..."
+          if "$tmux" source-file "$conf_file"; then
+            echo "Tmux config reloaded"
+            "$tmux" display-message "Config relaoded by nix"
+          else
+            echo "Could not reload tmux"
+          fi
+        '';
+
       programs.tmux = {
         enable = true;
         plugins = with pkgs.tmuxPlugins; [
