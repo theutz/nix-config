@@ -1,6 +1,7 @@
 # Casks
 [
   "aerospace"
+  "betterdisplay"
   "firefox"
   "google-chrome"
   "messenger"
