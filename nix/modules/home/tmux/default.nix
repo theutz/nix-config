@@ -44,8 +44,7 @@ in {
     }
     (lib.mkIf config.programs.tmux.tmuxp.enable {
       home.packages = with pkgs.theutz; [
-        tmuxp-attach
-        tmuxp-edit
+        tx
       ];
 
       xdg.configFile."tmuxp" = {

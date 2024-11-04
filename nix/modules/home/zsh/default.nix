@@ -2,6 +2,7 @@
   config,
   lib,
   namespace,
+  pkgs,
   ...
 }: let
   inherit (lib) mkIf mkEnableOption mkMerge;
@@ -21,6 +22,12 @@ in {
         (mkIf config.programs.lazygit.enable {
           lg = "lazygit";
         })
+        (mkIf (lib.elem
+            pkgs.speedtest-rs
+            config.home.packages)
+          {
+            speedtest = "speedtest-rs";
+          })
       ];
 
       initExtra =
