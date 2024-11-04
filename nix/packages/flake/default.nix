@@ -18,28 +18,11 @@ with lib; let
     main = name;
   };
 
-  watch = pkgs.writeShellApplication {
-    name = "watch";
-
-    meta.description = "Watch for changes and reload.";
-
-    runtimeInputs =
-      [commands.switch]
-      ++ (with pkgs; [
-        watchexec
-      ]);
-
-    text = ''
-      cd "$MY_FLAKE_DIR"
-      watchexec --clear --restart --notify -- switch
-    '';
-  };
-
   commands = rec {
-    inherit watch;
     build = import ./build.nix args;
     switch = import ./switch.nix (args // {inherit build;});
     goto = import ./goto.nix args;
+    watch = import ./watch.nix (args // {inherit switch;});
   };
 
   usage = ''
