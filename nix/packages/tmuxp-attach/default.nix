@@ -8,11 +8,12 @@ in
   pkgs.writeShellApplication {
     inherit name;
 
-    runtimeInputs = [
-      pkgs.tmuxp
-      pkgs.yq
-      pkgs.tmux
-      pkgs.fzf
+    runtimeInputs = with pkgs; [
+      bashInteractive
+      tmuxp
+      yq
+      tmux
+      fzf
     ];
 
     text = ''
