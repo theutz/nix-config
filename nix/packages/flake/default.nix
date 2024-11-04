@@ -18,16 +18,13 @@ with lib; let
     main = name;
   };
 
-  build = import ./build.nix args;
-  switch = import ./switch.nix (args // {inherit build;});
-
   watch = pkgs.writeShellApplication {
     name = "watch";
 
     meta.description = "Watch for changes and reload.";
 
     runtimeInputs =
-      [switch]
+      [commands.switch]
       ++ (with pkgs; [
         watchexec
       ]);
@@ -38,8 +35,10 @@ with lib; let
     '';
   };
 
-  commands = {
-    inherit build watch switch;
+  commands = rec {
+    inherit watch;
+    build = import ./build.nix args;
+    switch = import ./switch.nix (args // {inherit build;});
     goto = import ./goto.nix args;
   };
 
