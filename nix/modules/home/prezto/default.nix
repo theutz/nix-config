@@ -20,7 +20,7 @@
 
   zlogin = lib.pipe "${pkgs.zsh-prezto}/share/zsh-prezto/runcoms/zlogin" [
     lib.readFile
-    (lib.strings.replaceStrings ["fortune -s"] ["onefetch"])
+    (lib.strings.replaceStrings ["fortune -s"] ["onefetch || neofetch"])
   ];
 in {
   options."${namespace}"."${mod}" = {
@@ -43,6 +43,7 @@ in {
 
     home.packages = with pkgs; [
       onefetch
+      neofetch
     ];
 
     programs.zsh.prezto = {
