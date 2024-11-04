@@ -13,13 +13,24 @@ in
 
     meta = {inherit description;};
 
-    runtimeInputs = with pkgs; [gum];
+    runtimeInputs = with pkgs; [
+      gum
+      tmuxp
+      tmux
+      fzf
+      yq
+      bashInteractive
+    ];
 
-    text = pkgs.replaceVars ./attach.sh {
+    runtimeEnv = {
+      TMUXP_CONFIG_DIR = "${lib.${namespace}.vars.paths.tmuxp}";
+    };
+
+    text = builtins.readFile (pkgs.replaceVars ./attach.sh {
       inherit
         name
         root
         description
         ;
-    };
+    });
   }
