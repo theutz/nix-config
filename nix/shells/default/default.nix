@@ -7,6 +7,7 @@
   packages = with pkgs; [
     bashInteractive
     gum
+    onefetch
   ];
 
   commands = lib.attrValues pkgs.theutz;
@@ -15,6 +16,7 @@ in
     packages = packages ++ commands;
 
     shellHook = ''
+      onefetch
       gum format <<'EOF'
       # Welcome to TheUtz's Flake ❄️
 
