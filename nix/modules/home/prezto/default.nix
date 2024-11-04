@@ -4,34 +4,33 @@
   namespace,
   pkgs,
   ...
-}:
-with lib; let
-  mod = pipe ./. [
-    path.splitRoot
-    (getAttr "subpath")
-    path.subpath.components
-    last
+}: let
+  mod = lib.pipe ./. [
+    lib.path.splitRoot
+    (lib.getAttr "subpath")
+    lib.path.subpath.components
+    lib.last
   ];
   cfg = config."${namespace}"."${mod}";
 
   relToDotDir = file:
-    (optionalString (config.programs.zsh.dotDir != null)
+    (lib.optionalString (config.programs.zsh.dotDir != null)
       (config.programs.zsh.dotDir + "/"))
     + file;
 
-  login = pipe "${pkgs.zsh-prezto}/share/zsh-prezto/runcoms/zlogin" [
-    readFile
+  login = lib.pipe "${pkgs.zsh-prezto}/share/zsh-prezto/runcoms/zlogin" [
+    lib.readFile
     (
       text:
-        if (elem pkgs.fortune-kind config.home.packages)
-        then (strings.replaceStrings ["fortune -s"] ["fortune"] text)
+        if (lib.elem pkgs.fortune-kind config.home.packages)
+        then (lib.strings.replaceStrings ["fortune -s"] ["fortune"] text)
         else text
     )
   ];
 in {
   options."${namespace}"."${mod}" = {
-    enable = mkEnableOption "prezto zsh framework";
-    autoTmux = mkOption {
+    enable = lib.mkEnableOption "prezto zsh framework";
+    autoTmux = lib.mkOption {
       default = true;
       description = ''
         Turn off to disable automatic tmux sessions
@@ -40,12 +39,12 @@ in {
       example = ''
         ${namespace}.${mod}.autoTmux = false;
       '';
-      type = types.bool;
+      type = lib.types.bool;
     };
   };
 
-  config = mkIf cfg.enable {
-    home.file."${relToDotDir ".zlogin"}".text = mkForce login;
+  config = lib.mkIf cfg.enable {
+    home.file."${relToDotDir ".zlogin"}".text = lib.mkForce login;
 
     programs.zsh.prezto = {
       enable = true;
@@ -53,7 +52,7 @@ in {
       extraFunctions = ["zargs" "zmv"];
       extraModules = ["attr" "stat"];
 
-      pmodules = mkMerge [
+      pmodules = lib.mkMerge [
         [
           "environment"
           "terminal"
@@ -76,7 +75,7 @@ in {
           "history-substring-search"
           "autosuggestions"
         ]
-        (mkIf (! config.programs.starship.enable) [
+        (lib.mkIf (! config.programs.starship.enable) [
           "prompt"
         ])
       ];
@@ -120,11 +119,11 @@ in {
         multiplexerTitleFormat = "%s";
       };
 
-      tmux = mkMerge [
+      tmux = lib.mkMerge [
         {
           defaultSessionName = "main";
         }
-        (mkIf cfg.autoTmux {
+        (lib.mkIf cfg.autoTmux {
           autoStartLocal = true;
           autoStartRemote = true;
         })
