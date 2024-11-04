@@ -10,6 +10,7 @@
 
   cmds = [
     (import ./edit.nix args)
+    (import ./attach.nix args)
   ];
 
   help =
