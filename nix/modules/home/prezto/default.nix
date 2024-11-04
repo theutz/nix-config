@@ -20,7 +20,7 @@
 
   zlogin = lib.pipe "${pkgs.zsh-prezto}/share/zsh-prezto/runcoms/zlogin" [
     lib.readFile
-    (lib.strings.replaceStrings ["fortune -s"] ["(onefetch || neofetch) 2>/dev/null"])
+    (lib.strings.replaceStrings ["fortune -s"] ["neofetch 2>/dev/null"])
   ];
 in {
   options."${namespace}"."${mod}" = {
@@ -42,7 +42,6 @@ in {
     home.file."${relToDotDir ".zlogin"}".text = lib.mkForce zlogin;
 
     home.packages = with pkgs; [
-      onefetch
       neofetch
     ];
 

@@ -8,10 +8,10 @@
 
   description = "Toolkit for working with tmux and tmuxp";
 
-  cmds = [
-    (import ./edit.nix args)
-    (import ./attach.nix args)
-  ];
+  cmds = {
+    edit = import ./edit.nix args;
+    attach = import ./attach.nix args;
+  };
 
   help =
     /*
@@ -37,6 +37,7 @@
       ### Subcommands
 
       ${lib.pipe cmds [
+        lib.attrValues
         (lib.map (cmd: ''
           - **${lib.getName cmd}**
             - ${cmd.meta.description}
@@ -59,7 +60,7 @@ in
         tmux
         tmuxp
       ])
-      ++ cmds;
+      ++ (lib.attrValues cmds);
 
     text = ''
       TMUX_CONFIG_DIR="$HOME/${lib.${namespace}.vars.paths.tmux}"
@@ -82,7 +83,7 @@ in
             show_help=true
             shift 1
             ;;
-          ${lib.concatStringsSep " | " (lib.forEach cmds lib.getName)})
+          ${lib.concatStringsSep " | " (lib.forEach (lib.attrValues cmds) lib.getName)})
             action="$1"
             shift 1
             ;;

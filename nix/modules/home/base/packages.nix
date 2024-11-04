@@ -63,7 +63,6 @@ in
     nodejs
     noti
     openai
-    onefetch
     overmind
     php
     php.packages.composer
