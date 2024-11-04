@@ -18,5 +18,6 @@
     typescript-language-server
     vimPlugins
     yazi
+    replaceVars
     ;
 }

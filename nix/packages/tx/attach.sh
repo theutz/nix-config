@@ -1,5 +1,9 @@
 function help() {
-	gum format <<-'EOF'
-		@help@
-	EOF
+	gum format <<-'markdown'
+		# @root@ @name@
+
+		@description@.
+	markdown
 }
+
+help

@@ -4,15 +4,9 @@
   namespace,
   ...
 }: let
+  root = lib.${namespace}.path.getLastComponent ./.;
   name = "attach";
   description = "Start or attach to a session";
-  help =
-    /*
-    markdown
-    */
-    ''
-
-    '';
 in
   pkgs.writeShellApplication {
     inherit name;
@@ -21,11 +15,11 @@ in
 
     runtimeInputs = with pkgs; [gum];
 
-    text = ''
-      function help () {
-        gum format <<-'EOF'
-      ${help}
-      EOF
-      }
-    '';
+    text = pkgs.replaceVars ./attach.sh {
+      inherit
+        name
+        root
+        description
+        ;
+    };
   }
