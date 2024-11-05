@@ -41,7 +41,6 @@
       src = ./.;
 
       snowfall = {
-        root = ./nix;
         namespace = "theutz";
         meta = {
           name = "theutz";
