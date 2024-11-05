@@ -139,7 +139,7 @@
     (mkPairN "l" "location" "<cmd>lprev<cr>" "<cmd>lnext<cr>")
   ];
 
-  bufferKeys =
+  bufferKeys = lib.concatLists [
     [
       {
         mode = "n";
@@ -154,18 +154,21 @@
         options.desc = "Most recent buffer";
       }
     ]
-    ++ (lib.forEach ["n" "]"] (k: {
+
+    (lib.forEach ["n" "]"] (k: {
       mode = "n";
       key = "<leader>b${k}";
       action = "<cmd>bnext<cr>";
       options.desc = "Next buffer";
     }))
-    ++ (lib.forEach ["p" "["] (k: {
+
+    (lib.forEach ["p" "["] (k: {
       mode = "n";
       key = "<leader>b${k}";
       action = "<cmd>bprev<cr>";
       options.desc = "Prev buffer";
-    }));
+    }))
+  ];
 
   tabKeys = lib.concatLists [
     [
@@ -206,18 +209,21 @@
         options.desc = "Most recent tab";
       }
     ]
+
     (lib.forEach ["n" "]"] (k: {
       mode = "n";
       key = "<leader><tab>${k}";
       action = "<cmd>tabnext<cr>";
       options.desc = "Next tab";
     }))
+
     (lib.forEach ["p" "["] (k: {
       mode = "n";
       key = "<leader><tab>${k}";
       action = "<cmd>tabprev<cr>";
       options.desc = "Prev tab";
     }))
+
     (lib.forEach ["q" "d"] (k: {
       mode = "n";
       key = "<leader><tab>${k}";
@@ -249,10 +255,11 @@
     }
   ];
 in {
-  keymaps =
+  keymaps = lib.concatLists [
     pairs
-    ++ winKeys
-    ++ bufferKeys
-    ++ tabKeys
-    ++ other;
+    winKeys
+    bufferKeys
+    tabKeys
+    other
+  ];
 }
