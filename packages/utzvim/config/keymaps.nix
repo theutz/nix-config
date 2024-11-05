@@ -3,10 +3,11 @@
     assert (lib.isList key || lib.isString key); let
       k = let
         attrs = ["pressed" "sent"];
+        getAttrIndex = name: lib.lists.findFirstIndex (n: n == name) null attrs;
       in
         lib.genAttrs attrs (
           if lib.isList key
-          then (name: lib.elemAt key (lib.lists.findFirstIndex (n: n == name) null attrs))
+          then (name: lib.elemAt key (getAttrIndex name))
           else (_: key)
         );
     in {
