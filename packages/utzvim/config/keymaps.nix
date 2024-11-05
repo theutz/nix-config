@@ -13,16 +13,18 @@
       inherit mode;
       key = "<leader>w${pressed}";
       action = "<cmd>wincmd ${sent}";
-      optiions = {inherit desc;};
+      options = {inherit desc;};
     };
+  mkWinKeyN = mkWinKey "n";
 
   winKeys = [
-    {
-      mode = "n";
-      key = "<leader>w+";
-      action = "<cmd>wincmd +<cr>";
-      options.desc = "Increase height";
-    }
+    (mkWinKeyN "+" "Increase height")
+    # {
+    #   mode = "n";
+    #   key = "<leader>w+";
+    #   action = "<cmd>wincmd +<cr>";
+    #   options.desc = "Increase height";
+    # }
     {
       mode = "n";
       key = "<leader>w-";
