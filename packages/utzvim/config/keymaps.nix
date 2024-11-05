@@ -3,15 +3,12 @@
     assert (lib.isList key || lib.isString key); let
       attrs = ["pressed" "sent"];
       k =
-        lib.traceValSeq
-        (
-          if lib.isList key
-          then
-            lib.genAttrs attrs (name:
-              lib.elemAt key
-              (lib.lists.findFirstIndex (n: n == name) null attrs))
-          else lib.genAttrs attrs (name: key)
-        );
+        if lib.isList key
+        then
+          lib.genAttrs attrs (name:
+            lib.elemAt key
+            (lib.lists.findFirstIndex (n: n == name) null attrs))
+        else lib.genAttrs attrs (name: key);
       # if lib.isList key
       # then {
       #   pressed = lib.elemAt key 0;
