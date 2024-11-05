@@ -139,39 +139,6 @@
     (mkPairN "l" "location" "<cmd>lprev<cr>" "<cmd>lnext<cr>")
   ];
 
-  # pairs = lib.flatten (lib.forEach [
-  #     {
-  #       name = "buffer";
-  #       key = "b";
-  #       prev = "<cmd>bprev<cr>";
-  #       next = "<cmd>bnext<cr>";
-  #     }
-  #     {
-  #       name = "tab";
-  #       key = "<tab>";
-  #       prev = "<cmd>tabprev<cr>";
-  #       next = "<cmd>tabnext<cr>";
-  #     }
-  #   ] ({
-  #     name,
-  #     key,
-  #     prev,
-  #     next,
-  #   }: [
-  #     {
-  #       mode = "n";
-  #       key = "[${key}";
-  #       action = prev;
-  #       options.desc = "Prev ${name}";
-  #     }
-  #     {
-  #       mode = "n";
-  #       key = "]${key}";
-  #       action = next;
-  #       options.desc = "Next ${name}";
-  #     }
-  #   ]));
-
   bufferKeys =
     [
       {
@@ -200,7 +167,7 @@
       options.desc = "Prev buffer";
     }));
 
-  tabKeys =
+  tabKeys = lib.concatLists [
     [
       {
         mode = "n";
@@ -239,24 +206,25 @@
         options.desc = "Most recent tab";
       }
     ]
-    ++ (lib.forEach ["n" "]"] (k: {
+    (lib.forEach ["n" "]"] (k: {
       mode = "n";
       key = "<leader><tab>${k}";
       action = "<cmd>tabnext<cr>";
       options.desc = "Next tab";
     }))
-    ++ (lib.forEach ["p" "["] (k: {
+    (lib.forEach ["p" "["] (k: {
       mode = "n";
       key = "<leader><tab>${k}";
       action = "<cmd>tabprev<cr>";
       options.desc = "Prev tab";
     }))
-    ++ (lib.forEach ["q" "d"] (k: {
+    (lib.forEach ["q" "d"] (k: {
       mode = "n";
       key = "<leader><tab>${k}";
       action = "<cmd>tabclose<cr>";
       options.desc = "Close tab";
-    }));
+    }))
+  ];
 
   other = [
     {
