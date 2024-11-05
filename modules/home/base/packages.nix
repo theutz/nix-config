@@ -60,6 +60,7 @@ in
     nerdfonts
     nixd
     nix-melt
+    nix-prefetch-git
     nodejs
     noti
     openai
