@@ -151,14 +151,14 @@
     }
   ];
 in {
-  keymaps = lib.concatLists [
-    (lib.concatLists
-      [
-        (mkPair "b" "buffer" "<cmd>bprev<cr>" "<cmd>bnext<cr>")
-        (mkPair "<tab>" "tab" "<cmd>tabprev<cr>" "<cmd>tabnext<cr>")
-        (mkPair "q" "quickfix" "<cmd>cprev<cr>" "<cmd>cnext<cr>")
-        (mkPair "l" "location" "<cmd>lprev<cr>" "<cmd>lnext<cr>")
-      ])
+  keymaps = lib.flatten (lib.concatLists [
+    [
+      (mkPair "b" "buffer" "<cmd>bprev<cr>" "<cmd>bnext<cr>")
+      (mkPair "<tab>" "tab" "<cmd>tabprev<cr>" "<cmd>tabnext<cr>")
+      (mkPair "q" "quickfix" "<cmd>cprev<cr>" "<cmd>cnext<cr>")
+      (mkPair "l" "location" "<cmd>lprev<cr>" "<cmd>lnext<cr>")
+    ]
+
     [
       (mkWinKey "+" "Increase height")
       (mkWinKey "-" "Decrease height")
@@ -183,5 +183,5 @@ in {
     bufferKeys
     tabKeys
     other
-  ];
+  ]);
 }
