@@ -18,28 +18,6 @@
 
   mkWinKey = mkWinKey' "n";
 
-  winKeys = [
-    (mkWinKey "+" "Increase height")
-    (mkWinKey "-" "Decrease height")
-    (mkWinKey ">" "Increase width")
-    (mkWinKey "<" "Decrease width")
-    (mkWinKey "=" "Equal width/height")
-    (mkWinKey "_" "Max height")
-    (mkWinKey "|" "Max width")
-    (mkWinKey "h" "Focus left")
-    (mkWinKey "j" "Focus below")
-    (mkWinKey "k" "Focus above")
-    (mkWinKey "l" "Focus right")
-    (mkWinKey "o" "Close other windows")
-    (mkWinKey "q" "Close this window")
-    (mkWinKey ["d" "q"] "Close this window")
-    (mkWinKey "s" "Split horizontal")
-    (mkWinKey "v" "Split vertical")
-    (mkWinKey "T" "Break into tab")
-    (mkWinKey "w" "Focus previous")
-    (mkWinKey "x" "Swap with next")
-  ];
-
   mkPair' = mode: key: name: prev: next: [
     {
       inherit mode;
@@ -56,12 +34,6 @@
   ];
 
   mkPair = mkPair' "n";
-  pairs = lib.concatLists [
-    (mkPair "b" "buffer" "<cmd>bprev<cr>" "<cmd>bnext<cr>")
-    (mkPair "<tab>" "tab" "<cmd>tabprev<cr>" "<cmd>tabnext<cr>")
-    (mkPair "q" "quickfix" "<cmd>cprev<cr>" "<cmd>cnext<cr>")
-    (mkPair "l" "location" "<cmd>lprev<cr>" "<cmd>lnext<cr>")
-  ];
 
   bufferKeys = lib.concatLists [
     [
@@ -180,8 +152,34 @@
   ];
 in {
   keymaps = lib.concatLists [
-    pairs
-    winKeys
+    (lib.concatLists
+      [
+        (mkPair "b" "buffer" "<cmd>bprev<cr>" "<cmd>bnext<cr>")
+        (mkPair "<tab>" "tab" "<cmd>tabprev<cr>" "<cmd>tabnext<cr>")
+        (mkPair "q" "quickfix" "<cmd>cprev<cr>" "<cmd>cnext<cr>")
+        (mkPair "l" "location" "<cmd>lprev<cr>" "<cmd>lnext<cr>")
+      ])
+    [
+      (mkWinKey "+" "Increase height")
+      (mkWinKey "-" "Decrease height")
+      (mkWinKey ">" "Increase width")
+      (mkWinKey "<" "Decrease width")
+      (mkWinKey "=" "Equal width/height")
+      (mkWinKey "_" "Max height")
+      (mkWinKey "|" "Max width")
+      (mkWinKey "h" "Focus left")
+      (mkWinKey "j" "Focus below")
+      (mkWinKey "k" "Focus above")
+      (mkWinKey "l" "Focus right")
+      (mkWinKey "o" "Close other windows")
+      (mkWinKey "q" "Close this window")
+      (mkWinKey ["d" "q"] "Close this window")
+      (mkWinKey "s" "Split horizontal")
+      (mkWinKey "v" "Split vertical")
+      (mkWinKey "T" "Break into tab")
+      (mkWinKey "w" "Focus previous")
+      (mkWinKey "x" "Swap with next")
+    ]
     bufferKeys
     tabKeys
     other
