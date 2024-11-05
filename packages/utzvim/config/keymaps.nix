@@ -1,16 +1,23 @@
 {lib, ...}: let
   mkWinKey' = mode: key: desc:
     assert (lib.isList key || lib.isString key); let
+      attrs = ["pressed" "sent"];
       k =
-        if lib.isList key
-        then {
-          pressed = lib.elemAt key 0;
-          sent = lib.elemAt key 1;
-        }
-        else {
-          pressed = key;
-          sent = key;
-        };
+        lib.traceValSeq
+        (
+          if lib.isList key
+          then
+            lib.genAttrs attrs (name:
+              lib.elemAt key
+              (lib.lists.findFirstIndex (n: n == name) null attrs))
+          else lib.genAttrs attrs (name: key)
+        );
+      # if lib.isList key
+      # then {
+      #   pressed = lib.elemAt key 0;
+      #   sent = lib.elemAt key 1;
+      # }
+      # else lib.genAttrs ["pressed"];
     in {
       inherit mode;
       key = "<leader>w${k.pressed}";
