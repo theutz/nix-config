@@ -1,13 +1,19 @@
 {lib, ...}: let
-  mkWinKey = mode: key: name:
-    assert (lib.isList key || lib.isString key); {
-      inherit mode;
-      key = "<leader>w${
+  mkWinKey = mode: key: desc:
+    assert (lib.isList key || lib.isString key); let
+      pressed =
         if lib.isList key
-        then lib.elemAt 0 key
-        else key
-      }";
-      action = "<cmd>wincmd";
+        then lib.elemAt 0
+        else key;
+      sent =
+        if lib.isList key
+        then lib.elemAt 1
+        else key;
+    in {
+      inherit mode;
+      key = "<leader>w${pressed}";
+      action = "<cmd>wincmd ${sent}";
+      optiions = {inherit desc;};
     };
 
   winKeys = [
