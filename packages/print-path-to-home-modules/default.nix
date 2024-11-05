@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  namespace,
   ...
 }:
 pkgs.writeShellApplication rec {
@@ -41,6 +42,6 @@ pkgs.writeShellApplication rec {
       esac
     done
 
-    printf "%s/${lib.theutz.vars.paths.homeModules}\n" "$HOME"
+    printf "%s/${lib.${namespace}.vars.paths.homeModules}\n" "$HOME"
   '';
 }

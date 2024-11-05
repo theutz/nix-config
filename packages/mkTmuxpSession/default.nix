@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  namespace,
   ...
 }:
 pkgs.writeShellApplication rec {
@@ -51,7 +52,7 @@ pkgs.writeShellApplication rec {
       exit 1
     fi
 
-    file="$HOME/${lib.theutz.vars.paths.tmuxp}/$session_name.yml"
+    file="$HOME/${lib.${namespace}.vars.paths.tmuxp}/$session_name.yml"
 
     "$EDITOR" "$file"
   '';

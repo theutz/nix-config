@@ -22,11 +22,11 @@ in
 
       ## Commands
 
-      ${lib.theutz.package.listToMarkdown commands}
+      ${lib.$\{namespace}.package.listToMarkdown commands}
 
       ## Packages
 
-      ${lib.theutz.package.listToMarkdown packages}
+      ${lib.$\{namespace}.package.listToMarkdown packages}
       EOF
     '';
   }

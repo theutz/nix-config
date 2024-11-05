@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  mod = lib.theutz.path.getLastComponent ./.;
+  mod = lib.${namespace}.path.getLastComponent ./.;
   cfg = lib.getAttrFromPath [namespace mod] config;
 
   options = lib.setAttrByPath [namespace mod] {

@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  namespace,
   ...
 }: let
   template =
@@ -14,11 +15,11 @@
         namespace,
         ...
       }: let
-        mod = lib.theutz.path.getLastComponent ./.;
+        mod = lib.''${namespace}.path.getLastComponent ./.;
         cfg = config.''${namespace}.''${mod};
       in {
         options.''${namespace}.''${mod} = {
-          enable = lib.mkEnableOption "''${mod}";
+          enable = lib.mkEnableOption mod;
         };
 
         config = lib.mkIf cfg.enable {
@@ -86,7 +87,7 @@ in
         module_name="$(gum input --header="New module name")"
       fi
 
-      full_path="$(print-path-to-flake)/${lib.theutz.vars.paths.homeModules}/$module_name/default.nix"
+      full_path="$(print-path-to-flake)/${lib.${namespace}.vars.paths.homeModules}/$module_name/default.nix"
 
       if gum confirm "Create file at $full_path?"; then
         mkdir -p "$(dirname "$full_path")"
