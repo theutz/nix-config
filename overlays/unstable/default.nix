@@ -10,6 +10,7 @@
     mods
     neovide
     neovim
+    php83
     php83Packages
     pnpm
     stylelint-lsp
