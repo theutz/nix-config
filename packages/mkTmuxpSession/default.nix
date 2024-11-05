@@ -52,7 +52,7 @@ pkgs.writeShellApplication rec {
       exit 1
     fi
 
-    file="$HOME/${lib.${namespace}.vars.paths.tmuxp}/$session_name.yml"
+    file="$HOME/${lib.internal.vars.paths.tmuxp}/$session_name.yml"
 
     "$EDITOR" "$file"
   '';

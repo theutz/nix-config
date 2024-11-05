@@ -12,11 +12,11 @@
     lib.lists.last
   ];
 
-  cfg = config.${namespace}.${mod};
+  cfg = config.internal.${mod};
 
   inherit (lib.home-manager) hm;
 in {
-  options.${namespace}.${mod} = {
+  options.internal.${mod} = {
     enable = lib.mkEnableOption mod;
   };
 
@@ -67,7 +67,7 @@ in {
       };
     }
     (lib.mkIf config.programs.tmux.tmuxp.enable {
-      home.packages = with pkgs.theutz; [
+      home.packages = with pkgs.internal; [
         tx
       ];
 

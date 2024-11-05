@@ -1,5 +1,5 @@
-session_name: theutz-family
-start_directory: $HOME/code/theutz/theutz.family
+session_name: internal-family
+start_directory: $HOME/code/internal/internal.family
 windows:
   - panes:
       - blank

@@ -5,9 +5,9 @@
   ...
 }: let
   mod = lib.pipe ./. [lib.path.splitRoot (lib.getAttr "subpath") lib.path.subpath.components lib.last];
-  cfg = config.${namespace}.${mod};
+  cfg = config.internal.${mod};
 in {
-  options.${namespace}.${mod} = {
+  options.internal.${mod} = {
     enable = lib.mkEnableOption "home-manager";
   };
 

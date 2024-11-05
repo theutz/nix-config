@@ -8,7 +8,7 @@
     (lib.filter (f: f != ./default.nix))
   ];
 
-  theutz = {
+  internal = {
     home-manager.enable = true;
     homebrew.enable = true;
     jankyborders.enable = true;

@@ -12,9 +12,9 @@
     lib.path.subpath.components
     lib.last
   ];
-  cfg = config.${namespace}.${mod};
+  cfg = config.internal.${mod};
 in {
-  options.${namespace}.${mod} = {
+  options.internal.${mod} = {
     enable = lib.mkEnableOption "base settings for home manager";
   };
 
@@ -23,13 +23,13 @@ in {
 
     home.packages =
       (import ./packages.nix {inherit pkgs;})
-      ++ (lib.attrValues pkgs.theutz);
+      ++ (lib.attrValues pkgs.internal);
 
     home.sessionPath = [
       "${osConfig.homebrew.brewPrefix}"
     ];
 
-    theutz = {
+    internal = {
       atuin.enable = false;
       bash.enable = true;
       bat.enable = true;

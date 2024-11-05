@@ -7,9 +7,9 @@
   inherit (lib) mkIf mkEnableOption;
 
   mod = "eza";
-  cfg = config."${namespace}"."${mod}";
+  cfg = config."internal"."${mod}";
 in {
-  options."${namespace}"."${mod}" = {
+  options."internal"."${mod}" = {
     enable = mkEnableOption "eza: an ls replacement";
   };
 

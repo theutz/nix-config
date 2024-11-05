@@ -7,9 +7,9 @@
   inherit (lib) mkIf mkEnableOption;
 
   mod = "atuin";
-  cfg = config."${namespace}"."${mod}";
+  cfg = config."internal"."${mod}";
 in {
-  options."${namespace}"."${mod}" = {
+  options."internal"."${mod}" = {
     enable = mkEnableOption "atuin for shell history";
   };
 

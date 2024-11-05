@@ -11,7 +11,7 @@
     lib.path.subpath.components
     lib.last
   ];
-  cfg = config."${namespace}"."${mod}";
+  cfg = config."internal"."${mod}";
 
   relToDotDir = file:
     (lib.optionalString (config.programs.zsh.dotDir != null)
@@ -23,7 +23,7 @@
     (lib.strings.replaceStrings ["fortune -s"] ["neofetch 2>/dev/null"])
   ];
 in {
-  options."${namespace}"."${mod}" = {
+  options."internal"."${mod}" = {
     enable = lib.mkEnableOption "prezto zsh framework";
     autoTmux = lib.mkOption {
       default = true;
@@ -32,7 +32,7 @@ in {
         for both local and remote terminals.
       '';
       example = ''
-        ${namespace}.${mod}.autoTmux = false;
+        internal.${mod}.autoTmux = false;
       '';
       type = lib.types.bool;
     };

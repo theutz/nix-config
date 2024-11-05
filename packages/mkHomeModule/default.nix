@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  namespace,
   ...
 }: let
   template =
@@ -15,10 +14,10 @@
         namespace,
         ...
       }: let
-        mod = lib.''${namespace}.path.getLastComponent ./.;
-        cfg = config.''${namespace}.''${mod};
+        mod = lib.internal.path.getLastComponent ./.;
+        cfg = config.internal.''${mod};
       in {
-        options.''${namespace}.''${mod} = {
+        options.internal.''${mod} = {
           enable = lib.mkEnableOption mod;
         };
 
@@ -53,8 +52,8 @@ in
 
     runtimeInputs = with pkgs; [
       gum
-      theutz.find-root
-      theutz.print-path-to-home-modules
+      internal.find-root
+      internal.print-path-to-home-modules
     ];
 
     text = ''
@@ -87,7 +86,7 @@ in
         module_name="$(gum input --header="New module name")"
       fi
 
-      full_path="$(print-path-to-flake)/${lib.${namespace}.vars.paths.homeModules}/$module_name/default.nix"
+      full_path="$(print-path-to-flake)/${lib.internal.vars.paths.homeModules}/$module_name/default.nix"
 
       if gum confirm "Create file at $full_path?"; then
         mkdir -p "$(dirname "$full_path")"

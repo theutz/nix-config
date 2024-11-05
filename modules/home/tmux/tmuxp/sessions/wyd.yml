@@ -1,5 +1,5 @@
 session_name: wyd
-start_directory: "~/code/theutz/wyd"
+start_directory: "~/code/internal/wyd"
 windows:
   - panes:
       - shell: nvim

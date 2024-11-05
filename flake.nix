@@ -1,5 +1,5 @@
 {
-  description = "theutz: a flake";
+  description = "internal: a flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
@@ -39,14 +39,6 @@
     lib = inputs.snowfall-lib.mkLib {
       inherit inputs;
       src = ./.;
-
-      snowfall = {
-        namespace = "theutz";
-        meta = {
-          name = "theutz";
-          title = "TheUtz: A Flake";
-        };
-      };
     };
   in
     lib.mkFlake {

@@ -1,5 +1,5 @@
 session_name: moxie
-start_directory: $HOME/code/theutz/moxie-collaborative.com/
+start_directory: $HOME/code/internal/moxie-collaborative.com/
 windows:
   - window_name: main
     layout: main-vertical

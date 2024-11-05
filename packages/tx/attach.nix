@@ -4,7 +4,7 @@
   namespace,
   ...
 }: let
-  root = lib.${namespace}.path.getLastComponent ./.;
+  root = lib.internal.path.getLastComponent ./.;
   name = "attach";
   description = "Start or attach to a session";
   flags = [
@@ -26,13 +26,13 @@ in
     ];
 
     runtimeEnv = {
-      TMUXP_CONFIG_DIR = "${lib.${namespace}.vars.paths.tmuxp}";
+      TMUXP_CONFIG_DIR = "${lib.internal.vars.paths.tmuxp}";
     };
 
     text = builtins.readFile (pkgs.replaceVars ./attach.sh {
       inherit description;
 
       cmd = "${root} ${name}";
-      help-flags = lib.${namespace}.package.flags.toMarkdown flags;
+      help-flags = lib.internal.package.flags.toMarkdown flags;
     });
   }

@@ -7,9 +7,9 @@
   inherit (lib) mkIf mkEnableOption;
 
   mod = "zoxide";
-  cfg = config."${namespace}"."${mod}";
+  cfg = config."internal"."${mod}";
 in {
-  options."${namespace}"."${mod}" = {
+  options."internal"."${mod}" = {
     enable = mkEnableOption "zoxide directory helper";
   };
 

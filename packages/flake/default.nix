@@ -9,7 +9,7 @@
 with lib; let
   inherit (inputs.darwin.packages.${system}) darwin-rebuild;
 
-  name = lib.${namespace}.path.getLastComponent ./.;
+  name = lib.internal.path.getLastComponent ./.;
 
   description = "Commands for working with my nix-config";
 
@@ -79,7 +79,7 @@ in
       ++ (lib.attrValues commands);
 
     text = ''
-      MY_FLAKE_DIR="$HOME/${lib.${namespace}.vars.paths.flake}"
+      MY_FLAKE_DIR="$HOME/${lib.internal.vars.paths.flake}"
       export MY_FLAKE_DIR
 
       function help () {

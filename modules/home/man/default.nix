@@ -4,7 +4,7 @@
   namespace,
   ...
 }: let
-  mod = lib.${namespace}.modules.getModName ./.;
+  mod = lib.internal.modules.getModName ./.;
   options = lib.setAttrByPath [namespace mod] {
     enable = lib.mkEnableOption "man";
   };

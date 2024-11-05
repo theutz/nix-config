@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-  theutz.environment.enable = true;
+  internal.environment.enable = true;
 }

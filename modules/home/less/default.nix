@@ -4,7 +4,7 @@
   namespace,
   ...
 }: let
-  mod = lib.${namespace}.path.getLastComponent ./.;
+  mod = lib.internal.path.getLastComponent ./.;
   cfg = lib.getAttrFromPath [namespace mod] config;
 
   options = lib.setAttrByPath [namespace mod] {

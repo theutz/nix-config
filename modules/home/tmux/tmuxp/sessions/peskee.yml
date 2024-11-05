@@ -1,5 +1,5 @@
 session_name: peskee
-start_directory: $HOME/code/theutz/peskee
+start_directory: $HOME/code/internal/peskee
 windows:
   - panes:
       - shell: nvim

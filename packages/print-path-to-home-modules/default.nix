@@ -18,7 +18,7 @@ pkgs.writeShellApplication rec {
   };
 
   runtimeInputs = with pkgs; [
-    theutz.print-path-to-flake
+    internal.print-path-to-flake
   ];
 
   text = ''
@@ -42,6 +42,6 @@ pkgs.writeShellApplication rec {
       esac
     done
 
-    printf "%s/${lib.${namespace}.vars.paths.homeModules}\n" "$HOME"
+    printf "%s/${lib.internal.vars.paths.homeModules}\n" "$HOME"
   '';
 }

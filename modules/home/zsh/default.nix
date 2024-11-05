@@ -8,9 +8,9 @@
   inherit (lib) mkIf mkEnableOption mkMerge;
 
   mod = "zsh";
-  cfg = config.${namespace}.${mod};
+  cfg = config.internal.${mod};
 in {
-  options.${namespace}.${mod} = {
+  options.internal.${mod} = {
     enable = mkEnableOption "the zshell";
   };
 
@@ -59,7 +59,7 @@ in {
           export PATH
 
           if [[ ! -v OPENAI_KEY && -n "$TMUX" ]]; then
-            tmux setenv -g OPENAI_KEY "$(op read --account theutz.1password.com "op://Private/OpenAI API Key/api key")"
+            tmux setenv -g OPENAI_KEY "$(op read --account internal.1password.com "op://Private/OpenAI API Key/api key")"
             tmux setenv -g OPENAI_API_KEY "$OPENAI_KEY"
           fi
         '';

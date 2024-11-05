@@ -10,7 +10,7 @@
     onefetch
   ];
 
-  commands = lib.attrValues pkgs.theutz;
+  commands = lib.attrValues pkgs.internal;
 in
   mkShell {
     packages = packages ++ commands;

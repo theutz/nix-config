@@ -8,10 +8,10 @@
 }: let
   inherit (lib.home-manager) hm;
 
-  mod = lib.${namespace}.path.getLastComponent ./.;
-  cfg = config.${namespace}.${mod};
+  mod = lib.internal.path.getLastComponent ./.;
+  cfg = config.internal.${mod};
 in {
-  options.${namespace}.${mod} = {
+  options.internal.${mod} = {
     enable = lib.mkEnableOption "${mod}";
   };
 

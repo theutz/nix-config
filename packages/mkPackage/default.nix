@@ -43,7 +43,7 @@ in
 
     runtimeInputs = with pkgs; [
       gum
-      theutz.print-path-to-flake
+      pkgs.internal.print-path-to-flake
     ];
 
     text = ''

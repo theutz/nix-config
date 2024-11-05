@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  mod = lib.${namespace}.path.getLastComponent ./.;
+  mod = lib.internal.path.getLastComponent ./.;
   cfg = lib.getAttrFromPath [namespace mod] config;
 
   options = lib.setAttrByPath [namespace mod] {
@@ -20,7 +20,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = [
-      pkgs.theutz.utzvim
+      pkgs.internal.utzvim
     ];
 
     home.sessionVariables = lib.mkMerge [

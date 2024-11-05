@@ -8,13 +8,13 @@
 }: let
   inherit (lib.home-manager) hm;
 
-  mod = lib.${namespace}.path.getLastComponent ./.;
-  cfg = config.${namespace}.${mod};
+  mod = lib.internal.path.getLastComponent ./.;
+  cfg = config.internal.${mod};
 
   casks = lib.forEach osConfig.homebrew.casks (lib.getAttr "name");
   isInstalled = lib.elem mod casks;
 in {
-  options.${namespace}.${mod} = {
+  options.internal.${mod} = {
     enable = lib.mkEnableOption "tiling window manager for darwin";
   };
 

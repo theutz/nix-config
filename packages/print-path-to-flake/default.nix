@@ -44,7 +44,7 @@ pkgs.writeShellApplication rec {
       exit 1
     fi
 
-    flake_path="${lib.${namespace}.vars.paths.flake}"
+    flake_path="${lib.internal.vars.paths.flake}"
 
     if [[ -z "$flake_path" ]]; then
       print "Flake path set incorrectly."

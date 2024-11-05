@@ -1,3 +1,3 @@
 {
-  theutz.base.enable = true;
+  internal.base.enable = true;
 }

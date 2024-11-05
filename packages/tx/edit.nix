@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  root = lib.${namespace}.path.getLastComponent ./.;
+  root = lib.internal.path.getLastComponent ./.;
   name = "edit";
   description = "Edit the tmuxp session file";
   flags = [
@@ -30,6 +30,6 @@ in
         description
         ;
 
-      help-flags = lib.${namespace}.package.flags.toMarkdown flags;
+      help-flags = lib.internal.package.flags.toMarkdown flags;
     });
   }
