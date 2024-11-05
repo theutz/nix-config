@@ -68,6 +68,7 @@ in
     overmind
     php
     php.packages.composer
+    pls
     pnpm
     procs
     redis
