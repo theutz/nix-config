@@ -20,6 +20,7 @@ in rec {
     paths = rec {
       flake = "nix-config";
       flakeRoot = flake;
+      packages = mkPath [flakeRoot "packages"];
       modules = mkPath [flakeRoot "modules"];
       homeModules = mkPath [modules "home"];
       darwinModules = mkPath [modules "darwin"];

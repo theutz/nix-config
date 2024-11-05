@@ -43,8 +43,11 @@ in
 
     runtimeInputs = with pkgs; [
       gum
-      pkgs.internal.print-path-to-flake
     ];
+
+    runtimeEnv = {
+      PACKAGES_PATH = lib.internal.vars.paths.packages;
+    };
 
     text = ''
       function help () {
@@ -81,7 +84,7 @@ in
       }
       set-package-name
 
-      package_path="$(print-path-to-flake)/nix/packages/''${package_name}/default.nix"
+      package_path="$HOME/$PACKAGES_PATH/$package_name/default.nix"
 
       if gum confirm "Create file at $package_path?"; then
         mkdir -p "$(dirname "$package_path")"

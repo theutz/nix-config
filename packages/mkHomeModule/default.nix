@@ -27,6 +27,7 @@
     '';
 
   description = "Create a blank home manager module";
+
   name = with lib;
     pipe ./. [
       path.splitRoot
@@ -53,8 +54,11 @@ in
     runtimeInputs = with pkgs; [
       gum
       internal.find-root
-      internal.print-path-to-home-modules
     ];
+
+    runtimeEnv = {
+      HOME_MODULES_DIR = lib.internal.vars.paths.homeModules;
+    };
 
     text = ''
       function help() {
@@ -86,7 +90,7 @@ in
         module_name="$(gum input --header="New module name")"
       fi
 
-      full_path="$(print-path-to-flake)/${lib.internal.vars.paths.homeModules}/$module_name/default.nix"
+      full_path="$HOME/$HOME_MODULES_DIR/$module_name/default.nix"
 
       if gum confirm "Create file at $full_path?"; then
         mkdir -p "$(dirname "$full_path")"
