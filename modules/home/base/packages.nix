@@ -63,6 +63,7 @@ in
     nix-prefetch-git
     nodejs
     noti
+    nurl
     openai
     overmind
     php
