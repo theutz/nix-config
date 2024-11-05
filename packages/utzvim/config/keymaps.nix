@@ -6,7 +6,7 @@
         ["pressed" "sent"] (
           if lib.isList key
           then key
-          else [key key]
+          else lib.replicate 2 key
         )
       );
     in {
