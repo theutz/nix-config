@@ -19,7 +19,7 @@ in rec {
   vars = {
     paths = rec {
       flake = "nix-config";
-      flakeRoot = mkPath [flake "nix"];
+      flakeRoot = flake;
       modules = mkPath [flakeRoot "modules"];
       homeModules = mkPath [modules "home"];
       darwinModules = mkPath [modules "darwin"];
