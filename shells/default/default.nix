@@ -22,11 +22,11 @@ in
 
       ## Commands
 
-      ${lib.$\{namespace}.package.listToMarkdown commands}
+      ${lib.internal.package.listToMarkdown commands}
 
       ## Packages
 
-      ${lib.$\{namespace}.package.listToMarkdown packages}
+      ${lib.internal.package.listToMarkdown packages}
       EOF
     '';
   }
