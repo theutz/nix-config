@@ -6,6 +6,8 @@
   ...
 }: let
   inherit (lib) mkIf mkEnableOption mkMerge;
+  inherit (lib.internal) mkIfInstalled';
+  mkIfInstalled = mkIfInstalled' config;
 
   mod = "zsh";
   cfg = config.internal.${mod};
@@ -22,12 +24,13 @@ in {
         (mkIf config.programs.lazygit.enable {
           lg = "lazygit";
         })
-        (mkIf (lib.elem
-            pkgs.speedtest-rs
-            config.home.packages)
+        (mkIfInstalled pkgs.speedtest-rs
           {
             speedtest = "speedtest-rs";
           })
+        (mkIfInstalled pkgs.speedtest-go {
+          speedtest = "speedtest-go";
+        })
       ];
 
       initExtra =
