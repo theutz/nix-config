@@ -1,15 +1,16 @@
 {lib, ...}: let
-  mkPath = (lib.flip lib.pipe) [
-    lib.path.subpath.join
-    (lib.removePrefix "./")
-  ];
-
+  mkPath = p:
+    with lib;
+    with path.subpath;
+      pipe p [
+        join
+        (removePrefix "./")
+      ];
+in rec {
   mkIfInstalled' = config:
     assert (lib.hasAttrByPath ["home" "packages"] config);
       pkg:
         lib.mkIf (lib.elem pkg config.home.packages);
-in rec {
-  inherit mkIfInstalled';
 
   modules = rec {
     /*
