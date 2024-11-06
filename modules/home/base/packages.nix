@@ -77,7 +77,7 @@ in
     rsync
     sad
     sd
-    speedtest-rs
+    speedtest-go
     ssh-copy-id
     statix
     tldr

@@ -24,10 +24,9 @@ in {
         (mkIf config.programs.lazygit.enable {
           lg = "lazygit";
         })
-        (mkIfInstalled pkgs.speedtest-rs
-          {
-            speedtest = "speedtest-rs";
-          })
+        (mkIfInstalled pkgs.speedtest-rs {
+          speedtest = "speedtest-rs";
+        })
         (mkIfInstalled pkgs.speedtest-go {
           speedtest = "speedtest-go";
         })
