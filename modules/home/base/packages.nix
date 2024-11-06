@@ -27,6 +27,7 @@ in
     devenv
     doggo
     duckdb
+    duf
     figlet
     fortune-kind
     fpp
