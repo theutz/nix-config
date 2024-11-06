@@ -6,7 +6,6 @@
   "google-chrome"
   "messenger"
   "microsoft-edge"
-  "mullvadvpn"
   "vivid"
   "whatsapp"
 ]
