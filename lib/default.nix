@@ -3,7 +3,12 @@
     lib.path.subpath.join
     (lib.removePrefix "./")
   ];
+
+  mkIfInstalled' = config:
+    assert (lib.hasAttrByPath ["home" "packages"]);
+      pkg: lib.mkIf (lib.elem pkg config.home.packages);
 in rec {
+  inherit mkIfInstalled';
   modules = rec {
     /*
     Return the name of the module from the directory name
