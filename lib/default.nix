@@ -2,10 +2,7 @@
   mkPath = p:
     with lib;
     with path.subpath;
-      pipe p [
-        join
-        (removePrefix "./")
-      ];
+      pipe p [join (removePrefix "./")];
 in rec {
   mkIfInstalled' = config:
     assert (lib.hasAttrByPath ["home" "packages"] config);
