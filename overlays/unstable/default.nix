@@ -8,17 +8,19 @@
     hugo
     just
     mods
+    mullvad
+    mullvad-vpn
     neovide
     neovim
     php83
     php83Packages
     pnpm
+    replaceVars
     stylelint-lsp
     tmux
     tmuxp
     typescript-language-server
     vimPlugins
     yazi
-    replaceVars
     ;
 }

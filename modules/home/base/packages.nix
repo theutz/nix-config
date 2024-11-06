@@ -55,6 +55,8 @@ in
     mods
     moreutils
     mosh
+    # mullvad
+    # mullvad-vpn
     mycli
     neovide
     nerdfonts
