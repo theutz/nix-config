@@ -106,8 +106,11 @@ in
         esac
       done
 
-      if [[ -n "''${action:-""}" ]]; then
-        "$action" "$@"
+      if [[ ! -v action ]]; then
+        error "no subcommand provided"
+        fatal exiting
       fi
+
+      "$action" "$@"
     '';
   }
