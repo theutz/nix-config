@@ -7,13 +7,38 @@
 
   config = lib.mkIf config.internal.nix.enable {
     nix = {
+      checkConfig = true;
+
+      optimise = {
+        automatic = true;
+        interval = [
+          {
+            Hour = 4;
+            Minute = 15;
+            Weekday = 7;
+          }
+        ];
+        user = "michael";
+      };
+
+      gc = {
+        automatic = true;
+        user = "michael";
+        interval = [
+          {
+            Hour = 4;
+            Minute = 15;
+            Weekday = 7;
+          }
+        ];
+      };
+
       nixPath = {
         nixpkgs = "flake:nixpkgs";
         unstable = "nixpkgs/nixpkgs-unstable";
       };
 
       settings = {
-        auto-optimise-store = true;
         accept-flake-config = true;
 
         experimental-features = [
