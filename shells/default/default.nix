@@ -10,8 +10,10 @@
     onefetch
   ];
 
-  # commands = lib.attrValues pkgs.internal;
-  commands = with lib; pkgs.internal |> filter (p: getName p != "nvim") |> attrValues;
+  commands = with lib;
+    pkgs.internal
+      |> filter (p: getName p != "nvim")
+      |> attrValues;
 in
   mkShell {
     packages = packages ++ commands;
