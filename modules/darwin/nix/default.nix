@@ -19,7 +19,7 @@
         experimental-features = [
           "nix-command"
           "flakes"
-          "pipe-operators"
+          # "pipe-operators"
         ];
 
         extra-experimental-features = [
