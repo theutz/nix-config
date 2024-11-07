@@ -12,7 +12,7 @@
 
   commands = lib.pipe pkgs.internal [
     lib.attrValues
-    (lib.filter (pkg: lib.getName pkg != "nixvim"))
+    # (lib.filter (pkg: lib.getName pkg != "nixvim"))
   ];
 in
   mkShell {
