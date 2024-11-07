@@ -12,8 +12,8 @@
 
   commands = with lib;
     pkgs.internal
-      |> traceVal
-      |> filter (p: p.meta.mainProgram != "nvim")
+      # |> map (lib.traceVal)
+      # |> filter (p: p.meta.mainProgram != "nvim")
       |> attrValues;
 in
   mkShell {

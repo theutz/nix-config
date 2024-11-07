@@ -4,6 +4,7 @@
     bash-language-server
     devenv
     diagnostic-languageserver
+    direnv
     fzf
     hugo
     just
