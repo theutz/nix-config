@@ -90,22 +90,23 @@ in
 
       ${loggers}
 
-      action=""
-      case "$1" in
-        --help|-h)
-          help
-          exit 0
-          ;;
-        build|switch|goto|watch)
-          action="$1"
-          shift 1
-          ;;
-        *)
-          fatal "$1: command not found"
-          ;;
-      esac
+      while [[ $# -gt 0 ]]; do
+        case "$1" in
+          --help|-h)
+            help
+            exit 0
+            ;;
+          build|switch|goto|watch)
+            action="$1"
+            shift 1
+            ;;
+          *)
+            fatal "$1: command not found"
+            ;;
+        esac
+      done
 
-      if [[ -n "$action" ]]; then
+      if [[ -n "''${action:-""}" ]]; then
         "$action" "$@"
       fi
     '';
