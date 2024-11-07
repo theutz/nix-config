@@ -12,7 +12,7 @@
 
   commands = with lib;
     pkgs.internal
-      |> filter (p: getName p != "nvim")
+      |> filter (p: p.meta.mainProgram != "nvim")
       |> attrValues;
 in
   mkShell {
