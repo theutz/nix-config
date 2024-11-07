@@ -12,6 +12,7 @@
     home-manager.enable = true;
     homebrew.enable = true;
     jankyborders.enable = true;
+    nix.enable = true;
   };
 
   programs = {
