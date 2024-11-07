@@ -22,6 +22,10 @@
           "pipe-operators"
         ];
 
+        extra-experimental-features = [
+          "pipe-operators"
+        ];
+
         trusted-users = [
           "root"
           "michael"
