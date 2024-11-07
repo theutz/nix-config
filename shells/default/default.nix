@@ -10,11 +10,10 @@
     onefetch
   ];
 
-  commands = with lib;
-    pkgs.internal
-      # |> map (lib.traceVal)
-      # |> filter (p: p.meta.mainProgram != "nvim")
-      |> attrValues;
+  commands = lib.pipe pkgs.internal [
+    lib.attrValues
+    (lib.filter (pkg: lib.getName pkg != "nixvim"))
+  ];
 in
   mkShell {
     packages = packages ++ commands;

@@ -13,6 +13,8 @@
     mullvad-vpn
     neovide
     neovim
+    nix
+    nix-direnv
     php83
     php83Packages
     pnpm
