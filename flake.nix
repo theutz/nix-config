@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-diagnostic-languageserver.url = "github:nixos/nixpkgs/2d2a9ddbe3f2c00747398f3dc9b05f7f2ebb0f53";
 
     darwin = {
       url = "github:lnl7/nix-darwin";

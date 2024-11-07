@@ -3,7 +3,6 @@
     (channels.unstable)
     bash-language-server
     devenv
-    diagnostic-languageserver
     direnv
     fzf
     hugo
@@ -11,7 +10,6 @@
     mods
     mullvad
     mullvad-vpn
-    neovide
     neovim
     nix
     nix-direnv
@@ -25,5 +23,11 @@
     typescript-language-server
     vimPlugins
     yazi
+    ;
+
+  inherit
+    (channels.nixpkgs-diagnostic-languageserver)
+    neovide
+    diagnostic-languageserver
     ;
 }
