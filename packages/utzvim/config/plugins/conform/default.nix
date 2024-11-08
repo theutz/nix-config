@@ -12,8 +12,10 @@ in {
     vim.api.nvim_create_user_command("FormatDisable", function (args)
       if args.bang then
         vim.b.disable_autoformat = true
+        print("Disabled auto-format for buffer")
       else
         vim.g.disable_autoformat = true
+        print("Disabled auto-format globally")
       end
     end, {
       desc = "Disable auto-format-on-save",
@@ -23,6 +25,7 @@ in {
     vim.api.nvim_create_user_command("FormatEnable", function (args)
       vim.b.disable_autoformat = false
       vim.g.disable_autoformat = false
+      print "Re-enabled auto-format globally"
     end, {
       desc = "Re-enable auto-format-on-save",
     })
@@ -56,9 +59,9 @@ in {
           end
         '';
 
-      format_after_save = {
-        lsp_fallback = true;
-      };
+      # format_after_save = {
+      #   lsp_fallback = true;
+      # };
 
       formatters = {
         alejandra = {
