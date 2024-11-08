@@ -24,12 +24,22 @@ args=()
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 	--help | -h)
-		help
-		exit 0
+		show_help=true
+		shift 1
+		;;
+	--* | -*)
+		error "flag not found" "flag" "$1"
+		fatal "exiting"
 		;;
 	*)
-		fatal "argument not found: $1"
+		args+=("$1")
+		shift 1
 		;;
 	esac
 done
-set -- "''${args[@]}"
+set -- "${args[@]}"
+
+if [[ "${show_help:-false}" ]]; then
+	help
+	exit 0
+fi
