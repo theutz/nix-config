@@ -71,6 +71,7 @@ in
     pls
     pnpm
     procs
+    rainfrog
     redis
     rsync
     sad

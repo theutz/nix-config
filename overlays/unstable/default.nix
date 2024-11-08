@@ -16,6 +16,7 @@
     php83
     php83Packages
     pnpm
+    rainfrog
     replaceVars
     stylelint-lsp
     tmux
