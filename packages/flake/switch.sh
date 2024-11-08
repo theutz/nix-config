@@ -72,7 +72,7 @@ if ! cd "$MY_FLAKE_DIR"; then
 	fatal "exiting"
 fi
 
-if [[ ! "${force-false}" ]]; then
+if [[ "${force-false}" == false ]]; then
 	info "checking git status..."
 	if [[ -z "$(git -c color.status=always status --short | tee /dev/tty)" ]]; then
 		warn "no changes detected. Exiting..."
