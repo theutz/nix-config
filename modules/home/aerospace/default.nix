@@ -1,18 +1,19 @@
 {
   pkgs,
   lib,
-  namespace,
   config,
   osConfig,
   ...
 }: let
-  inherit (lib.home-manager) hm;
-
-  mod = lib.internal.path.getLastComponent ./.;
+  mod = "aerospace";
   cfg = config.internal.${mod};
 
-  casks = lib.forEach osConfig.homebrew.casks (lib.getAttr "name");
-  isInstalled = lib.elem mod casks;
+  # casks = lib.forEach osConfig.homebrew.casks (lib.getAttr "name");
+  # isInstalled = lib.elem mod casks;
+  isInstalled = lib.pipe osConfig.homebrew.casks [
+    (lib.map (lib.getAttr "name"))
+    (lib.elem mod)
+  ];
 in {
   options.internal.${mod} = {
     enable = lib.mkEnableOption "tiling window manager for darwin";
@@ -24,7 +25,7 @@ in {
     };
 
     home.activation.reloadAerospace =
-      hm.dag.entryAfter ["writeBoundary" "setupLaunchAgents"]
+      lib.home-manager.hm.dag.entryAfter ["writeBoundary" "setupLaunchAgents"]
       /*
       bash
       */
