@@ -40,6 +40,7 @@ in rec {
         family = "0xProto Nerd Font Propo";
         size = 12;
         weight = 400;
+        leading = 1.2;
       };
     };
   };

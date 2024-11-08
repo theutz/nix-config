@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  namespace,
+  pkgs,
   ...
 }: let
   mod = "wezterm";
@@ -16,7 +16,14 @@ in {
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
-      extraConfig = builtins.readFile ./wezterm.lua;
+      extraConfig = builtins.readFile (pkgs.replaceVars ./wezterm.lua (let
+        inherit (lib.internal.vars.styles) font;
+      in {
+        font-family = font.family;
+        font-weight = font.weight;
+        font-size = font.size;
+        font-leading = font.leading;
+      }));
     };
   };
 }
