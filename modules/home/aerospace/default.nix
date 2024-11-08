@@ -107,11 +107,12 @@
           (x: lib.elemAt x (index - 1))
           (x: "move-node-to-workspace ${builtins.toString index}-${x}")
         ];
-    in
-      lib.traceValSeq [
-        (mk "net.mullvad.vpn" flt)
-        (mk "com.macpaw.CleanMyMac-setapp" [flt (mv 9)])
-      ];
+    in [
+      (mk "net.mullvad.vpn" flt)
+      (mk "com.macpaw.CleanMyMac-setapp" [flt (mv 9)])
+      (mk "org.hammerspoon.Hammerspoon" [flt (mv 9)])
+      (mk "org.fivegencare.com.motorola.nursery" [flt (mv 9)])
+    ];
   };
 in {
   options.internal.${mod} = {
