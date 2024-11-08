@@ -59,7 +59,6 @@ in
     # mullvad
     # mullvad-vpn
     mycli
-    neovide
     nerdfonts
     nixd
     nix-melt

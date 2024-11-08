@@ -21,7 +21,6 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       internal.utzvim
-      # neovim
     ];
 
     home.sessionVariables = lib.mkMerge [
