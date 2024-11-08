@@ -34,6 +34,14 @@ in rec {
       tmux = mkPath [homeModules "tmux"];
       tmuxp = mkPath [tmux "tmuxp" "sessions"];
     };
+
+    styles = {
+      font = {
+        family = "0xProto Nerd Font Propo";
+        size = 12;
+        weight = 400;
+      };
+    };
   };
 
   package = import ./package.nix {inherit lib;};
