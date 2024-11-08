@@ -19,12 +19,16 @@ function help() {
 
 @loggers@
 
+show_help=false
+action=""
+
 args=()
+
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 	--help | -h)
-		help
-		exit 0
+		show_help=true
+		shift 1
 		;;
 	build | switch | goto | watch)
 		action="$1"
@@ -40,11 +44,17 @@ while [[ $# -gt 0 ]]; do
 		;;
 	esac
 done
+
 set -- "${args[@]}"
 
 if [[ ${#args[@]} -gt 0 ]]; then
 	error "unrecognized arguments" args "${args[*]}"
 	fatal exiting
+fi
+
+if [[ -z "$action" && $show_help ]]; then
+	help
+	exit 0
 fi
 
 if [[ ! -v action ]]; then

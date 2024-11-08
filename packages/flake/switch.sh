@@ -39,7 +39,10 @@ cleanup() {
 
 trap cleanup EXIT
 
+show_help=false
+
 args=()
+
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 	--help | -h)
@@ -60,9 +63,10 @@ while [[ $# -gt 0 ]]; do
 		;;
 	esac
 done
+
 set -- "${args[@]}"
 
-if [[ "${show_help:-false}" == true ]]; then
+if [[ "$show_help" == true ]]; then
 	help
 	exit 0
 fi
