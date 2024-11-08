@@ -73,21 +73,22 @@ debug "env" DEBUG "$DEBUG"
 debug "env" MY_FLAKE_DIR "$MY_FLAKE_DIR"
 
 if [[ ${#args[@]} -gt 0 ]]; then
-	error "unrecognized arguments" args "${args[*]}"
+	error "unknown" args "${args[*]}"
 	fatal exiting
 fi
 
-debug "all arguments received"
+debug "parsing complete"
 
 if [[ -z "$action" && "$show_help" == true ]]; then
+	debug "showing @name@ help..."
 	help
 	exit 0
 fi
 
-debug "don't show root help"
+debug ""
 
 if [[ "$show_help" == true ]]; then
-	debug "forward help flag to subcommand"
+	debug "forward help flag to" action "$action"
 
 	args=("$@")
 	args+=("--help")
