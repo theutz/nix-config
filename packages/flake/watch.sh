@@ -57,4 +57,4 @@ fi
 
 debug "watching" cmd "switch" args "'$*'"
 
-watchexec --clear --restart --notify -- switch "$@"
+LOG_PREFIX="$LOG_PREFIX switch" watchexec --clear --restart --notify -- switch "$@"
