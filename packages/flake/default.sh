@@ -99,6 +99,7 @@ if [[ -z "$action" ]]; then
 fi
 
 debug "calling" subcommand "$action" args "'$*'"
-LOG_PREFIX+=" $action"
-debug "env" "LOG_PREFIX" "$LOG_PREFIX"
-"$action" "$@"
+
+LOG_PREFIX="$LOG_PREFIX $action" "$action" "$@"
+
+debug "action successful" action "$action"
