@@ -58,7 +58,7 @@
     key-mapping.preset = "qwerty";
 
     gaps = let
-      gap = 20;
+      gap = 24;
     in {
       inner = {
         horizontal = gap;
@@ -67,7 +67,7 @@
       outer = {
         left = gap;
         bottom = gap;
-        top = [{monitor."SAMSUNG" = 56;} gap];
+        top = [{monitor."SAMSUNG" = 40 + gap;} gap];
         right = gap;
       };
     };
