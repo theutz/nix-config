@@ -9,4 +9,6 @@ windows:
       other-pane-width: 80
       remain-on-exit: true
     layout: main-vertical
-
+  - panes:
+      - shell: "nix repl -f '<nixpkgs>'"
+    layout: main-vertical
