@@ -86,9 +86,9 @@
 
     workspace-to-monitor-force-assignment = lib.pipe workspaces [
       (lib.mapAttrsToList
-        (name: (lib.imap1
-          (index: value: {
-            "${builtins.toString index}-${value}" = name;
+        (name: (lib.map
+          (value: {
+            "${value}" = name;
           }))))
       lib.flatten
       lib.mergeAttrsList
