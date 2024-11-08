@@ -6,8 +6,8 @@ log() {
 
 	gum log \
 		--structured \
+		${LOG_PREFIX:+--prefix="$LOG_PREFIX"} \
 		"$@"
-	# "${LOG_PREFIX:+--prefix="$LOG_PREFIX"}" \
 }
 
 debug() {
