@@ -86,3 +86,19 @@ else
 	error "failure while changing profile"
 	fatal "exiting"
 fi
+
+current_generation="$(darwin-rebuild --list-generations | awk '/\(current\)/ {print $1}')"
+
+info "committing changes..."
+if git commit --amend --message "Generation $current_generation"; then
+	info "changes committed"
+else
+	fatal "changes could not be committed"
+fi
+
+info "pushing changes"
+if git pull --rebase && git push; then
+	info "changes pushed"
+else
+	fatal "changes could not be pushed"
+fi
