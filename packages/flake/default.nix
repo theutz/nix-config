@@ -23,22 +23,8 @@ with lib; let
     goto = import ./goto.nix args;
     watch = import ./watch.nix (args // {inherit switch;});
   };
-
-  usage = ''
-    # ${name}
-
-    ${description}
-
-    ## Commands
-
-    | Name | Description |
-    | :--- | :---        |
-    ${lib.concatLines (lib.mapAttrsToList (_: cmd: ''
-      | ${lib.getName cmd} | ${cmd.meta.description or ""} |'')
-    commands)}
-  '';
 in
-  pkgs.writeShellApplication {
+  pkgs.writeShellApplication rec {
     inherit name;
 
     meta = {
@@ -51,39 +37,10 @@ in
       ])
       ++ (lib.attrValues commands);
 
-    text = ''
-      MY_FLAKE_DIR="$HOME/${lib.internal.vars.paths.flake}"
-      export MY_FLAKE_DIR
-
-      function help () {
-        gum format <<-'EOF'
-        ${usage}
-      EOF
-      }
-
-      ${lib.internal.bash.loggers}
-
-      while [[ $# -gt 0 ]]; do
-        case "$1" in
-          --help|-h)
-            help
-            exit 0
-            ;;
-          build|switch|goto|watch)
-            action="$1"
-            shift 1
-            ;;
-          *)
-            fatal "$1: command not found"
-            ;;
-        esac
-      done
-
-      if [[ ! -v action ]]; then
-        error "no subcommand provided"
-        fatal exiting
-      fi
-
-      "$action" "$@"
-    '';
+    text = builtins.readFile (pkgs.replaceVars ./default.sh {
+      inherit name;
+      inherit (meta) description;
+      inherit (lib.internal.bash) loggers;
+      flake-path = lib.internal.vars.paths.flake;
+    });
   }
