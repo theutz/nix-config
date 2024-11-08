@@ -42,21 +42,25 @@ while [[ $# -gt 0 ]]; do
 	--verbose | -v)
 		DEBUG=true
 		export DEBUG
+		debug parsed flag "'$1'" known "true"
 		shift 1
 		;;
 	--help | -h)
+		debug parsed flag "'$1'" known "true"
 		show_help=true
 		shift 1
 		;;
 	@actions@)
+		debug "parsed" arg "$1" known "true"
 		action="$1"
 		shift 1
 		;;
 	--* | -*)
-		error "flag not recognized" flag "$1"
+		error "parsed" flag "$1" known "false"
 		fatal exiting
 		;;
 	*)
+		debug parsed arg "$1" known "false"
 		args+=("$1")
 		shift 1
 		;;
