@@ -36,6 +36,10 @@
   settingsFile = settingsFormat.generate "aerospace.toml" settings;
   settings = let
     gap = 16;
+    workspaces = {
+      main = ["home" "alt" "design" "slack" "chat"];
+      secondary = ["ref" "zoom" "spotify" "utils"];
+    };
   in {
     start-at-login = true;
     after-startup-command =
@@ -74,13 +78,17 @@
 
     exec = {
       inherit-env-vars = true;
-      env-vars = let
-        editor = lib.getExe pkgs.neovide;
-      in rec {
-        EDITOR = "${editor} --no-fork";
+      env-vars = rec {
+        EDITOR = "${lib.getExe pkgs.neovide} --no-fork";
         VISUAL = "${EDITOR}";
       };
     };
+
+    workspace-to-monitor-force-assignment = lib.pipe workspaces [
+      (lib.mapAttrsToList (name: value: (lib.forEach value (v: {"${v}" = name;}))))
+      lib.flatten
+      lib.traceValSeq
+    ];
   };
 in {
   options.internal.${mod} = {
