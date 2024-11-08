@@ -38,15 +38,15 @@ in {
     vim.api.nvim_create_user_command("FormatToggle", function (args)
       if args.bang then
         if vim.b.disable_autoformat then
-          vim.api.nvim_call_function("FormatEnable!")
+          vim.api.nvim_call_function("FormatEnable!", {})
         else
-          vim.api.nvim_call_function("FormatDisable!")
+          vim.api.nvim_call_function("FormatDisable!", {})
         end
       else
         if vim.g.disable_autoformat then
-          vim.api.nvim_call_function("FormatEnable")
+          vim.api.nvim_call_function("FormatEnable", {})
         else
-          vim.api.nvim_call_function("FormatDisable")
+          vim.api.nvim_call_function("FormatDisable", {})
         end
       end
     end, {
@@ -59,13 +59,13 @@ in {
     {
       mode = "n";
       key = "<leader>tf";
-      action = "<cmd>FormatDisable!<cr>";
+      action = "<cmd>FormatToggle!<cr>";
       options.desc = "Disable formatting (buffer)";
     }
     {
       mode = "n";
       key = "<leader>tF";
-      action = "<cmd>FormatDisable<cr>";
+      action = "<cmd>FormatToggle<cr>";
       options.desc = "Disable formatting (global)";
     }
   ];
