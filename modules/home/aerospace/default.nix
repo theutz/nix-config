@@ -26,8 +26,8 @@
   defaultBorders = {
     active_color = colors.active;
     inactive_color = colors.inactive;
-    blur_radius = "12";
-    width = "8.0";
+    blur_radius = 12;
+    width = 8.0;
     hidipi = true;
     style = "round";
   };
@@ -53,7 +53,7 @@ in {
 
   config = lib.mkIf (cfg.enable && isInstalled) {
     xdg.configFile."aerospace/aerospace.toml" = {
-      source = lib.trace (builtins.readFile settingsFile) settingsFile;
+      source = settingsFile;
     };
 
     home.activation.reloadAerospace =
