@@ -32,6 +32,7 @@ help() {
 	echo
 }
 
+DEBUG=false
 show_help=false
 action=""
 

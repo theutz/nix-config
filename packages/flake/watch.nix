@@ -19,13 +19,9 @@ pkgs.writeShellApplication rec {
       gum
     ]);
 
-  # text = ''
-  #   cd "$MY_FLAKE_DIR"
-  #   watchexec --clear --restart --notify -- switch
-  # '';
   text = builtins.readFile (pkgs.replaceVars ./watch.sh {
     inherit (meta) description;
     inherit (lib.internal.bash) loggers;
-    cmd = "${name} ${main}";
+    cmd = "${main} ${name}";
   });
 }

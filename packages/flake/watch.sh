@@ -37,8 +37,7 @@ while [[ $# -gt 0 ]]; do
 		;;
 	*)
 		debug parsed arg "$1"
-		error unknown arg "$1"
-		fatal exiting
+		shift 1
 		;;
 	esac
 done
@@ -48,5 +47,14 @@ set -- "${args[@]}"
 if [[ -n "${show_help:-""}" ]]; then
 	debug "showing help"
 	help
-	exit1
+	exit 0
 fi
+
+if ! cd "$MY_FLAKE_DIR"; then
+	error "could not switch to" dir "$MY_FLAKE_DIR"
+	fatal exiting
+fi
+
+debug "watching" cmd "switch" args "'$*'"
+
+watchexec --clear --restart --notify -- switch "$@"
