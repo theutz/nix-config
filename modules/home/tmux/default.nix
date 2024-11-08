@@ -37,7 +37,6 @@ in {
           echo "Reloading tmux config..."
           if "$tmux" source-file "$conf_file"; then
             echo "Tmux config reloaded"
-            "$tmux" display-message "Config relaoded by nix"
           else
             echo "Could not reload tmux"
           fi
