@@ -14,9 +14,10 @@ help() {
 
 		### Flags
 
-		| Long   | Short | Description    |
-		| :----- | :---- | :------------- |
-		| --help | -h    | show this help |
+		| Long      | Short | Description          |
+		| :-----    | :---- | :-------------       |
+		| --help    | -h    | show this help       |
+		| --verbose | -v    | print debug messages |
 	markdown
 	echo
 }
@@ -66,7 +67,8 @@ done
 
 set -- "${args[@]}"
 
-if [[ "$show_help" == true ]]; then
+# info "show_help" val "$show_help"
+if "$show_help"; then
 	help
 	exit 0
 fi
