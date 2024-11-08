@@ -39,7 +39,7 @@ while [[ $# -gt 0 ]]; do
 done
 set -- "${args[@]}"
 
-if [[ "${show_help:-false}" ]]; then
+if [[ "${show_help-false}" ]]; then
 	help
 	exit 0
 fi
