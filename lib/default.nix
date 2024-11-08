@@ -21,6 +21,8 @@ in rec {
     getModPath = namespace: path: [namespace getModName path];
   };
 
+  bash.loggers = builtins.readFile ./loggers.sh;
+
   vars = {
     paths = rec {
       flake = "nix-config";
