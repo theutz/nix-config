@@ -67,8 +67,10 @@ done
 
 set -- "${args[@]}"
 
-# info "show_help" val "$show_help"
-if "$show_help"; then
+debug "env" DEBUG "$DEBUG"
+debug "env" LOG_PREFIX "$LOG_PREFIX"
+
+if [[ "$show_help" == true ]]; then
 	help
 	exit 0
 fi
