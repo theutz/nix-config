@@ -86,13 +86,17 @@
 
     workspace-to-monitor-force-assignment = lib.pipe workspaces [
       (lib.mapAttrsToList
-        (name: (lib.map
-          (value: {
-            "${value}" = name;
-          }))))
+        (name: (lib.map (value: (lib.nameValuePair value name)))))
       lib.flatten
+      (lib.imap1 (index: {
+        name,
+        value,
+      }: {
+        inherit value;
+        name = "${toString index}-${name}";
+      }))
+      lib.listToAttrs
       lib.traceValSeq
-      lib.mergeAttrsList
     ];
 
     on-window-detected = let
