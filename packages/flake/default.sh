@@ -1,6 +1,9 @@
 MY_FLAKE_DIR="$HOME/@flake-path@"
 export MY_FLAKE_DIR
 
+LOG_PREFIX="@name@"
+export LOG_PREFIX
+
 @loggers@
 
 function help() {
@@ -94,8 +97,7 @@ if [[ -z "$action" ]]; then
 	fatal exiting
 fi
 
-LOG_PREFIX="$action"
-export LOG_PREFIX
+LOG_PREFIX+=" $action"
 
 debug "env" "LOG_PREFIX" "$LOG_PREFIX"
 
