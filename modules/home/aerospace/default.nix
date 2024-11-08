@@ -94,12 +94,25 @@
       lib.mergeAttrsList
     ];
 
-    on-window-detected = [
-      {
-        "if".app-id = "net.mullvad.vpm";
-        run = ["layout floating"];
-      }
-    ];
+    on-window-detected = let
+      flt = "layout floating";
+      mk = id: run: {
+        "if".app-id = id;
+        inherit run;
+      };
+      mv = index:
+        lib.pipe workspaces [
+          lib.attrValues
+          lib.flatten
+          (x: lib.elemAt x (index - 1))
+          lib.traceValSeq
+          (x: "move-node-to-workspace ${builtins.toString index}-${x}")
+        ];
+    in
+      lib.traceValSeq [
+        (mk "net.mullvad.vpn" flt)
+        (mk "com.macpaw.CleanMyMac-setapp" [flt (mv 9)])
+      ];
   };
 in {
   options.internal.${mod} = {
