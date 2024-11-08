@@ -34,10 +34,18 @@
   settingsFile = settingsFormat.generate "aerospace.toml" settings;
   settings = {
     start-at-login = true;
-    after-startup-command = lib.forEach [
-      (lib.concatStrings [borders (mkArgs defaultBorders)])
-      (lib.concatStrings [sketchybar (mkArgs {reload = true;})])
-    ] (x: "exec-and-forget ${x}");
+    after-startup-command =
+      lib.forEach [
+        [borders (mkArgs defaultBorders)]
+        [sketchybar (mkArgs {reload = true;})]
+      ] (x:
+        lib.pipe x [
+          (lib.concat ["exec-and-forget"])
+          (lib.concatStringsSep " ")
+        ]);
+    # after-startup-command =
+    #   lib.forEach [
+    #   ] (lib.pipe) (x: "exec-and-forget ${x}");
   };
 in {
   options.internal.${mod} = {
