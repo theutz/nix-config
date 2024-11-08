@@ -24,15 +24,19 @@ help() {
 
 cleanup() {
 	debug "cleaning up..."
+	echo
 
 	if [[ -d "$MY_FLAKE_DIR/result" ]]; then
 		info "cleaning up old builds..."
 		rm -rf "$MY_FLAKE_DIR/result"
+		echo
 	fi
 
 	if [[ "$(git log -1 --pretty=%B)" == "WIP" ]]; then
+		echo
 		info "uncommitting WIP changes..."
 		git reset HEAD~
+		echo
 	fi
 
 	debug "cleaned up"
