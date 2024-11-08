@@ -97,7 +97,7 @@
     on-window-detected = let
       flt = "layout floating";
       mk = id: run: {
-        "if".app-id = id;
+        "if.app-id" = id;
         inherit run;
       };
       mv = index:
