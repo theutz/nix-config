@@ -1,23 +1,23 @@
 {
   pkgs,
   main,
-  loggers,
+  lib,
   ...
-}: let
-in
-  pkgs.writeShellApplication rec {
-    name = "switch";
+}:
+pkgs.writeShellApplication rec {
+  name = "switch";
 
-    meta = {
-      description = "Build, activate, commit, and push";
-    };
+  meta = {
+    description = "Build, activate, commit, and push";
+  };
 
-    runtimeInputs = with pkgs; [
-      gum
-    ];
+  runtimeInputs = with pkgs; [
+    gum
+  ];
 
-    text = builtins.readFile (pkgs.replaceVars ./switch.sh {
-      inherit main name loggers;
-      description = meta.description;
-    });
-  }
+  text = builtins.readFile (pkgs.replaceVars ./switch.sh {
+    inherit main name;
+    inherit (meta) description;
+    inherit (lib.internal.bash) loggers;
+  });
+}

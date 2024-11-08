@@ -2,9 +2,9 @@
   pkgs,
   lib,
   main,
-  loggers,
   ...
 }: let
+  inherit (lib.internal.bash) loggers;
   name = "goto";
   description = "`cd` to flake config";
   usage =

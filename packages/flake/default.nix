@@ -14,7 +14,7 @@ with lib; let
   description = "Commands for working with my nix-config";
 
   args = {
-    inherit pkgs lib darwin-rebuild loggers;
+    inherit pkgs lib darwin-rebuild;
     main = name;
   };
 
@@ -38,32 +38,6 @@ with lib; let
       | ${lib.getName cmd} | ${cmd.meta.description or ""} |'')
     commands)}
   '';
-
-  loggers =
-    /*
-    bash
-    */
-    ''
-      function fatal () {
-        gum log -l fatal -s "$@"
-      }
-
-      function error () {
-        gum log -l error -s "$@"
-      }
-
-      function warn () {
-        gum log -l warn -s "$@"
-      }
-
-      function info () {
-        gum log -l info -s "$@"
-      }
-
-      function debug () {
-        gum log -l debug -s "$@"
-      }
-    '';
 in
   pkgs.writeShellApplication {
     inherit name;
@@ -88,7 +62,7 @@ in
       EOF
       }
 
-      ${loggers}
+      ${lib.internal.bash.loggers}
 
       while [[ $# -gt 0 ]]; do
         case "$1" in
