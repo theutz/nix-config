@@ -51,8 +51,11 @@
       ''
     ];
     enable-normalization-flatten-containers = true;
-    enable-normalization-opposite-orientation-for-nested-containers =
-      true;
+    enable-normalization-opposite-orientation-for-nested-containers = true;
+    accordion-padding = 32;
+    default-root-container-layout = "tiles";
+    default-root-container-orientation = "auto";
+    key-mapping.preset = "querty";
   };
 in {
   options.internal.${mod} = {
