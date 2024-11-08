@@ -14,6 +14,7 @@
 
   borders = lib.getExe config.services.jankyborders.package or pkgs.jankyborders;
   sketchybar = lib.getExe pkgs.sketchybar;
+  neovide = lib.getExe pkgs.neovide;
 
   colors = {
     active = "0xff7dcff";
@@ -79,7 +80,7 @@
     exec = {
       inherit-env-vars = true;
       env-vars = rec {
-        EDITOR = "${lib.getExe pkgs.neovide} --no-fork";
+        EDITOR = "${neovide} --no-fork";
         VISUAL = "${EDITOR}";
       };
     };
@@ -127,7 +128,9 @@ in {
   config = lib.mkIf (cfg.enable && isInstalled) {
     xdg.configFile."aerospace/aerospace.toml" = {
       # source = settingsFile;
-      source = ./aerospace.toml;
+      source = pkgs.replaceVars ./aerospace.toml {
+        inherit borders sketchybar neovide;
+      };
     };
 
     home.activation.reloadAerospace =
