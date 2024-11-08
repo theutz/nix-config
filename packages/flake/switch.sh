@@ -68,10 +68,12 @@ if ! cd "$MY_FLAKE_DIR"; then
 fi
 
 if [[ ! "${force-false}" ]]; then
+	info "checking git status..."
 	if [[ -z "$(git -c color.status=always status --short | tee /dev/tty)" ]]; then
 		warn "no changes detected. Exiting..."
 		exit 0
 	fi
+	echo
 fi
 
 info "creating WIP commit..."
@@ -81,5 +83,6 @@ info "switching to new generation..."
 if darwin-rebuild switch --flake .; then
 	info "profile switched"
 else
-	fatal "failure while changing profile"
+	error "failure while changing profile"
+	fatal "exiting"
 fi
