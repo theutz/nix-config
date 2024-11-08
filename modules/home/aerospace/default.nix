@@ -90,6 +90,7 @@
           (value: {
             "${value}" = name;
           }))))
+      lib.traceValSeq
       lib.flatten
       lib.mergeAttrsList
     ];
