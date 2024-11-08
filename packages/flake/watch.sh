@@ -14,9 +14,10 @@ help() {
 
 		### Flags
 
-		| Long   | Short | Description    |
-		| :---   | :---  | :---           |
-		| --help | -h    | show this help |
+		| Long    | Short | Description             |
+		| :---    | :---  | :---                    |
+		| --clear | -c    | clear screen on restart |
+		| --help  | -h    | show this help          |
 	markdown
 	echo
 }
@@ -28,6 +29,11 @@ while [[ $# -gt 0 ]]; do
 	--help | -h)
 		debug parsed flag "'$1'"
 		show_help=true
+		shift 1
+		;;
+	--clear | -c)
+		debug parsed flag "'$1'"
+		clear_screen=true
 		shift 1
 		;;
 	--* | -*)
@@ -57,4 +63,7 @@ fi
 
 debug "watching" cmd "switch" args "'$*'"
 
-LOG_PREFIX="$LOG_PREFIX switch" watchexec --clear --restart --notify -- switch "$@"
+LOG_PREFIX="$LOG_PREFIX switch" \
+	watchexec --restart --notify -- \
+	${clear_screen:+--clear} \
+	switch "$@"
