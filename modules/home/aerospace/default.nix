@@ -96,11 +96,10 @@
         name = "${toString index}-${name}";
       }))
       lib.listToAttrs
-      lib.traceValSeq
     ];
 
     on-window-detected = let
-      flt = "layout floating";
+      float = "layout floating";
       mk = id: run: {
         "if".app-id = id;
         inherit run;
@@ -113,11 +112,11 @@
           (x: "move-node-to-workspace ${builtins.toString index}-${x}")
         ];
     in [
-      (mk "net.mullvad.vpn" flt)
-      (mk "com.macpaw.CleanMyMac-setapp" [flt (mv 9)])
-      (mk "org.hammerspoon.Hammerspoon" [flt (mv 9)])
-      (mk "com.fivegencare.com.motorola.nursery" [flt (mv 9)])
-      (mk "com.xiaomi.mihome" [flt (mv 9)])
+      (mk "net.mullvad.vpn" float)
+      (mk "com.macpaw.CleanMyMac-setapp" [float (mv 9)])
+      (mk "org.hammerspoon.Hammerspoon" [float (mv 9)])
+      (mk "com.fivegencare.com.motorola.nursery" [float (mv 9)])
+      (mk "com.xiaomi.mihome" [float (mv 9)])
     ];
   };
 in {
@@ -127,7 +126,8 @@ in {
 
   config = lib.mkIf (cfg.enable && isInstalled) {
     xdg.configFile."aerospace/aerospace.toml" = {
-      source = settingsFile;
+      # source = settingsFile;
+      source = ./aerospace.toml;
     };
 
     home.activation.reloadAerospace =
