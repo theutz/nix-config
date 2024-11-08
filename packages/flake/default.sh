@@ -85,8 +85,6 @@ if [[ -z "$action" && "$show_help" == true ]]; then
 	exit 0
 fi
 
-debug ""
-
 if [[ "$show_help" == true ]]; then
 	debug "forward help flag to" action "$action"
 
@@ -95,17 +93,12 @@ if [[ "$show_help" == true ]]; then
 	set -- "${args[@]}"
 fi
 
-debug "no help command to forward to subcommand"
-
 if [[ -z "$action" ]]; then
 	error "no subcommand provided"
 	fatal exiting
 fi
 
-LOG_PREFIX+=" $action"
-
-debug "env" "LOG_PREFIX" "$LOG_PREFIX"
-
 debug "calling" subcommand "$action" args "'$*'"
-
+LOG_PREFIX+=" $action"
+debug "env" "LOG_PREFIX" "$LOG_PREFIX"
 "$action" "$@"
