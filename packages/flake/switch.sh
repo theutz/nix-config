@@ -70,7 +70,7 @@ done
 
 set -- "${args[@]}"
 
-debug "env" DEBUG "$DEBUG"
+debug "env" DEBUG "${DEBUG-""}"
 debug "env" LOG_PREFIX "$LOG_PREFIX"
 
 if [[ "$show_help" == true ]]; then

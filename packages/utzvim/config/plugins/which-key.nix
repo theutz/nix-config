@@ -9,6 +9,7 @@
     "l" = "Lists";
     "q" = "Quit/session";
     "s" = "Search";
+    "t" = "Toggles";
     "w" = "Window";
   };
 

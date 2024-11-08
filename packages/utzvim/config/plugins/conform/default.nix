@@ -23,13 +23,52 @@ in {
     })
 
     vim.api.nvim_create_user_command("FormatEnable", function (args)
-      vim.b.disable_autoformat = false
-      vim.g.disable_autoformat = false
-      print "Re-enabled auto-format globally"
+      if args.bang then
+        vim.b.disable_autoformat = false
+        print "Re-enabled auto-format for buffer"
+      else
+        vim.g.disable_autoformat = false
+        print "Re-enabled auto-format globally"
+      end
     end, {
       desc = "Re-enable auto-format-on-save",
+      bang = true
+    })
+
+    vim.api.nvim_create_user_command("FormatToggle", function (args)
+      if args.bang then
+        if vim.b.disable_autoformat then
+          vim.api.nvim_call_function("FormatEnable!")
+        else
+          vim.api.nvim_call_function("FormatDisable!")
+        end
+      else
+        if vim.g.disable_autoformat then
+          vim.api.nvim_call_function("FormatEnable")
+        else
+          vim.api.nvim_call_function("FormatDisable")
+        end
+      end
+    end, {
+      desc = "Toggle auto-format-on-save",
+      bang = true
     })
   '';
+
+  keymaps = [
+    {
+      mode = "n";
+      key = "<leader>tf";
+      action = "<cmd>FormatDisable!<cr>";
+      options.desc = "Disable formatting (buffer)";
+    }
+    {
+      mode = "n";
+      key = "<leader>tF";
+      action = "<cmd>FormatDisable<cr>";
+      options.desc = "Disable formatting (global)";
+    }
+  ];
 
   plugins.conform-nvim = {
     enable = true;
