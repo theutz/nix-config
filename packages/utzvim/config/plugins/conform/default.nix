@@ -60,13 +60,13 @@ in {
       mode = "n";
       key = "<leader>tf";
       action = "<cmd>FormatToggle!<cr>";
-      options.desc = "Disable formatting (buffer)";
+      options.desc = "Toggle formatting (buffer)";
     }
     {
       mode = "n";
       key = "<leader>tF";
       action = "<cmd>FormatToggle<cr>";
-      options.desc = "Disable formatting (global)";
+      options.desc = "Toggle formatting (global)";
     }
   ];
 
