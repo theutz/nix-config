@@ -97,7 +97,7 @@
     on-window-detected = let
       flt = "layout floating";
       mk = id: run: {
-        "if.app-id" = id;
+        "if".app-id = id;
         inherit run;
       };
       mv = index:
@@ -105,7 +105,6 @@
           lib.attrValues
           lib.flatten
           (x: lib.elemAt x (index - 1))
-          lib.traceValSeq
           (x: "move-node-to-workspace ${builtins.toString index}-${x}")
         ];
     in
