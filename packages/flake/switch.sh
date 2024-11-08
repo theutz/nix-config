@@ -47,10 +47,12 @@ args=()
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 	--help | -h)
+		debug parsed flag "'--help'"
 		show_help=true
 		shift 1
 		;;
 	--force | -f)
+		debug parsed flag "'--force'"
 		force=true
 		shift 1
 		;;
@@ -59,6 +61,7 @@ while [[ $# -gt 0 ]]; do
 		fatal "exiting"
 		;;
 	*)
+		debug parsed arg "$1"
 		args+=("$1")
 		shift 1
 		;;
@@ -71,9 +74,12 @@ debug "env" DEBUG "$DEBUG"
 debug "env" LOG_PREFIX "$LOG_PREFIX"
 
 if [[ "$show_help" == true ]]; then
+	debug "show help"
 	help
 	exit 0
 fi
+
+debug "don't show help"
 
 if ! cd "$MY_FLAKE_DIR"; then
 	error "failed to cd " "dir" "$MY_FLAKE_DIR"
