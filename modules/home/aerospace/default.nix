@@ -55,7 +55,22 @@
     accordion-padding = 32;
     default-root-container-layout = "tiles";
     default-root-container-orientation = "auto";
-    key-mapping.preset = "querty";
+    key-mapping.preset = "qwerty";
+
+    gaps = let
+      gap = 16;
+    in {
+      inner = {
+        horizontal = gap;
+        vertical = gap;
+      };
+      outer = {
+        left = gap;
+        bottom = gap;
+        top = [{monitor."SAMSUNG" = 56;} gap];
+        right = gap;
+      };
+    };
   };
 in {
   options.internal.${mod} = {
