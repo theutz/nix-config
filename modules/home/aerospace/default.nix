@@ -116,7 +116,7 @@
       (mk "net.mullvad.vpn" flt)
       (mk "com.macpaw.CleanMyMac-setapp" [flt (mv 9)])
       (mk "org.hammerspoon.Hammerspoon" [flt (mv 9)])
-      (mk "org.fivegencare.com.motorola.nursery" [flt (mv 9)])
+      (mk "com.fivegencare.com.motorola.nursery" [flt (mv 9)])
     ];
   };
 in {
