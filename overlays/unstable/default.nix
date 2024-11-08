@@ -23,6 +23,7 @@
     typescript-language-server
     vimPlugins
     yazi
+    zk
     ;
 
   inherit

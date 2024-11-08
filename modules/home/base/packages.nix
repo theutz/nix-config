@@ -56,8 +56,6 @@ in
     mods
     moreutils
     mosh
-    # mullvad
-    # mullvad-vpn
     mycli
     nerdfonts
     nixd
@@ -89,4 +87,5 @@ in
     xdg-ninja
     yj
     yq
+    zk
   ]
