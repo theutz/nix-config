@@ -59,10 +59,6 @@ in {
           end
         '';
 
-      # format_after_save = {
-      #   lsp_fallback = true;
-      # };
-
       formatters = {
         alejandra = {
           command = lib.getExe pkgs.alejandra;

@@ -104,8 +104,10 @@ echo
 info "switching to new generation..."
 echo
 if darwin-rebuild switch --flake .; then
+	echo
 	info "profile switched"
 else
+	echo
 	error "failure while changing profile"
 	fatal "exiting"
 fi
@@ -116,8 +118,10 @@ current_generation="$(darwin-rebuild --list-generations | awk '/\(current\)/ {pr
 info "committing changes..."
 echo
 if git commit --amend --message "Generation $current_generation"; then
+	echo
 	info "changes committed"
 else
+	echo
 	error "changes could not be committed"
 	fatal exiting
 fi
@@ -126,8 +130,10 @@ echo
 info "pushing changes"
 echo
 if git pull --rebase && git push; then
+	echo
 	info "changes pushed"
 else
+	echo
 	error "changes could not be pushed"
 	fatal exiting
 fi

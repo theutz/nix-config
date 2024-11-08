@@ -6,7 +6,7 @@ export LOG_PREFIX
 
 @loggers@
 
-function help() {
+help() {
 	gum format <<-'markdown'
 		# @name@
 
