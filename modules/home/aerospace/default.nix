@@ -34,7 +34,9 @@
 
   settingsFormat = pkgs.formats.toml {};
   settingsFile = settingsFormat.generate "aerospace.toml" settings;
-  settings = {
+  settings = let
+    gap = 24;
+  in {
     start-at-login = true;
     after-startup-command =
       lib.forEach [
@@ -52,14 +54,12 @@
     ];
     enable-normalization-flatten-containers = true;
     enable-normalization-opposite-orientation-for-nested-containers = true;
-    accordion-padding = 32;
+    accordion-padding = gap * 2;
     default-root-container-layout = "tiles";
     default-root-container-orientation = "auto";
     key-mapping.preset = "qwerty";
 
-    gaps = let
-      gap = 24;
-    in {
+    gaps = {
       inner = {
         horizontal = gap;
         vertical = gap;
