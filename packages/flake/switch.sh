@@ -18,9 +18,12 @@ help() {
 		| :----- | :---- | :------------- |
 		| --help | -h    | show this help |
 	markdown
+	echo
 }
 
 cleanup() {
+	debug "cleaning up..."
+
 	if [[ -d "$MY_FLAKE_DIR/result" ]]; then
 		info "cleaning up old builds..."
 		rm -rf "$MY_FLAKE_DIR/result"
@@ -30,6 +33,8 @@ cleanup() {
 		info "uncommitting WIP changes..."
 		git reset HEAD~
 	fi
+
+	debug "cleaned up"
 }
 
 trap cleanup EXIT
@@ -57,7 +62,7 @@ while [[ $# -gt 0 ]]; do
 done
 set -- "${args[@]}"
 
-if [[ "${show_help-false}" ]]; then
+if [[ "${show_help:-false}" == true ]]; then
 	help
 	exit 0
 fi
