@@ -88,6 +88,7 @@ fi
 
 if [[ "${force-false}" == false ]]; then
 	info "checking git status..."
+	echo
 	if [[ -z "$(git -c color.status=always status --short | tee /dev/tty)" ]]; then
 		warn "no changes detected. Exiting..."
 		exit 0
@@ -96,28 +97,38 @@ if [[ "${force-false}" == false ]]; then
 fi
 
 info "creating WIP commit..."
+echo
 git add -A && git commit -m "WIP"
+echo
 
 info "switching to new generation..."
+echo
 if darwin-rebuild switch --flake .; then
 	info "profile switched"
 else
 	error "failure while changing profile"
 	fatal "exiting"
 fi
+echo
 
 current_generation="$(darwin-rebuild --list-generations | awk '/\(current\)/ {print $1}')"
 
 info "committing changes..."
+echo
 if git commit --amend --message "Generation $current_generation"; then
 	info "changes committed"
 else
-	fatal "changes could not be committed"
+	error "changes could not be committed"
+	fatal exiting
 fi
+echo
 
 info "pushing changes"
+echo
 if git pull --rebase && git push; then
 	info "changes pushed"
 else
-	fatal "changes could not be pushed"
+	error "changes could not be pushed"
+	fatal exiting
 fi
+echo
