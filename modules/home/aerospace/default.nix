@@ -13,7 +13,9 @@
     (lib.elem mod)
   ];
 
-  settings = {};
+  settings = {
+    start-at-login = true;
+  };
 
   settingsFormat = pkgs.formats.toml {};
 
