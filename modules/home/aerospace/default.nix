@@ -86,12 +86,19 @@
 
     workspace-to-monitor-force-assignment = lib.pipe workspaces [
       (lib.mapAttrsToList
-        (name: (lib.imap1 (index: value: {
-          "${builtins.toString index}-${value}" = name;
-        }))))
+        (name: (lib.imap1
+          (index: value: {
+            "${builtins.toString index}-${value}" = name;
+          }))))
       lib.flatten
       lib.mergeAttrsList
-      lib.traceValSeq
+    ];
+
+    on-window-detected = [
+      {
+        "if".app-id = "net.mullvad.vpm";
+        run = ["layout floating"];
+      }
     ];
   };
 in {
