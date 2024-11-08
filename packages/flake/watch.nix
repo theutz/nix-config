@@ -1,21 +1,31 @@
 {
   pkgs,
+  lib,
   switch,
+  main,
   ...
 }:
-pkgs.writeShellApplication {
+pkgs.writeShellApplication rec {
   name = "watch";
 
   meta.description = "Watch for changes and reload.";
 
   runtimeInputs =
-    [switch]
+    [
+      switch
+    ]
     ++ (with pkgs; [
       watchexec
+      gum
     ]);
 
-  text = ''
-    cd "$MY_FLAKE_DIR"
-    watchexec --clear --restart --notify -- switch
-  '';
+  # text = ''
+  #   cd "$MY_FLAKE_DIR"
+  #   watchexec --clear --restart --notify -- switch
+  # '';
+  text = builtins.readFile (pkgs.replaceVars ./watch.sh {
+    inherit (meta) description;
+    inherit (lib.internal.bash) loggers;
+    cmd = "${name} ${main}";
+  });
 }
