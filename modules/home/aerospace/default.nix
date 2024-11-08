@@ -12,6 +12,12 @@
     (lib.map (lib.getAttr "name"))
     (lib.elem mod)
   ];
+
+  settings = {};
+
+  settingsFormat = pkgs.formats.toml {};
+
+  settingsFile = settingsFormat.generate "aerospace.toml" settings;
 in {
   options.internal.${mod} = {
     enable = lib.mkEnableOption "tiling window manager for darwin";
@@ -19,7 +25,7 @@ in {
 
   config = lib.mkIf (cfg.enable && isInstalled) {
     xdg.configFile."aerospace/aerospace.toml" = {
-      source = ./aerospace.toml;
+      source = settingsFile;
     };
 
     home.activation.reloadAerospace =
