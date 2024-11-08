@@ -35,7 +35,7 @@
   settingsFormat = pkgs.formats.toml {};
   settingsFile = settingsFormat.generate "aerospace.toml" settings;
   settings = let
-    gap = 24;
+    gap = 16;
   in {
     start-at-login = true;
     after-startup-command =
@@ -69,6 +69,16 @@
         bottom = gap;
         top = [{monitor."SAMSUNG" = 40 + gap;} gap];
         right = gap;
+      };
+    };
+
+    exec = {
+      inherit-env-vars = true;
+      env-vars = let
+        editor = lib.getExe pkgs.neovide;
+      in rec {
+        EDITOR = "${editor} --no-fork";
+        VISUAL = "${EDITOR}";
       };
     };
   };
