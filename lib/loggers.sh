@@ -1,4 +1,9 @@
 log() {
+	if ! command -v gum 2>/dev/null; then
+		printf "ERROR: 'gum' not found in PATH\n"
+		exit 1
+	fi
+
 	gum log -s "$@"
 }
 
