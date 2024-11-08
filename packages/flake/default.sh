@@ -1,6 +1,8 @@
 MY_FLAKE_DIR="$HOME/@flake-path@"
 export MY_FLAKE_DIR
 
+@loggers@
+
 function help() {
 	gum format <<-'markdown'
 		# @name@
@@ -26,8 +28,6 @@ function help() {
 	markdown
 	echo
 }
-
-@loggers@
 
 show_help=false
 action=""
@@ -62,21 +62,32 @@ done
 
 set -- "${args[@]}"
 
+debug "env" DEBUG "$DEBUG"
+debug "env" MY_FLAKE_DIR "$MY_FLAKE_DIR"
+
 if [[ ${#args[@]} -gt 0 ]]; then
 	error "unrecognized arguments" args "${args[*]}"
 	fatal exiting
 fi
+
+debug "all arguments received"
 
 if [[ -z "$action" && "$show_help" == true ]]; then
 	help
 	exit 0
 fi
 
+debug "don't show root help"
+
 if [[ "$show_help" == true ]]; then
+	debug "forward help flag to subcommand"
+
 	args=("$@")
 	args+=("--help")
 	set -- "${args[@]}"
 fi
+
+debug "no help command to forward to subcommand"
 
 if [[ -z "$action" ]]; then
 	error "no subcommand provided"
@@ -85,5 +96,9 @@ fi
 
 LOG_PREFIX="$action"
 export LOG_PREFIX
+
+debug "env" "LOG_PREFIX" "$LOG_PREFIX"
+
+debug "calling" subcommand "$action" args "'$*'"
 
 "$action" "$@"
