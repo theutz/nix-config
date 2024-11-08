@@ -8,8 +8,6 @@
   mod = "aerospace";
   cfg = config.internal.${mod};
 
-  # casks = lib.forEach osConfig.homebrew.casks (lib.getAttr "name");
-  # isInstalled = lib.elem mod casks;
   isInstalled = lib.pipe osConfig.homebrew.casks [
     (lib.map (lib.getAttr "name"))
     (lib.elem mod)
