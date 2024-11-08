@@ -45,6 +45,14 @@
           (lib.concat ["exec-and-forget"])
           (lib.concatStringsSep " ")
         ]);
+    exec-on-workspace-change = [
+      ''
+        ${sketchybar} --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE
+      ''
+    ];
+    enable-normalization-flatten-containers = true;
+    enable-normalization-opposite-orientation-for-nested-containers =
+      true;
   };
 in {
   options.internal.${mod} = {
