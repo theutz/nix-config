@@ -73,3 +73,13 @@ if [[ ! "${force-false}" ]]; then
 		exit 0
 	fi
 fi
+
+info "creating WIP commit..."
+git add -A && git commit -m "WIP"
+
+info "switching to new generation..."
+if darwin-rebuild switch --flake .; then
+	info "profile switched"
+else
+	fatal "failure while changing profile"
+fi
