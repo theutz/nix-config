@@ -18,7 +18,7 @@ in {
       (lib.traceVal (lib.path.append (/. + config.home.homeDirectory)
         (lib.path.subpath.join [
           lib.internal.vars.paths.homeModules
-          "nb"
+          (lib.internal.path.getLastComponent ./.)
           (builtins.baseNameOf ./nbrc.sh)
         ])));
   };

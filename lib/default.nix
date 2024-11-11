@@ -47,7 +47,7 @@ in rec {
 
   package = import ./package.nix {inherit lib;};
 
-  path = {
+  path = rec {
     /*
     Return the last component of a path as a string.
     */
@@ -57,5 +57,19 @@ in rec {
       lib.path.subpath.components
       lib.last
     ];
+
+    mkHmModOutOfStoreSymlink' = config: p:
+      lib.pipe p [
+        (lib.path.subpath.join [
+          lib.internal.vars.paths.homeModules
+          (getLastComponent p)
+          (builtins.baseNameOf p)
+        ])
+
+        ((lib.flip lib.path.append)
+          (/. + config.home.homeDirectory))
+
+        config.lib.file.mkOutOfStoreSymlink
+      ];
   };
 }
