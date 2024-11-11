@@ -14,26 +14,33 @@ in {
     settings = with lib;
       mkOption {
         type = with types;
-          submodule {
+          attrsOf (submodule {
             options = {
               note = mkOption {
-                type = submodule {
+                type = attrsOf submodule {
                   options = {
                     language = mkOption {
                       type = str;
                       default = "en";
+                      description = ''
+                        Language used when writing notes.
+                      '';
+                    };
+
+                    default-title = mkOption {
+                      type = str;
+                      default = "Untitled";
+                      description = ''
+                        The default title used for new note, if no `--title` flag is provided.
+                      '';
                     };
                   };
                 };
               };
             };
-          };
+          });
 
-        default = {
-          note = {
-            language = "en";
-          };
-        };
+        default = {};
       };
   };
 
