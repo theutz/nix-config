@@ -13,6 +13,11 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [nb];
 
-    xdg.configFile."nbrc".source = config.lib.file.mkOutOfStoreSymlink ./nbrc.sh;
+    xdg.configFile."nbrc".source =
+      config.lib.file.mkOutOfStoreSymlink
+      (lib.path.subpath.join [
+        lib.internal.vars.paths.homeModules
+        (builtins.baseNameOf ./nbrc.sh)
+      ]);
   };
 }
