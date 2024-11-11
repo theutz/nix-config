@@ -20,8 +20,14 @@ in {
         note = {
           language = "en";
         };
+
         extra = {
           user = config.home.username;
+        };
+
+        tool = {
+          editor = config.home.sessionVariables.EDITOR;
+          shell = lib.getExe pkgs.zsh;
         };
       };
     };
