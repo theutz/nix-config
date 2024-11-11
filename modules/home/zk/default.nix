@@ -25,9 +25,13 @@ in {
           user = config.home.username;
         };
 
-        tool = lib.traceValSeq {
+        tool = {
           editor = config.home.sessionVariables.EDITOR;
           shell = lib.getExe pkgs.zsh;
+        };
+
+        alias = {
+          edlast = "zk edit --limit 1 --sort modified- $@";
         };
       };
     };
