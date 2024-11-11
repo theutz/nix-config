@@ -13,9 +13,15 @@ in {
 
     settings = lib.mkOption {
       inherit (tomlFormat) type;
+      description = ''
+        Configuration defined at https://zk-org.github.io/zk/config/config.html.
+      '';
       default = {
         note = {
           language = "en";
+        };
+        extra = {
+          user = config.home.username;
         };
       };
     };
@@ -27,7 +33,7 @@ in {
     ];
 
     xdg.configFile."zk/config.toml" = {
-      source = tomlFormat.generate "zk-config" (lib.traceSeq cfg cfg.settings);
+      source = tomlFormat.generate "zk-config" cfg.settings;
     };
   };
 }
