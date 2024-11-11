@@ -17,6 +17,10 @@ in {
         Configuration defined at https://zk-org.github.io/zk/config/config.html.
       '';
       default = {
+        notebook = {
+          dir = "~/notes";
+        };
+
         note = {
           language = "en";
         };
