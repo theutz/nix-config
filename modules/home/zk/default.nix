@@ -11,36 +11,14 @@ in {
   options.internal.zk = {
     enable = lib.mkEnableOption "zk";
 
-    settings = with lib;
-      mkOption {
-        default = {};
-        type = with types;
-          attrsOf (submodule {
-            options = {
-              note = {
-                default = {};
-                description = "Note settings.";
-                options = attrsOf (submodule {
-                  language = mkOption {
-                    type = str;
-                    default = "en";
-                    description = ''
-                      Language used when writing notes.
-                    '';
-                  };
-
-                  default-title = mkOption {
-                    type = str;
-                    default = "Untitled";
-                    description = ''
-                      The default title used for new note, if no `--title` flag is provided.
-                    '';
-                  };
-                });
-              };
-            };
-          });
+    settings = lib.mkOption {
+      inherit (tomlFormat) type;
+      default = {
+        note = {
+          language = "en";
+        };
       };
+    };
   };
 
   config = lib.mkIf cfg.enable {
