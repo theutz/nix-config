@@ -48,6 +48,7 @@ in {
       less.enable = true;
       lf.enable = true;
       man.enable = true;
+      nb.enable = true;
       noti.enable = true;
       nushell.enable = true;
       nvim.enable = true;
@@ -60,7 +61,7 @@ in {
       xdg.enable = true;
       xplr.enable = true;
       yazi.enable = true;
-      zk.enable = true;
+      zk.enable = false;
       zoxide.enable = true;
       zsh.enable = true;
     };

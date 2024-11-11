@@ -10,6 +10,7 @@
     mods
     mullvad
     mullvad-vpn
+    nb
     neovim
     nix
     nix-direnv
