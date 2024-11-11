@@ -60,13 +60,13 @@ in rec {
     ];
   };
 
-  mkOutOfStoreSymlink' = config: path:
+  mkOutOfStoreSymlink' = config: path: let
+    base = lib.internal.vars.paths.homeModules;
+    mod = lib.internal.path.getLastComponent (builtins.dirOf path);
+    file = builtins.baseNameOf path;
+  in
     lib.pipe path [
-      (path: (lib.path.subpath.join [
-        lib.internal.vars.paths.homeModules
-        (lib.internal.path.getLastComponent (builtins.dirOf path))
-        (builtins.baseNameOf path)
-      ]))
+      (path: (lib.path.subpath.join [base mod file]))
 
       (lib.path.append
         (/. + config.home.homeDirectory))
