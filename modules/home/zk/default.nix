@@ -17,6 +17,7 @@ in {
           attrsOf (submodule {
             options = {
               note = {
+                default = {};
                 options = {
                   language = mkOption {
                     type = str;
