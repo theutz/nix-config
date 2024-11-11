@@ -15,6 +15,7 @@
   borders = lib.getExe config.services.jankyborders.package or pkgs.jankyborders;
   sketchybar = lib.getExe pkgs.sketchybar;
   neovide = lib.getExe pkgs.neovide;
+  bash = lib.getExe pkgs.bashInteractive;
 in {
   options.internal.${mod} = {
     enable = lib.mkEnableOption "tiling window manager for darwin";
@@ -24,7 +25,7 @@ in {
     xdg.configFile."aerospace/aerospace.toml" = {
       # source = settingsFile;
       source = pkgs.replaceVars ./aerospace.toml {
-        inherit borders sketchybar neovide;
+        inherit borders sketchybar neovide bash;
       };
     };
 
