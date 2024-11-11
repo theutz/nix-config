@@ -60,6 +60,7 @@ in {
       xdg.enable = true;
       xplr.enable = true;
       yazi.enable = true;
+      zk.enable = true;
       zoxide.enable = true;
       zsh.enable = true;
     };

@@ -88,5 +88,4 @@ in
     xdg-ninja
     yj
     yq
-    zk
   ]
