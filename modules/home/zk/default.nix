@@ -8,7 +8,11 @@
 
   tomlFormat = pkgs.formats.toml {};
 
-  settings = {};
+  settings = {
+    note = {
+      language = "en";
+    };
+  };
 in {
   options.internal.zk.enable = lib.mkEnableOption "zk";
 
