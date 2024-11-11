@@ -49,7 +49,7 @@ in {
     ];
 
     xdg.configFile."zk/config.toml" = {
-      source = tomlFormat.generate "zk-config" (lib.traceVal cfg.settings);
+      source = tomlFormat.generate "zk-config" (lib.traceSeq cfg cfg.settings);
     };
   };
 }
