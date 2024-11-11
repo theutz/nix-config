@@ -13,12 +13,13 @@ in {
 
     settings = with lib;
       mkOption {
+        default = {};
         type = with types;
           attrsOf (submodule {
             options = {
               note = {
                 default = {};
-                options = {
+                options = attrsOf (submodule {
                   language = mkOption {
                     type = str;
                     default = "en";
@@ -34,12 +35,10 @@ in {
                       The default title used for new note, if no `--title` flag is provided.
                     '';
                   };
-                };
+                });
               };
             };
           });
-
-        default = {};
       };
   };
 
