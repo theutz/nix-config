@@ -16,6 +16,7 @@ in {
 
     home.sessionVariables = {
       NB_DIR = lib.path.append (/. + config.home.homeDirectory) ".nb";
+      NBRC_PATH = config.xdg.configFile.nbrc.source;
     };
 
     xdg.configFile."nbrc".source = mkOutOfStoreSymlink ./nbrc.sh;
