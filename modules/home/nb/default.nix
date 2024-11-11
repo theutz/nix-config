@@ -14,6 +14,10 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [nb];
 
+    home.sessionVariables = {
+      NB_DIR = config.home.homeDirectory + "nb";
+    };
+
     xdg.configFile."nbrc".source = mkOutOfStoreSymlink ./nbrc.sh;
   };
 }
