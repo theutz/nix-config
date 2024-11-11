@@ -23,15 +23,18 @@ in {
       internal.utzvim
     ];
 
-    home.sessionVariables = lib.mkMerge [
-      {
-        EDITOR = lib.mkForce "nvim";
-        VISUAL = lib.mkForce "nvim";
-      }
-      (lib.mkIf cfg.enableManIntegration {
-        MANPAGER = lib.mkForce "nvim -c +Man!";
-        MANWIDTH = lib.mkForce "999";
-      })
-    ];
+    home.sessionVariables = let
+      nvim = lib.getExe pkgs.internal.utzvim;
+    in
+      lib.mkMerge [
+        rec {
+          EDITOR = lib.mkForce nvim;
+          VISUAL = EDITOR;
+        }
+        (lib.mkIf cfg.enableManIntegration {
+          MANPAGER = lib.mkForce "${nvim} -c +Man!";
+          MANWIDTH = lib.mkForce "999";
+        })
+      ];
   };
 }
