@@ -15,9 +15,9 @@ in {
 
     xdg.configFile."nbrc".source =
       config.lib.file.mkOutOfStoreSymlink
-      (lib.path.subpath.join [
+      (lib.traceValSeq (lib.path.subpath.join [
         lib.internal.vars.paths.homeModules
         (builtins.baseNameOf ./nbrc.sh)
-      ]);
+      ]));
   };
 }
