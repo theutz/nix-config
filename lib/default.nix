@@ -61,19 +61,15 @@ in rec {
   };
 
   mkOutOfStoreSymlink' = config: path: let
-    inherit (lib.path) append;
-
     home = /. + config.home.homeDirectory;
     base = lib.internal.vars.paths.homeModules;
     mod = lib.internal.path.getLastComponent (builtins.dirOf path);
-    file = builtins.baseNameOf path;
   in
     lib.pipe path [
       builtins.baseNameOf
       lib.singleton
       (lib.concat [base mod])
-      lib.traceVal
-      (lib.path.subpath.join)
+      lib.path.subpath.join
       (lib.path.append home)
       config.lib.file.mkOutOfStoreSymlink
     ];
