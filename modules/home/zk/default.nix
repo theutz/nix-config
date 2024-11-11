@@ -39,6 +39,8 @@ in {
           e = "zk edit --interactive";
           edlast = "zk edit --limit 1 --sort modified- $@";
           rm = "zk ls -0 $@ | fzf --read0 --print0 -m | xargs -0 rm";
+          commit = "git add -A && git commit -m '$*'";
+          sync = "zk commit '$*' && git pull && git push";
         };
       };
     };
