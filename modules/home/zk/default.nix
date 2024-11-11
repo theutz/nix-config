@@ -25,7 +25,7 @@ in {
           user = config.home.username;
         };
 
-        tool = {
+        tool = lib.traceValSeq {
           editor = config.home.sessionVariables.EDITOR;
           shell = lib.getExe pkgs.zsh;
         };
