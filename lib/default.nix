@@ -52,6 +52,7 @@ in rec {
     Return the last component of a path as a string.
     */
     getLastComponent = (lib.flip lib.pipe) [
+      # builtins.dirOf
       lib.path.splitRoot
       (lib.getAttr "subpath")
       lib.path.subpath.components
