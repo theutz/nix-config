@@ -17,7 +17,7 @@ in {
           attrsOf (submodule {
             options = {
               note = mkOption {
-                type = attrsOf submodule {
+                type = attrsOf (submodule {
                   options = {
                     language = mkOption {
                       type = str;
@@ -35,7 +35,7 @@ in {
                       '';
                     };
                   };
-                };
+                });
               };
             };
           });
