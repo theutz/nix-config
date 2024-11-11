@@ -35,9 +35,10 @@ in {
         };
 
         alias = {
-          ls = "zk list --quiet --format path --no-pager";
+          ls = "zk list --quiet --format path --no-pager $@";
           e = "zk edit --interactive";
           edlast = "zk edit --limit 1 --sort modified- $@";
+          rm = "zk ls -0 $@ | fzf --read0 --print0 -m | xargs -0 rm";
         };
       };
     };
