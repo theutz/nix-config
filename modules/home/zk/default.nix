@@ -19,6 +19,7 @@ in {
             options = {
               note = {
                 default = {};
+                description = "Note settings.";
                 options = attrsOf (submodule {
                   language = mkOption {
                     type = str;
@@ -48,7 +49,7 @@ in {
     ];
 
     xdg.configFile."zk/config.toml" = {
-      source = tomlFormat.generate "zk-config" cfg.settings;
+      source = tomlFormat.generate "zk-config" (lib.traceVal cfg.settings);
     };
   };
 }
