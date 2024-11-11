@@ -35,6 +35,8 @@ in {
         };
 
         alias = {
+          ls = "zk list --quiet --format path --no-page";
+          e = "zk edit --interactive";
           edlast = "zk edit --limit 1 --sort modified- $@";
         };
       };
