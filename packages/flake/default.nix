@@ -18,7 +18,6 @@ with lib; let
   };
 
   commands = rec {
-    build = import ./build.nix args;
     switch = import ./switch.nix (args // {inherit build;});
     goto = import ./goto.nix args;
     watch = import ./watch.nix (args // {inherit switch;});

@@ -42,17 +42,16 @@ in
       gum
       git
       darwin-rebuild
+      yazi
     ];
 
     text = ''
+      ${lib.internal.bash.loggers}
+
       function help() {
         gum format <<-'EOF'
         ${usage}
       EOF
-      }
-
-      function fatal() {
-        gum log -l fatal "$@"
       }
 
       add_git_files=true
@@ -77,16 +76,14 @@ in
       done
       set -- "''${args[@]}"
 
-      function cleanup () {
-        cd -
-      }
+      (
+        cd "$MY_FLAKE_DIR"
 
-      trap cleanup EXIT
+        if "$add_git_files"; then
+          git add -A
+        fi
 
-      cd "$MY_FLAKE_DIR"
-      if "$add_git_files"; then
-        git add -A
-      fi
-      darwin-rebuild build --flake .
+        darwin-rebuild build --flake .
+      )
     '';
   }
