@@ -79,6 +79,8 @@ in
     speedtest-go
     ssh-copy-id
     statix
+    tidy-viewer
+    tig
     tldr
     tree
     tz
