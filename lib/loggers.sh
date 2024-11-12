@@ -6,7 +6,7 @@ log() {
 
 	gum log \
 		--structured \
-		${LOG_PREFIX:+--prefix="$LOG_PREFIX"} \
+		"${LOG_PREFIX:+--prefix="$LOG_PREFIX"}" \
 		"$@"
 }
 
@@ -14,6 +14,13 @@ debug() {
 	if "${DEBUG:-false}"; then
 		log -l debug "$@"
 	fi
+}
+
+dump() {
+	while [[ $# -gt 0 ]]; do
+		debug -- dump "$1" "${!1}"
+		shift 1
+	done
 }
 
 fatal() {

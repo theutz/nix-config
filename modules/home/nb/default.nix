@@ -12,7 +12,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [nb];
+    home.packages = with pkgs; [
+      nb
+      pandoc
+    ];
 
     home.sessionVariables = {
       NB_DIR = lib.path.append (/. + config.home.homeDirectory) ".nb";

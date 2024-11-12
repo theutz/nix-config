@@ -34,8 +34,8 @@
       };
 
       nixPath = {
-        nixpkgs = "flake:nixpkgs";
-        unstable = "nixpkgs/nixpkgs-unstable";
+        nixpkgs = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
+        unstable = "flake:nixpkgs";
       };
 
       settings = {
