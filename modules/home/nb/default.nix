@@ -15,6 +15,7 @@ in {
     home.packages = with pkgs; [
       nb
       pandoc
+      readability-cli
     ];
 
     home.sessionVariables = {
