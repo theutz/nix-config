@@ -15,26 +15,25 @@
       default = true;
     };
   };
+
+  nvim = pkgs.internal.utzvim;
 in {
   inherit options;
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      internal.utzvim
+    home.packages = [
+      nvim
     ];
 
-    home.sessionVariables = let
-      nvim = lib.getExe pkgs.internal.utzvim;
-    in
-      lib.mkMerge [
-        rec {
-          EDITOR = lib.mkForce nvim;
-          VISUAL = EDITOR;
-        }
-        (lib.mkIf cfg.enableManIntegration {
-          MANPAGER = lib.mkForce "${nvim} -c +Man!";
-          MANWIDTH = lib.mkForce "999";
-        })
-      ];
+    home.sessionVariables = lib.mkMerge [
+      rec {
+        EDITOR = lib.mkForce (lib.getExe nvim);
+        VISUAL = EDITOR;
+      }
+      (lib.mkIf cfg.enableManIntegration {
+        MANPAGER = lib.mkForce "${lib.getExe nvim} -c +Man!";
+        MANWIDTH = lib.mkForce "999";
+      })
+    ];
   };
 }
