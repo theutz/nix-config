@@ -32,11 +32,11 @@
     ''
       [[ -o INTERACTIVE && -t 2 ]] && {
         SAYINGS=(
-          "Loves 'ya"
+          "Loves 'ya!"
           "Did you like de song?"
         )
 
-        cowsay $SAYINGS[$(($RANDOM % ''${#SAYINGS} + 1))] | lolcat -ai
+        cowsay $SAYINGS[$(($RANDOM % ''${#SAYINGS} + 1))] | lolcat
       } >&2
     '';
 in {
