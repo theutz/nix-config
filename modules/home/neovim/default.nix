@@ -30,5 +30,5 @@ in {
           MANWIDTH = lib.mkForce "999";
         })
       ];
-    };
-}
+  };
+    }
