@@ -23,31 +23,49 @@
     (lib.splitString "\n")
     (x: (lib.take ((lib.length x) - 11) x))
     lib.concatLines
-    # (lib.strings.replaceStrings
-    #   ["[fortune]" "fortune -s"]
-    #   ["[neofetch]" "neofetch 2>/dev/null"])
   ];
+
+  zlogout =
+    /*
+    bash
+    */
+    ''
+      [[ -o INTERACTIVE && -t 2 ]] && {
+        SAYINGS=(
+          "Loves 'ya"
+          "Did you like de song?"
+        )
+
+        cowsay $SAYINGS[$(($RANDOM % ''${#SAYINGS} + 1))] | lolcat -ai
+      } >&2
+    '';
 in {
-  options."internal"."${mod}" = {
+  options.internal.${mod} = {
     enable = lib.mkEnableOption "prezto zsh framework";
+
     autoTmux = lib.mkOption {
       default = true;
+
       description = ''
         Turn off to disable automatic tmux sessions
         for both local and remote terminals.
       '';
+
       example = ''
         internal.${mod}.autoTmux = false;
       '';
+
       type = lib.types.bool;
     };
   };
 
   config = lib.mkIf cfg.enable {
     home.file."${relToDotDir ".zlogin"}".text = lib.mkForce zlogin;
+    home.file.${relToDotDir ".zlogout"}.text = lib.mkForce zlogout;
 
     home.packages = with pkgs; [
-      neofetch
+      lolcat
+      cowsay
     ];
 
     programs.zsh.prezto = {
