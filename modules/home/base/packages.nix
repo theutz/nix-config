@@ -18,6 +18,7 @@ in
     bats
     bruno
     caddy
+    cargo
     clolcat
     coreutils
     csvlens
