@@ -6,12 +6,7 @@
   osConfig,
   ...
 }: let
-  mod = lib.pipe ./. [
-    lib.path.splitRoot
-    (lib.getAttr "subpath")
-    lib.path.subpath.components
-    lib.last
-  ];
+  mod = lib.internal.path.getLastComponent ./.;
   cfg = config.${namespace}.${mod};
 in {
   options.${namespace}.${mod}.
@@ -27,6 +22,10 @@ in {
     home.sessionPath = [
       "${osConfig.homebrew.brewPrefix}"
     ];
+
+    lib.${namespace} = {
+      mkOutOfStoreSymlink = lib.${namespace}.mkOutOfStoreSymlink' config;
+    };
 
     internal = {
       atuin.enable = false;
