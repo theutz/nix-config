@@ -13,9 +13,11 @@ in {
 
     settings = lib.mkOption {
       inherit (tomlFormat) type;
+
       description = ''
         Configuration defined at https://zk-org.github.io/zk/config/config.html.
       '';
+
       default = {
         notebook = {
           dir = "~/notes";
