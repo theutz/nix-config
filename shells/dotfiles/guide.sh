@@ -1,3 +1,5 @@
+onefetch
+
 gum format <<-'markdown'
 	# ❄️ Welcome to theutz's flake! ❄️
 
