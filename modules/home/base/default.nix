@@ -56,13 +56,14 @@ in {
       htop.enable = true;
       jrnl.enable = true;
       lazygit.enable = true;
+      lazyvim.enable = true;
       less.enable = true;
       lf.enable = true;
       man.enable = true;
       nb.enable = true;
       noti.enable = true;
       nushell.enable = true;
-      nvim.enable = true;
+      nixvim.enable = false;
       prezto.enable = true;
       prezto.autoTmux = true;
       ripgrep.enable = true;

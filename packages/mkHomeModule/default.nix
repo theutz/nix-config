@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  namespace,
   ...
 }: let
   template =
@@ -10,16 +11,15 @@
     ''
       {
         lib,
+        pkgs,
         config,
         namespace,
         ...
       }: let
-        mod = lib.internal.path.getLastComponent ./.;
-        cfg = config.internal.''${mod};
+        mod = lib.''${namespace}.path.getLastComponent ./.;
+        cfg = config.''${namespace}.''${mod};
       in {
-        options.internal.''${mod} = {
-          enable = lib.mkEnableOption mod;
-        };
+        options.''${namespace}.''${mod}.enable = lib.mkEnableOption mod;
 
         config = lib.mkIf cfg.enable {
         };
@@ -28,13 +28,7 @@
 
   description = "Create a blank home manager module";
 
-  name = with lib;
-    pipe ./. [
-      path.splitRoot
-      (getAttr "subpath")
-      path.subpath.components
-      last
-    ];
+  name = lib.${namespace}.path.getLastComponent ./.;
 
   usage = ''
     ${description}
