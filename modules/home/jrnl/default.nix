@@ -27,7 +27,7 @@
     };
     default_hour = 9;
     default_minute = 0;
-    editor = lib.getName config.home.sessionVariables.EDITOR;
+    editor = "nvim";
     encrypt = true;
     highlight = true;
     indent_character = "|";
