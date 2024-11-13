@@ -15,6 +15,7 @@ in
     _1password-gui
     act
     age
+    alejandra
     bats
     bruno
     caddy
