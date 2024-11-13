@@ -24,7 +24,20 @@ in {
     ];
 
     lib.${namespace} = {
-      mkOutOfStoreSymlink = lib.${namespace}.mkOutOfStoreSymlink' config;
+      # mkOutOfStoreSymlink = lib.${namespace}.mkOutOfStoreSymlink' config;
+      mkOutOfStoreSymlink = path: let
+        home = /. + config.home.homeDirectory;
+        base = lib.internal.vars.paths.homeModules;
+        mod = lib.internal.path.getLastComponent (builtins.dirOf path);
+      in
+        lib.pipe path [
+          builtins.baseNameOf
+          lib.singleton
+          (lib.concat [base mod])
+          lib.path.subpath.join
+          (lib.path.append home)
+          config.lib.file.mkOutOfStoreSymlink
+        ];
     };
 
     internal = {
