@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   namespace,
   config,
   ...
@@ -11,13 +10,14 @@ in {
   options.${namespace}.${mod}.enable = lib.mkEnableOption mod;
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      timewarrior
-    ];
-
-    programs.taskwarrior = {
+    programs.tealdeer = {
       enable = true;
-      config = {};
+      settings = {
+        updates = {
+          auto_update = true;
+          auto_update_interval_hours = 24;
+        };
+      };
     };
   };
 }

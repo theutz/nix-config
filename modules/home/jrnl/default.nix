@@ -11,13 +11,6 @@ in {
   options.${namespace}.${mod}.enable = lib.mkEnableOption mod;
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      timewarrior
-    ];
-
-    programs.taskwarrior = {
-      enable = true;
-      config = {};
-    };
+    home.packages = with pkgs; [jrnl];
   };
 }

@@ -81,7 +81,6 @@ in
     statix
     tidy-viewer
     tig
-    tldr
     tree
     tz
     watchexec

@@ -57,6 +57,7 @@ in {
       ripgrep.enable = true;
       starship.enable = true;
       taskwarrior.enable = true;
+      tldr.enable = true;
       tmux.enable = true;
       wezterm.enable = true;
       xdg.enable = true;
