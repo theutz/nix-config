@@ -7,11 +7,10 @@ if wezterm.config_builder then
 end
 c:set_strict_mode(true)
 
--- c.default_prog = { "zsh", "-c", "/opt/homebrew/bin/nu" }
 c.macos_window_background_blur = 50
 c.window_background_opacity = 1.0
 c.font = wezterm.font("0xProto Nerd Font Propo", { weight = 400 })
-c.font_size = 16
+c.font_size = 14
 c.line_height = 1.2
 c.bold_brightens_ansi_colors = "BrightAndBold"
 c.window_close_confirmation = "NeverPrompt"
@@ -36,7 +35,7 @@ c.command_palette_font_size = 18
 
 local function scheme_for_appearance(appearance)
   if appearance:find("Dark") then
-    return "Tokyo Night"
+    return "Tokyo Night Moon"
   else
     return "Tokyo Night Day"
   end
