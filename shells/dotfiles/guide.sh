@@ -10,4 +10,4 @@
 
 		@packages@
 	markdown
-} | gum pager
+} | less -S
