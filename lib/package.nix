@@ -1,7 +1,8 @@
 {lib, ...}: let
   toMarkdown = pkg:
     "- **${lib.getName pkg}**"
-    + lib.optionalString (pkg.meta ? description) "\n  - ${pkg.meta.description}";
+    + lib.optionalString
+    (pkg.meta ? description) "\n  - ${pkg.meta.description}";
 
   pipe = lib.flip lib.pipe;
 
