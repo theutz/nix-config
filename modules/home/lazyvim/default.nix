@@ -17,6 +17,6 @@ in {
       enableManIntegration = true;
     };
 
-    xdg.configFile.nvim.source = ./config;
+    xdg.configFile.nvim.source = config.lib.${namespace}.mkOutOfStoreSymlink ./config;
   };
 }
