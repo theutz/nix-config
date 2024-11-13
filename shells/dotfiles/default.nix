@@ -4,32 +4,34 @@
   lib,
   ...
 }: let
-  packages = with pkgs; [
-    bashInteractive
-    gum
-    onefetch
+  inherit (lib.internal.pacakge) listToMarkdown;
+
+  guide = pkgs.writeShellApplication {
+    name = "guide";
+    meta.description = "show this guide";
+    runtimeInputs = [pkgs.gum];
+    text = pkgs.replaceVars ./guide.sh {
+      commands = listToMarkdown commands;
+      packages = listToMarkdown packages;
+    };
+  };
+
+  commands = lib.concatLists [
+    guide
+    (lib.attrValues pkgs.internal)
   ];
 
-  commands = lib.pipe pkgs.internal [
-    lib.attrValues
-    # (lib.filter (pkg: lib.getName pkg != "nixvim"))
+  packages = with pkgs; [
+    gum
+    bashInteractive
   ];
+
+  shellHook = builtins.readFile (pkgs.replaceVars ./hook.sh {
+    help = lib.getName guide;
+  });
 in
   mkShell {
     packages = packages ++ commands;
 
-    shellHook = ''
-      onefetch
-      gum format <<'EOF'
-      # Welcome to TheUtz's Flake ❄️
-
-      ## Commands
-
-      ${lib.internal.package.listToMarkdown commands}
-
-      ## Packages
-
-      ${lib.internal.package.listToMarkdown packages}
-      EOF
-    '';
+    inherit shellHook;
   }
