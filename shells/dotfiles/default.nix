@@ -2,6 +2,7 @@
   mkShell,
   pkgs,
   lib,
+  namespace,
   ...
 }: let
   inherit (lib.internal.package) listToMarkdown;
@@ -34,11 +35,16 @@
     )
   ];
 
-  packages =
-    (lib.attrValues (lib.removeAttrs pkgs.internal ["utzvim"]))
-    ++ (with pkgs; [
+  packages = with pkgs;
+    [
       gum
       bashInteractive
+    ]
+    ++ (with pkgs.${namespace}; [
+      find-root
+      mkHomeModule
+      mkPackage
+      mkTmuxpSession
     ]);
 
   shellHook = builtins.readFile (pkgs.replaceVars ./hook.sh {
