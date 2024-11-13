@@ -7,9 +7,9 @@
   inherit (lib) mkIf mkEnableOption;
 
   mod = "starship";
-  cfg = config."internal"."${mod}";
+  cfg = config."${namespace}"."${mod}";
 in {
-  options."internal"."${mod}" = {
+  options."${namespace}"."${mod}" = {
     enable = mkEnableOption "starship prompt";
   };
 

@@ -11,7 +11,7 @@
     lib.path.subpath.components
     lib.last
   ];
-  cfg = config."internal"."${mod}";
+  cfg = config."${namespace}"."${mod}";
 
   relToDotDir = file:
     (lib.optionalString (config.programs.zsh.dotDir != null)
@@ -40,7 +40,7 @@
       } >&2
     '';
 in {
-  options.internal.${mod} = {
+  options.${namespace}.${mod} = {
     enable = lib.mkEnableOption "prezto zsh framework";
 
     autoTmux = lib.mkOption {
@@ -52,7 +52,7 @@ in {
       '';
 
       example = ''
-        internal.${mod}.autoTmux = false;
+        ${namespace}.${mod}.autoTmux = false;
       '';
 
       type = lib.types.bool;

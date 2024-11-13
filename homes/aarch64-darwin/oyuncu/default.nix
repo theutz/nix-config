@@ -1,3 +1,3 @@
-{
+{...}: {
   internal.base.enable = true;
 }

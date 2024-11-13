@@ -1,5 +1,5 @@
 {
-  description = "internal: a flake";
+  description = "theutz: a flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
@@ -50,9 +50,6 @@
       alias = {
         shells.default = "dotfiles";
       };
-
-      overlays = with inputs; [
-      ];
 
       homes.modules = with inputs; [
         nix-index-database.hmModules.nix-index

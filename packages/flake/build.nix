@@ -46,7 +46,7 @@ in
     ];
 
     text = ''
-      ${lib.internal.bash.loggers}
+      ${lib.${namespace}.bash.loggers}
 
       function help() {
         gum format <<-'EOF'

@@ -8,7 +8,7 @@
   inherit (lib) mkEnableOption mkIf mkOption types mkMerge;
 
   mod = "lf";
-  cfg = config."internal"."${mod}";
+  cfg = config."${namespace}"."${mod}";
 
   autoCdFn = ''
     lfcd () {
@@ -20,12 +20,12 @@
     lf = "lfcd";
   };
 in {
-  options."internal"."${mod}" = {
+  options."${namespace}"."${mod}" = {
     enable = mkEnableOption "lf file manager";
     autoCd = mkOption {
       default = config.programs.zsh.enable;
       example = ''
-        internal.${mod}.autoCd = true;
+        ${namespace}.${mod}.autoCd = true;
       '';
       type = types.bool;
     };

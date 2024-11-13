@@ -2,13 +2,12 @@
   config,
   lib,
   namespace,
-  pkgs,
   ...
 }: let
   mod = "wezterm";
-  cfg = config.internal.${mod};
+  cfg = config.${namespace}.${mod};
 in {
-  options.internal.${mod} = {
+  options.${namespace}.${mod} = {
     enable = lib.mkEnableOption "wezterm terminal emulator";
   };
 

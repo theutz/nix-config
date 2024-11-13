@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  lib,
+  namespace,
+  ...
+}: let
   mkPath = p:
     with lib;
     with path.subpath;
@@ -62,8 +66,8 @@ in rec {
 
   mkOutOfStoreSymlink' = config: path: let
     home = /. + config.home.homeDirectory;
-    base = lib.internal.vars.paths.homeModules;
-    mod = lib.internal.path.getLastComponent (builtins.dirOf path);
+    base = lib.${namespace}.vars.paths.homeModules;
+    mod = lib.${namespace}.path.getLastComponent (builtins.dirOf path);
   in
     lib.pipe path [
       builtins.baseNameOf

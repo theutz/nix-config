@@ -5,7 +5,7 @@
   ...
 }: let
   mod = "darwin-defaults";
-  cfg = config.internal.${mod};
+  cfg = config.${namespace}.${mod};
   inputSources = [
     {
       InputSourceKind = "Keyboard Layout";
@@ -23,7 +23,7 @@
     }
   ];
 in {
-  options.internal.${mod} = {
+  options.${namespace}.${mod} = {
     enable = lib.mkEnableOption "`defaults write` configurations";
   };
 

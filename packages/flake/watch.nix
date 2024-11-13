@@ -1,5 +1,6 @@
 {
   pkgs,
+  namespace,
   lib,
   switch,
   main,
@@ -21,7 +22,7 @@ pkgs.writeShellApplication rec {
 
   text = builtins.readFile (pkgs.replaceVars ./watch.sh {
     inherit (meta) description;
-    inherit (lib.internal.bash) loggers;
+    inherit (lib.${namespace}.bash) loggers;
     cmd = "${main} ${name}";
   });
 }

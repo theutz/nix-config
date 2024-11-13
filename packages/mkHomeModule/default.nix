@@ -47,11 +47,11 @@ in
 
     runtimeInputs = with pkgs; [
       gum
-      internal.find-root
+      pkgs.${namespace}.find-root
     ];
 
     runtimeEnv = {
-      HOME_MODULES_DIR = lib.internal.vars.paths.homeModules;
+      HOME_MODULES_DIR = lib.${namespace}.vars.paths.homeModules;
     };
 
     text = ''

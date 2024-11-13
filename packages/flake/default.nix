@@ -3,17 +3,18 @@
   lib,
   inputs,
   system,
+  namespace,
   ...
 }:
 with lib; let
   inherit (inputs.darwin.packages.${system}) darwin-rebuild;
 
-  name = lib.internal.path.getLastComponent ./.;
+  name = lib.${namespace}.path.getLastComponent ./.;
 
   description = "Commands for working with my nix-config";
 
   args = {
-    inherit pkgs lib darwin-rebuild;
+    inherit pkgs lib darwin-rebuild namespace;
     main = name;
   };
 
@@ -42,9 +43,9 @@ in
         {
           inherit name;
           inherit (meta) description;
-          inherit (lib.internal.bash) loggers;
+          inherit (lib.${namespace}.bash) loggers;
 
-          flake-path = lib.internal.vars.paths.flake;
+          flake-path = lib.${namespace}.vars.paths.flake;
 
           actions = lib.pipe commands [
             (lib.mapAttrsToList

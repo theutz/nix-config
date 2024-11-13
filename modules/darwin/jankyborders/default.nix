@@ -5,10 +5,10 @@
   namespace,
   ...
 }: let
-  mod = lib.internal.path.getLastComponent ./.;
-  cfg = config.internal.${mod};
+  mod = lib.${namespace}.path.getLastComponent ./.;
+  cfg = config.${namespace}.${mod};
 in {
-  options.internal.${mod} = {
+  options.${namespace}.${mod} = {
     enable = lib.mkEnableOption mod;
   };
 

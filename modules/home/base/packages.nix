@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  php = pkgs.php83.buildEnv {
+  phpWithExtensions = pkgs.php83.buildEnv {
     extensions = {
       enabled,
       all,
@@ -68,8 +68,8 @@ in
     nurl
     openai
     overmind
-    php83
-    php83.packages.composer
+    phpWithExtensions
+    phpWithExtensions.packages.composer
     pls
     pnpm
     procs

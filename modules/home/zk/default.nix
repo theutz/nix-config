@@ -2,13 +2,14 @@
   lib,
   pkgs,
   config,
+  namespace,
   ...
 }: let
-  cfg = config.internal.zk;
+  cfg = config.${namespace}.zk;
 
   tomlFormat = pkgs.formats.toml {};
 in {
-  options.internal.zk = {
+  options.${namespace}.zk = {
     enable = lib.mkEnableOption "zk";
 
     settings = lib.mkOption {

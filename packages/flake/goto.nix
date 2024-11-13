@@ -1,10 +1,11 @@
 {
   pkgs,
+  namespace,
   lib,
   main,
   ...
 }: let
-  inherit (lib.internal.bash) loggers;
+  inherit (lib.${namespace}.bash) loggers;
   name = "goto";
   description = "`cd` to flake config";
   usage =

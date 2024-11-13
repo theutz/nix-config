@@ -1,5 +1,6 @@
 {
   pkgs,
+  namespace,
   main,
   lib,
   ...
@@ -18,6 +19,6 @@ pkgs.writeShellApplication rec {
   text = builtins.readFile (pkgs.replaceVars ./switch.sh {
     inherit main name;
     inherit (meta) description;
-    inherit (lib.internal.bash) loggers;
+    inherit (lib.${namespace}.bash) loggers;
   });
 }

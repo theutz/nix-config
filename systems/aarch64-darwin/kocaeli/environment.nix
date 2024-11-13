@@ -1,3 +1,3 @@
-{pkgs, ...}: {
-  internal.environment.enable = true;
+{namespace, ...}: {
+  "${namespace}".environment.enable = true;
 }

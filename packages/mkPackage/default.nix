@@ -1,5 +1,6 @@
 {
   pkgs,
+  namespace,
   lib,
   ...
 }: let
@@ -46,7 +47,7 @@ in
     ];
 
     runtimeEnv = {
-      PACKAGES_PATH = lib.internal.vars.paths.packages;
+      PACKAGES_PATH = lib.${namespace}.vars.paths.packages;
     };
 
     text = ''

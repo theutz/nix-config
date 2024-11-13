@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  mod = lib.internal.path.getLastComponent ./.;
+  mod = lib.${namespace}.path.getLastComponent ./.;
   cfg = config.${namespace}.${mod};
 in {
   options.${namespace}.${mod}.enable = lib.mkEnableOption mod;

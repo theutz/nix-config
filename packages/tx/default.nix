@@ -4,7 +4,7 @@
   namespace,
   ...
 } @ args: let
-  name = lib.internal.path.getLastComponent ./.;
+  name = lib.${namespace}.path.getLastComponent ./.;
 
   description = "Toolkit for working with tmux and tmuxp";
 
@@ -14,7 +14,7 @@
   };
 
   runtimeEnv = {
-    TMUXP_CONFIG_DIR = "${lib.internal.vars.paths.tmuxp}";
+    TMUXP_CONFIG_DIR = "${lib.${namespace}.vars.paths.tmuxp}";
   };
 
   flags = [
@@ -50,9 +50,9 @@ in
 
       help-actions = lib.pipe cmds [
         lib.attrValues
-        (lib.internal.package.listToMarkdown)
+        (lib.${namespace}.package.listToMarkdown)
       ];
 
-      help-flags = lib.internal.package.flags.toMarkdown flags;
+      help-flags = lib.${namespace}.package.flags.toMarkdown flags;
     });
   }

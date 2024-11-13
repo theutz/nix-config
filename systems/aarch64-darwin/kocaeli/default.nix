@@ -1,5 +1,5 @@
 {
-  pkgs,
+  namespace,
   lib,
   ...
 }: {
@@ -8,7 +8,7 @@
     (lib.filter (f: f != ./default.nix))
   ];
 
-  internal = {
+  "${namespace}" = {
     home-manager.enable = true;
     homebrew.enable = true;
     jankyborders.enable = true;

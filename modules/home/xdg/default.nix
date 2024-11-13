@@ -7,9 +7,9 @@
   inherit (lib) mkIf mkEnableOption;
 
   mod = "xdg";
-  cfg = config."internal"."${mod}";
+  cfg = config."${namespace}"."${mod}";
 in {
-  options."internal"."${mod}" = {
+  options."${namespace}"."${mod}" = {
     enable = mkEnableOption "xdg preferences";
   };
 

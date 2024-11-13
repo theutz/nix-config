@@ -5,7 +5,7 @@
   namespace,
   ...
 }: let
-  inherit (lib.internal.package) listToMarkdown;
+  inherit (lib.${namespace}.package) listToMarkdown;
 
   guide = pkgs.writeShellApplication {
     name = "guide";

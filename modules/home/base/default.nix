@@ -6,7 +6,7 @@
   osConfig,
   ...
 }: let
-  mod = lib.internal.path.getLastComponent ./.;
+  mod = lib.${namespace}.path.getLastComponent ./.;
   cfg = config.${namespace}.${mod};
 in {
   options.${namespace}.${mod}.
@@ -31,8 +31,8 @@ in {
     lib.${namespace} = {
       mkOutOfStoreSymlink = path: let
         home = /. + config.home.homeDirectory;
-        base = lib.internal.vars.paths.homeModules;
-        mod = lib.internal.path.getLastComponent (builtins.dirOf path);
+        base = lib.${namespace}.vars.paths.homeModules;
+        mod = lib.${namespace}.path.getLastComponent (builtins.dirOf path);
       in
         lib.pipe path [
           builtins.baseNameOf

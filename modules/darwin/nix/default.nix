@@ -1,11 +1,12 @@
 {
+  namespace,
   config,
   lib,
   ...
 }: {
-  options.internal.nix.enable = lib.mkEnableOption "nix settings";
+  options.${namespace}.nix.enable = lib.mkEnableOption "nix settings";
 
-  config = lib.mkIf config.internal.nix.enable {
+  config = lib.mkIf config.${namespace}.nix.enable {
     nix = {
       checkConfig = true;
 

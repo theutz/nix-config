@@ -3,10 +3,11 @@
   lib,
   config,
   osConfig,
+  namespace,
   ...
 }: let
   mod = "aerospace";
-  cfg = config.internal.${mod};
+  cfg = config.${namespace}.${mod};
   isInstalled = lib.pipe osConfig.homebrew.casks [
     (lib.map (lib.getAttr "name"))
     (lib.elem mod)
@@ -17,7 +18,7 @@
   neovide = lib.getExe pkgs.neovide;
   bash = lib.getExe pkgs.bashInteractive;
 in {
-  options.internal.${mod} = {
+  options.${namespace}.${mod} = {
     enable = lib.mkEnableOption "tiling window manager for darwin";
   };
 
