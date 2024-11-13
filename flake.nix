@@ -47,6 +47,10 @@
         allowUnfree = true;
       };
 
+      aliases = {
+        devShells.default = "dotfiles";
+      };
+
       overlays = with inputs; [
       ];
 
