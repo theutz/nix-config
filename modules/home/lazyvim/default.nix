@@ -10,7 +10,7 @@
 in {
   options.${namespace}.${mod}.enable = lib.mkEnableOption mod;
 
-  config = lib.mkIf (lib.traceVal cfg.enable) {
+  config = lib.mkIf cfg.enable {
     "${namespace}".neovim = {
       enable = true;
       package = pkgs.neovim;
