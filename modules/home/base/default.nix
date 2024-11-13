@@ -12,11 +12,10 @@
     lib.path.subpath.components
     lib.last
   ];
-  cfg = config.internal.${mod};
+  cfg = config.${namespace}.${mod};
 in {
-  options.internal.${mod} = {
+  options.${namespace}.${mod}.
     enable = lib.mkEnableOption "base settings for home manager";
-  };
 
   config = lib.mkIf cfg.enable {
     home.stateVersion = "24.05";
@@ -44,6 +43,7 @@ in {
       fzf.enable = true;
       go.enable = true;
       htop.enable = true;
+      jrnl.enable = true;
       lazygit.enable = true;
       less.enable = true;
       lf.enable = true;
