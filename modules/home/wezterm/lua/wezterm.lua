@@ -1,4 +1,4 @@
-local wezterm = require("modules.home.wezterm.config.wezterm")
+local wezterm = require("wezterm")
 
 -- Setup config builder
 local c = {}
@@ -11,7 +11,7 @@ c:set_strict_mode(true)
 c.macos_window_background_blur = 50
 c.window_background_opacity = 1.0
 c.font = wezterm.font("0xProto Nerd Font Propo", { weight = 400 })
-c.font_size = 14
+c.font_size = 16
 c.line_height = 1.2
 c.bold_brightens_ansi_colors = "BrightAndBold"
 c.window_close_confirmation = "NeverPrompt"
