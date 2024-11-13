@@ -24,7 +24,6 @@ in {
     ];
 
     lib.${namespace} = {
-      # mkOutOfStoreSymlink = lib.${namespace}.mkOutOfStoreSymlink' config;
       mkOutOfStoreSymlink = path: let
         home = /. + config.home.homeDirectory;
         base = lib.internal.vars.paths.homeModules;
