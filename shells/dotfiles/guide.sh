@@ -1,11 +1,11 @@
 onefetch
 
 gum format <<-'markdown'
-	# Commands
+	## Commands
 
 	@commands@
 
-	# Packages
+	## Packages
 
 	@packages@
 markdown
