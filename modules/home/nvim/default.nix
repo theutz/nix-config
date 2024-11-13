@@ -16,7 +16,10 @@
     };
   };
 
-  nvim = pkgs.internal.utzvim;
+  nvim = with pkgs;
+    if false
+    then internal.utzvim
+    else neovim;
 in {
   inherit options;
 
