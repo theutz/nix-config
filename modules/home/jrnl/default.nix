@@ -12,5 +12,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [jrnl];
+
+    xdg.configFile."jrnl/jrnl.yaml".source =
+      config.lib.${namespace}.mkOutOfStoreSymlink ./jrnl.yaml;
   };
 }
