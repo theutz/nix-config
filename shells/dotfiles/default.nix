@@ -16,15 +16,19 @@
     });
   };
 
+  reload = pkgs.writeShellApplication {
+    name = "reload";
+  }
+
   commands = lib.concatLists [
     [guide]
     (lib.attrValues pkgs.internal)
   ];
 
-  packages = with pkgs; [
+  packages = pkgs.internal ++ (with pkgs; [
     gum
     bashInteractive
-  ];
+  ]);
 
   shellHook = builtins.readFile (pkgs.replaceVars ./hook.sh {
     help = lib.getName guide;
