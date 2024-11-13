@@ -9,7 +9,11 @@
   guide = pkgs.writeShellApplication {
     name = "guide";
     meta.description = "Show this guide";
-    runtimeInputs = with pkgs; [gum onefetch];
+    runtimeInputs = with pkgs; [
+      gum
+      onefetch
+      less
+    ];
     text = builtins.readFile (pkgs.replaceVars ./guide.sh {
       commands = listToMarkdown commands;
       packages = listToMarkdown packages;
