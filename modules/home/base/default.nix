@@ -56,6 +56,7 @@ in {
       prezto.autoTmux = true;
       ripgrep.enable = true;
       starship.enable = true;
+      taskwarrior.enable = true;
       tmux.enable = true;
       wezterm.enable = true;
       xdg.enable = true;
