@@ -32,10 +32,10 @@
     highlight = true;
     indent_character = "|";
     journals = {
-      default = {
-        journal = mkJrnlPath "settings";
-        delegator = mkJrnlPath "delegator";
-      };
+      default =
+        lib.genAttrs
+        ["journal" "delegator"]
+        mkJrnlPath;
     };
     linewrap = 79;
     tagsymbols = "#@";
