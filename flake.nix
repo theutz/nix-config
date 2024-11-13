@@ -47,8 +47,8 @@
         allowUnfree = true;
       };
 
-      aliases = {
-        devShells.default = "dotfiles";
+      alias = {
+        shells.default = "dotfiles";
       };
 
       overlays = with inputs; [
