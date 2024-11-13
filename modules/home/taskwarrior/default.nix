@@ -22,15 +22,9 @@ in {
       config = {};
     };
 
-    xdg.configFile."timewarrior/timewarrior.cfg".text = ''
-      reports.summary.annotations = yes
-      reports.summary.ids = yes
-      tags.Delegator.description = Work tasks for Delegator, LLC
-      tags.Work.description = Any tasks related to making money
-      tags.Meetings.description = Zoom calls, in-person meetings, or whatever
-      tags.StatusCall.description = Weekly update call with Delegator's Creative & Web Team
-      tags.LocalDev.description = Any tasks related to setting up local dev environments
-      reports.summary.range = week
-    '';
+    xdg.configFile.
+      "timewarrior/timewarrior.cfg".source =
+      config.lib.${namespace}.mkOutOfStoreSymlink
+      ./timewarrior.cfg;
   };
 }
