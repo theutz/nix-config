@@ -17,8 +17,7 @@ in {
     };
   };
 
-  config = lib.traceValFn (x: x.content.contents) (lib.mkIf cfg.enable (lib.mkMerge [
-    {
+  config = lib.mkIf cfg.enable {
       home.sessionVariables = lib.mkMerge [
         {
           EDITOR = lib.mkForce cfg.package;
@@ -30,5 +29,5 @@ in {
         })
       ];
     }
-  ]));
+  ;
 }
