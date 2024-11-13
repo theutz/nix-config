@@ -18,17 +18,16 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-
-	home.packages = [cfg.package];
-      home.sessionVariables = lib.mkMerge [
-        {
-          EDITOR = lib.mkForce cfg.package;
-          VISUAL = lib.getExe pkgs.neovide;
-        }
-        (lib.mkIf cfg.enableManIntegration {
-          MANPAGER = lib.mkForce "${lib.getExe cfg.package} -c +Man!";
-          MANWIDTH = lib.mkForce "999";
-        })
-      ];
+    home.packages = [cfg.package];
+    home.sessionVariables = lib.mkMerge [
+      {
+        EDITOR = lib.mkForce cfg.package;
+        VISUAL = lib.getExe pkgs.neovide;
+      }
+      (lib.mkIf cfg.enableManIntegration {
+        MANPAGER = lib.mkForce "${lib.getExe cfg.package} -c +Man!";
+        MANWIDTH = lib.mkForce "999";
+      })
+    ];
   };
-    }
+}
