@@ -1,13 +1,11 @@
 onefetch
 
 gum format <<-'markdown'
-	# ❄️ Welcome to theutz's flake! ❄️
-
-	## Commands
+	# Commands
 
 	@commands@
 
-	## Packages
+	# Packages
 
 	@packages@
 markdown

@@ -3,7 +3,7 @@ pkgs.writeShellApplication {
   name = "find-root";
 
   meta = {
-    description = "given a file, find the nearest parent folder";
+    description = "Given a file, find the nearest parent folder";
     longDescription = ''
       Usage: find-root "flake.lock"
     '';

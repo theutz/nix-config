@@ -1,8 +1,18 @@
 {lib, ...}: let
   toMarkdown = pkg:
-    "- **${lib.getName pkg}**"
-    + lib.optionalString
-    (pkg.meta ? description) "\n  - ${pkg.meta.description}";
+    lib.concatLines [
+      (
+        "- "
+        + (
+          if pkg.meta ? homepage
+          then "[${lib.getName pkg}](${pkg.meta.homepage})"
+          else "**${lib.getName pkg}**"
+        )
+      )
+      (lib.optionalString
+        (pkg.meta ? description)
+        "  - ${pkg.meta.description}")
+    ];
 
   pipe = lib.flip lib.pipe;
 
