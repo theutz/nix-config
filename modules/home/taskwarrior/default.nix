@@ -26,5 +26,10 @@ in {
 
     xdg.configFile.
       "timewarrior/timewarrior.cfg".source = mkOutOfStoreSymlink ./timewarrior.cfg;
+
+    home.shellAliases = {
+      t = "task";
+      tw = "timew";
+    };
   };
 }
