@@ -1,11 +1,13 @@
-onefetch
+{
+	onefetch
 
-gum format <<-'markdown'
-	## Commands
+	gum format <<-'markdown'
+		## Commands
 
-	@commands@
+		@commands@
 
-	## Packages
+		## Packages
 
-	@packages@
-markdown
+		@packages@
+	markdown
+} | gum pager
