@@ -1,4 +1,4 @@
-local wezterm = require("wezterm")
+local wezterm = require("modules.home.wezterm.config.wezterm")
 
 -- Setup config builder
 local c = {}
@@ -10,9 +10,9 @@ c:set_strict_mode(true)
 -- c.default_prog = { "zsh", "-c", "/opt/homebrew/bin/nu" }
 c.macos_window_background_blur = 50
 c.window_background_opacity = 1.0
-c.font = wezterm.font("@font-family@", { weight = @font-weight@ })
-c.font_size = @font-size@
-c.line_height = @font-leading@
+c.font = wezterm.font("0xProto Nerd Font Propo", { weight = 400 })
+c.font_size = 14
+c.line_height = 1.2
 c.bold_brightens_ansi_colors = "BrightAndBold"
 c.window_close_confirmation = "NeverPrompt"
 c.quit_when_all_windows_are_closed = true

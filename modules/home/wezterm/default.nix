@@ -1,6 +1,7 @@
 {
   config,
   lib,
+namespace,
   pkgs,
   ...
 }: let
@@ -12,18 +13,17 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    xdg.configFile."wezterm/wezterm.lua".enable = false;
+
+    xdg.configFile."wezterm" = lib.mkForce {
+      source = config.lib.${namespace}.mkOutOfStoreSymlink ./config;
+      recursive = true;
+    };
+
     programs.wezterm = {
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
-      extraConfig = builtins.readFile (pkgs.replaceVars ./wezterm.lua (let
-        inherit (lib.internal.vars.styles) font;
-      in {
-        font-family = font.family;
-        font-weight = font.weight;
-        font-size = font.size;
-        font-leading = font.leading;
-      }));
     };
   };
 }
