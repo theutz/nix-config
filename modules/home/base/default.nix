@@ -44,7 +44,7 @@ in {
         ];
     };
 
-    internal = {
+    "${namespace}" = {
       atuin.enable = false;
       bash.enable = true;
       bat.enable = true;
