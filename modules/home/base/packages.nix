@@ -67,14 +67,16 @@ in
     nurl
     openai
     overmind
-    php
-    php.packages.composer
+    php83
+    php83.packages.composer
     pls
     pnpm
     procs
+    python3
     rainfrog
     redis
     rsync
+    ruby
     sad
     sd
     speedtest-go
