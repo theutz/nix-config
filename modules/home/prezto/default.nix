@@ -20,9 +20,12 @@
 
   zlogin = lib.pipe "${pkgs.zsh-prezto}/share/zsh-prezto/runcoms/zlogin" [
     lib.readFile
-    (lib.strings.replaceStrings
-      ["[fortune]" "fortune -s"]
-      ["[neofetch]" "neofetch 2>/dev/null"])
+    (lib.splitString "\n")
+    (x: (lib.take ((lib.length x) - 11) x))
+    lib.concatLines
+    # (lib.strings.replaceStrings
+    #   ["[fortune]" "fortune -s"]
+    #   ["[neofetch]" "neofetch 2>/dev/null"])
   ];
 in {
   options."internal"."${mod}" = {
