@@ -35,7 +35,7 @@
   ];
 
   packages =
-    (lib.attrValues (lib.removeAttrs pkgs.internal ["utzvim"]))
+    (lib.attrValues (lib.removeAttrs (lib.traceValFn (lib.attrNames) pkgs.internal) ["utzvim"]))
     ++ (with pkgs; [
       gum
       bashInteractive
