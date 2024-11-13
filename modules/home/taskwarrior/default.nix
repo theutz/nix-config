@@ -5,6 +5,8 @@
   config,
   ...
 }: let
+  inherit (config.lib.${namespace}) mkOutOfStoreSymlink;
+
   mod = lib.${namespace}.path.getLastComponent ./.;
   cfg = config.${namespace}.${mod};
 in {
@@ -23,8 +25,6 @@ in {
     };
 
     xdg.configFile.
-      "timewarrior/timewarrior.cfg".source =
-      config.lib.${namespace}.mkOutOfStoreSymlink
-      ./timewarrior.cfg;
+      "timewarrior/timewarrior.cfg".source = mkOutOfStoreSymlink ./timewarrior.cfg;
   };
 }
