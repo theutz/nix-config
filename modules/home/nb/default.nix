@@ -2,12 +2,13 @@
   pkgs,
   lib,
   config,
+  namespace,
   ...
 }: let
-  cfg = config.internal.nb;
-  mkOutOfStoreSymlink = lib.internal.mkOutOfStoreSymlink' config;
+  mod = lib.${namespace}.path.getLastComponent ./.;
+  cfg = config.${namespace}.${mod};
 in {
-  options.internal.nb = {
+  options.${namespace}.${mod} = {
     enable = lib.mkEnableOption "nb";
   };
 
@@ -32,6 +33,8 @@ in {
       NB_DATA_TOOL = lib.getExe pkgs.tidy-viewer;
     };
 
-    xdg.configFile."nbrc".source = mkOutOfStoreSymlink ./nbrc.sh;
+    xdg.configFile."nbrc".source =
+      config.lib.${namespace}.mkOutOfStoreSymlink
+      ./nbrc.sh;
   };
 }
