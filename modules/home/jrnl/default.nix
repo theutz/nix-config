@@ -20,7 +20,7 @@
 
   settings = {
     colors = {
-      body = "nones";
+      body = "none";
       date = "black";
       tags = "yellow";
       title = "cyan";
@@ -33,8 +33,8 @@
     indent_character = "|";
     journals = {
       default = {
-        journal = mkJrnlPath "settings.txt";
-        delegator = mkJrnlPath "delegator.txt";
+        journal = mkJrnlPath "settings";
+        delegator = mkJrnlPath "delegator";
       };
     };
     linewrap = 79;
