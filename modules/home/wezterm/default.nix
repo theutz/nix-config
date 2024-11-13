@@ -16,7 +16,7 @@ in {
     xdg.configFile."wezterm/wezterm.lua".enable = false;
 
     xdg.configFile."wezterm" = lib.mkForce {
-      source = config.lib.${namespace}.mkOutOfStoreSymlink ./config;
+      source = config.lib.${namespace}.mkOutOfStoreSymlink ./lua;
       recursive = true;
     };
 
