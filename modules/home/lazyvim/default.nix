@@ -16,5 +16,7 @@ in {
       package = pkgs.neovim;
       enableManIntegration = true;
     };
+
+    xdg.configFile.nvim.source = ./config;
   };
 }
