@@ -31,17 +31,17 @@
     encrypt = true;
     highlight = true;
     indent_character = "|";
+    linewrap = 79;
+    tagsymbols = "#@";
+    template = false;
+    timeformat = "%F %r";
+    version = "v4.1";
     journals = {
       default =
         lib.genAttrs
         ["journal" "delegator"]
         mkJrnlPath;
     };
-    linewrap = 79;
-    tagsymbols = "#@";
-    template = false;
-    timeformat = "%F %r";
-    version = "v4.1";
   };
 in {
   options.${namespace}.${mod}.enable = lib.mkEnableOption mod;
@@ -51,5 +51,9 @@ in {
 
     xdg.configFile."jrnl/jrnl.yaml".source =
       yamlFormat.generate "jrnl.yaml" settings;
+
+    home.shellAliases = {
+      j = "jrnl";
+    };
   };
 }
