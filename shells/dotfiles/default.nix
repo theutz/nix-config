@@ -10,10 +10,10 @@
     name = "guide";
     meta.description = "show this guide";
     runtimeInputs = with pkgs; [gum onefetch];
-    text = pkgs.replaceVars ./guide.sh {
+    text = builtins.readFile (pkgs.replaceVars ./guide.sh {
       commands = listToMarkdown commands;
       packages = listToMarkdown packages;
-    };
+    });
   };
 
   commands = lib.concatLists [
