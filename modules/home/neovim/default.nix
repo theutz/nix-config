@@ -18,6 +18,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+	home.packages = [cfg.package];
       home.sessionVariables = lib.mkMerge [
         {
           EDITOR = lib.mkForce cfg.package;
@@ -28,6 +29,5 @@ in {
           MANWIDTH = lib.mkForce "999";
         })
       ];
-    }
-  ;
+    };
 }
