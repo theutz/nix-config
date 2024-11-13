@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib.internal.pacakge) listToMarkdown;
+  inherit (lib.internal.package) listToMarkdown;
 
   guide = pkgs.writeShellApplication {
     name = "guide";
@@ -17,7 +17,7 @@
   };
 
   commands = lib.concatLists [
-    guide
+    [guide]
     (lib.attrValues pkgs.internal)
   ];
 
