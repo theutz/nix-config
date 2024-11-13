@@ -17,7 +17,12 @@ in {
 
     home.packages =
       (import ./packages.nix {inherit pkgs;})
-      ++ (lib.attrValues pkgs.internal);
+      ++ (with pkgs.${namespace}; [
+        find-root
+        flake
+        nw
+        tx
+      ]);
 
     home.sessionPath = [
       "${osConfig.homebrew.brewPrefix}"
