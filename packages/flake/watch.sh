@@ -64,6 +64,10 @@ fi
 debug "watching" cmd "switch" args "'$*'"
 
 LOG_PREFIX="$LOG_PREFIX switch" \
-	watchexec --restart --notify -- \
-	${clear_screen:+--clear} \
+	watchexec \
+	--restart \
+	--notify \
+	--ignore 'shells/*' \
+	-- \
+	"${clear_screen:+--clear}" \
 	switch "$@"
