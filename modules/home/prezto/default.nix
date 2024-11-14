@@ -37,6 +37,9 @@
         if (( $+commands[timew] )); then
           timew day
         fi
+        if (( $+commands[task] )); then
+          task
+        fi
       fi
     '';
 
