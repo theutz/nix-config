@@ -38,7 +38,7 @@ in {
               __HM_ZSH_VARS_SOURCED
           )
 
-          for var in "$vars[@]"; do
+          for var in "$vars[*]"; do
               echo "Unsetting $var"
               if run "$tmux" setenv -gu "$var"; then
                 echo "Unset $var globally"
