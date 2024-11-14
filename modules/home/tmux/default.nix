@@ -30,26 +30,6 @@ in {
         ''
           tmux="${lib.getExe pkgs.tmux}"
 
-          echo "Resetting tmux env"
-
-          vars=(
-              __NIX_DARWIN_SET_ENVIRONMENT_DONE
-              __HM_SESS_VARS_SOURCED
-              __HM_ZSH_VARS_SOURCED
-          )
-
-          for var in "''${vars[@]}"; do
-              echo "Unsetting $var"
-              if run "$tmux" setenv -gu "$var"; then
-                echo "Unset $var globally"
-              fi
-              if run "$tmux" setenv -u "$var"; then
-                echo "Unset $var for session"
-              fi
-          done
-
-          echo "Tmux env reset"
-
           conf_file="${lib.concatStringsSep "/" [
             config.xdg.configHome
             "tmux"
