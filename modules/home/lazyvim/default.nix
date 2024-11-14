@@ -17,5 +17,12 @@ in {
     };
 
     xdg.configFile.nvim.source = config.lib.${namespace}.mkOutOfStoreSymlink ./config;
+
+    home.packages = with pkgs; [
+      alejandra
+      python3
+      ruby
+      cargo
+    ];
   };
 }
