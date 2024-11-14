@@ -14,7 +14,6 @@ in {
     "${namespace}".neovim = {
       enable = true;
       package = pkgs.neovim;
-      enableManIntegration = true;
     };
 
     xdg.configFile.nvim.source = config.lib.${namespace}.mkOutOfStoreSymlink ./config;
