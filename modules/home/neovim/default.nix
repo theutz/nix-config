@@ -25,7 +25,7 @@ in {
         VISUAL = lib.getExe pkgs.neovide;
       }
       (lib.mkIf cfg.enableManIntegration {
-        MANPAGER = lib.mkForce (lib.trace "manly" "${lib.getExe cfg.package} -c +Man!");
+        MANPAGER = lib.mkForce "${lib.getExe cfg.package} -c +Man!";
         MANWIDTH = lib.mkForce "999";
       })
     ];
