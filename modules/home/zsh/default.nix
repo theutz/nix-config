@@ -64,25 +64,6 @@ in {
             tmux setenv -g OPENAI_KEY "$(op read --account ${namespace}.1password.com "op://Private/OpenAI API Key/api key")"
             tmux setenv -g OPENAI_API_KEY "$OPENAI_KEY"
           fi
-
-          if [[ -n "$TMUX" ]]; then
-            function refresh() {
-              vars=(
-                  __NIX_DARWIN_SET_ENVIRONMENT_DONE
-                  __HM_SESS_VARS_SOURCED
-                  __HM_ZSH_VARS_SOURCED
-              )
-              for var in "''${vars[@]}"; do
-                  export $(tmux show-environment | grep "$var")
-              done
-            }
-          else
-            function refresh() {}
-          fi
-
-          function preexec() {
-            refresh
-          }
         '';
     };
   };
